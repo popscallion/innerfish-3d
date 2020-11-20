@@ -4,36 +4,36 @@ import {Label, Select} from '@rebass/forms';
 import styled from '@emotion/styled';
 import { DataContext, ChapterContext, SetChapterContext, IdContext } from '../Context'
 
-const DropDown = styled(Box)`
-  & label {
-    margin:10px 0px 4px 0px;
-    font-family: Poppins;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 15px;
-    margin-bottom: auto;
-  }
-  & select {
-    letter-spacing: 0.5px;
-    font-size: 14px;
-  }
-`
-
-
 const Chapter = (props) => {
   const data = useContext(DataContext)
   const chapter = useContext(ChapterContext)
   const setChapter = useContext(SetChapterContext)
 
   return(
-    <Box sx={{bg:'green', height:'100%',width:'100%'}}>
-      <Heading sx={{}}>{chapter.split('-')[1]}</Heading>
-      <DropDown as='form'>
-        <Label htmlFor='chapterChoice'>Chapter</Label>
+    <Box sx={{bg:'transparent', height:'fit-content',width:'20vw', pointerEvents:'all', alignSelf:'flex-start'}}>
+      <Heading sx={{fontSize:'large', lineHeight:'1', letterSpacing:'0.1vmin', mb:'1vmin'}}>{chapter.split('-')[1]}</Heading>
+      <Box as='form'>
+        <Label htmlFor='chapterChoice' sx={{
+          fontFamily:'body',
+          fontWeight:'600',
+          fontSize:'miniscule',
+          textTransform:'uppercase',
+          letterSpacing:'0.4vmin',
+          mb:'0.5vmin'
+        }}>Chapter</Label>
         <Select
           id='chapterChoice'
           value={chapter}
+          sx={{
+            fontSize:'teensy',
+            fontFamily:'body',
+            letterSpacing:'0.1vmin',
+            '& option': {
+              fontFamily:'body',
+              fontSize:'teensy',
+              letterSpacing:'0.1vmin',
+            }
+          }}
           onChange={e=>{setChapter(e.target.value)}}>
           {props.options
             .sort((a, b) => parseInt(a.slice(0,3))-parseInt(b.slice(0,3)))
@@ -43,7 +43,7 @@ const Chapter = (props) => {
               </option>
             ))}
         </Select>
-      </DropDown>
+      </Box>
     </Box>
   )
 }

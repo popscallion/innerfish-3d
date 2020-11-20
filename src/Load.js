@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import { Flex, Heading } from 'rebass'
 import Context from './Context';
 
+
 import { loadAirtable } from './data/loadAirtable'
 
 const Load = () => {
@@ -25,7 +26,7 @@ const Load = () => {
                     justifyContent:'center',
                     alignItems:'center',
                     minHeight:'100vh'}}>
-          <Heading>Loading...</Heading>
+          <Heading sx={{fontSize:'medium'}}>Loading...</Heading>
         </Flex>
     )
   }

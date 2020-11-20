@@ -11,7 +11,7 @@ const Viewer = () => {
   const specimen = data.find(datum => datum.scientific == specimenId)
   console.log(specimen);
   return(
-    <Box sx={{bg:'pink', height:'100%',width:'100%'}}>
+  <Flex sx={{bg:'transparent', height:'100%',width:'100%', flexDirection:'column', justifyContent:'center'}}>
       {specimen.type == "Model" &&
         <SketchFabViewer url={specimen.url}/>
       }
@@ -21,7 +21,7 @@ const Viewer = () => {
       {specimen.type == "Image" &&
         <Lightbox src={specimen.url} alt={specimen.scientific}/>
       }
-    </Box>
+    </Flex>
   )
 }
 

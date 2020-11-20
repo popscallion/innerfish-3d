@@ -1,4 +1,23 @@
 export default {
+  fonts: {
+    body: 'Poppins, sans-serif',
+    heading: 'Cabin, sans-serif',
+    monospace: 'Menlo, monospace',
+  },
+  fontSizes: {
+        'miniscule': '1.25vmin',
+        'teensy': '1.5vmin',
+        'tiny': '1.75vmin',
+        'small': '2vmin',
+        'medium': '4vmin',
+        'large': '6vmin',
+        'huge': '8vmin',
+        'colossal': '12vmin',
+    },
+  fontWeights: {
+  body: 400,
+  heading: 700,
+  },
   colors: {
     black: '#000',
     white: '#fff',
@@ -8,9 +27,6 @@ export default {
     azure: '#06698A',
     background: '#E0EDEC'
   },
-    fonts: {
-    body: 'Poppins, sans-serif',
-    heading: 'Cabin, sans-serif',
-    monospace: 'Menlo, monospace',
-  },
-}
+  space: [0, 4, 8, 16, 32, 48],
+  breakpoints: ['40em', '64em', '80em'],
+};

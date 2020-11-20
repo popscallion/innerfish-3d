@@ -74,6 +74,6 @@ const loadData = () => {
 
 export const loadAirtable = async () => {
   const data = await loadData()
-  const formatted = await formatJSON(data)
+  const formatted = formatJSON(data)
   return formatted
 }
