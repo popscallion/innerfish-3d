@@ -13,18 +13,21 @@ const Info = () => {
         <Heading sx={{
           fontSize:'medium',
           fontStyle:'italic',
+          lineHeight:'1.1',
+          mb: '1vmin'
         }}>{specimen.scientific}</Heading>
       }
       {specimen.scientific && specimen.common &&
         <Heading sx={{
           fontSize:'small',
-          mb: '1vmin'
+          mb: '1vmin',
         }}>{specimen.common}</Heading>
       }
       {!specimen.scientific && specimen.common &&
         <Heading sx={{
           fontSize:'medium',
-          mb: '1vmin'
+          lineHeight:'1.1',
+          mb: '1vmin',
         }}>{specimen.common}</Heading>
       }
       <Text sx={{

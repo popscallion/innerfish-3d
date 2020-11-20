@@ -1,7 +1,7 @@
 export default {
   fonts: {
-    body: 'Poppins, sans-serif',
-    heading: 'Cabin, sans-serif',
+    body: 'Rubik, sans-serif',
+    heading: 'Noto Serif, serif',
     monospace: 'Menlo, monospace',
   },
   fontSizes: {

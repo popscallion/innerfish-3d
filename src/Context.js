@@ -63,6 +63,7 @@ const Context = ({data}) => {
   const [chapter, setChapter] = useState(availableChapters[0])
   const [id, setId] = useState(data.find(datum => datum.chapter.includes(chapter) && datum.default).scientific)
   const [hover, setHover] = useState(id)
+  const [auto, setAuto] = useState(true)
 
   useEffect (() => {
     setId(data.find(datum => datum.chapter.includes(chapter) && datum.default).scientific)
@@ -88,12 +89,12 @@ const Context = ({data}) => {
                     <>
                       <Universe>
                         <Composer>
-                          <Chapter options={availableChapters}/>
+                          <Chapter options={availableChapters} auto={auto} setAuto={setAuto}/>
                           <Info />
                         </Composer>
                         <Tree/>
                       </Universe>
-                      <Viewer/>
+                      <Viewer auto={auto}/>
                     </>}
                 </HoverContext.Provider>
               </SetHoverContext.Provider>
