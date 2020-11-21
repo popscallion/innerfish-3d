@@ -32,7 +32,7 @@ const Viewer = ({id, auto}) => {
         <SketchFabViewer url={specimen.url}/>
       }
       {specimen.type === "Model" && !load &&
-        <Flex sx={{flexDirection:'column', justifyContent:'center',alignItems:'center',height:'75vmin'}}>
+        <Flex sx={{flexDirection:'column', justifyContent:'flex-end',alignItems:'center',height:'75vmin'}}>
           <Image
             sx={{
               backgroundColor:"red",

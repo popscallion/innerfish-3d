@@ -4,6 +4,8 @@ import {Label, Select, Checkbox} from '@rebass/forms';
 import styled from '@emotion/styled';
 import { DataContext} from '../Context'
 
+
+
 const Chapter = ({chapter, setChapter, options, auto, setAuto}) => {
   const data = useContext(DataContext)
   return(
@@ -25,11 +27,7 @@ const Chapter = ({chapter, setChapter, options, auto, setAuto}) => {
             fontSize:'teensy',
             fontFamily:'body',
             letterSpacing:'0.1vmin',
-            '& option': {
-              fontFamily:'body',
-              fontSize:'teensy',
-              letterSpacing:'0.1vmin',
-            }
+  
           }}
           onChange={e=>{setChapter(e.target.value)}}>
           {options

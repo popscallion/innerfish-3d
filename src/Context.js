@@ -11,7 +11,7 @@ import {formatJSON, loadData} from './data/loadAirtable'
 export const HoverContext = React.createContext()
 export const SetHoverContext = React.createContext()
 export const DataContext = React.createContext()
-
+export const SetIdContext = React.createContext()
 
 
 const Universe = ({children}) => {
@@ -63,6 +63,8 @@ const Context = ({data}) => {
   const [hover, setHover] = useState(id)
   const [auto, setAuto] = useState(true)
 
+
+
   useEffect (() => {
     setId(data.find(datum => datum.chapter.includes(chapter) && datum.default).uid)
   },[chapter])
@@ -71,25 +73,27 @@ const Context = ({data}) => {
     <DataContext.Provider value={data}>
       <SetHoverContext.Provider value={setHover}>
         <HoverContext.Provider value={hover}>
-          {(isMobileOnly && height > width) &&
-            <Flex sx={{ flexFlow:'column nowrap',
-                        justifyContent:'center',
-                        alignItems:'center',
-                        height:'100%'}}>
-              <Heading sx={{fontSize:'medium'}}>Please rotate your device to landscape mode.</Heading>
-            </Flex>
-          }
-          {!(isMobileOnly && height > width) &&
-            <>
-              <Universe>
-                <Composer>
-                  <Chapter chapter={chapter} setChapter={setChapter} options={availableChapters} auto={auto} setAuto={setAuto}/>
-                  <Info id={id}/>
-                </Composer>
-                <Tree id={id} chapter={chapter}/>
-              </Universe>
-              <Viewer id={id} auto={auto}/>
-            </>}
+          <SetIdContext.Provider value={setId}>
+            {(isMobileOnly && height > width) &&
+              <Flex sx={{ flexFlow:'column nowrap',
+                          justifyContent:'center',
+                          alignItems:'center',
+                          height:'100%'}}>
+                <Heading sx={{fontSize:'medium'}}>Please rotate your device to landscape mode.</Heading>
+              </Flex>
+            }
+            {!(isMobileOnly && height > width) &&
+              <>
+                <Universe>
+                  <Composer>
+                    <Chapter chapter={chapter} setChapter={setChapter} options={availableChapters} auto={auto} setAuto={setAuto}/>
+                    <Info id={id}/>
+                  </Composer>
+                  <Tree id={id} chapter={chapter}/>
+                </Universe>
+                <Viewer id={id} auto={auto}/>
+              </>}
+          </SetIdContext.Provider>
         </HoverContext.Provider>
       </SetHoverContext.Provider>
     </DataContext.Provider>
