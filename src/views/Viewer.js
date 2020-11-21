@@ -1,22 +1,22 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {Box, Flex, Image, Text} from 'rebass';
+import { Flex, Image, Text} from 'rebass';
 import ReactPlayer from 'react-player'
-import { DataContext, IdContext } from '../Context'
+import { useWindowSize} from '@react-hook/window-size'
+import { DataContext } from '../Context'
 import SketchFabViewer from './SketchFabViewer';
 import Lightbox from './ImageViewer'
 
-const Viewer = (props) => {
-  const width = window.innerWidth
+const Viewer = ({id, auto}) => {
+  const [width, height] = useWindowSize()
   const data = useContext(DataContext)
-  const specimenId = useContext(IdContext)
-  const specimen = data.find(datum => datum.scientific == specimenId)
+  const specimen = data.find(datum => datum.uid === id)
   const [preview, setPreview] = useState(null)
-  const [load, setLoad] = useState(props.auto ? true : false)
+  const [load, setLoad] = useState(auto ? true : false)
   const [hover, setHover] = useState(false)
 
   useEffect(()=>{
-    setLoad(props.auto)
-  },[props.auto, specimen])
+    setLoad(auto)
+  },[auto, specimen])
 
   if (!load) {
     fetch("https://api.sketchfab.com/v3/models/"+specimen.url.split("-").slice(-1))
@@ -28,10 +28,10 @@ const Viewer = (props) => {
 
   return(
   <Flex sx={{bg:'transparent', height:'100%',width:'100%', flexDirection:'column', justifyContent:'flex-start'}}>
-      {specimen.type == "Model" && load &&
+      {specimen.type === "Model" && load &&
         <SketchFabViewer url={specimen.url}/>
       }
-      {specimen.type == "Model" && !load &&
+      {specimen.type === "Model" && !load &&
         <Flex sx={{flexDirection:'column', justifyContent:'center',alignItems:'center',height:'75vmin'}}>
           <Image
             sx={{
@@ -63,10 +63,10 @@ const Viewer = (props) => {
           </Text>
         </Flex>
       }
-      {specimen.type == "Video" &&
+      {specimen.type === "Video" &&
         <ReactPlayer url={specimen.url} playing loop/>
       }
-      {specimen.type == "Image" &&
+      {specimen.type === "Image" &&
         <Lightbox src={specimen.url} alt={specimen.scientific}/>
       }
     </Flex>

@@ -2,13 +2,10 @@ import React, {useContext} from 'react';
 import {Box, Flex, Image, Text, Heading} from 'rebass';
 import {Label, Select, Checkbox} from '@rebass/forms';
 import styled from '@emotion/styled';
-import { DataContext, ChapterContext, SetChapterContext, IdContext } from '../Context'
+import { DataContext} from '../Context'
 
-const Chapter = (props) => {
+const Chapter = ({chapter, setChapter, options, auto, setAuto}) => {
   const data = useContext(DataContext)
-  const chapter = useContext(ChapterContext)
-  const setChapter = useContext(SetChapterContext)
-
   return(
     <Box sx={{bg:'transparent', height:'fit-content',width:'20vw', pointerEvents:'all', alignSelf:'flex-start'}}>
       <Heading sx={{fontSize:'large', lineHeight:'1', letterSpacing:'0.1vmin', mb:'2.5vmin'}}>{chapter.split('-')[1]}</Heading>
@@ -35,7 +32,7 @@ const Chapter = (props) => {
             }
           }}
           onChange={e=>{setChapter(e.target.value)}}>
-          {props.options
+          {options
             .sort((a, b) => parseInt(a.slice(0,3))-parseInt(b.slice(0,3)))
             .map(item=>(
               <option value={item}>
@@ -56,11 +53,11 @@ const Chapter = (props) => {
           alignItems:'center'
         }}>
           AUTO-LOAD
-          <Checkbox 
+          <Checkbox
             id='autoLoad'
             sx={{ml:'0.75vmin'}}
-            checked={props.auto}
-            onClick={() => {props.setAuto(!props.auto)}}/>
+            checked={auto}
+            onClick={() => {setAuto(!auto)}}/>
         </Label>
       </Box>
     </Box>

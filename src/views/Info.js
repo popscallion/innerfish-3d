@@ -1,12 +1,11 @@
 import React, {useContext} from 'react';
 import {Box, Flex, Image, Text, Heading} from 'rebass';
-import { DataContext, IdContext } from '../Context'
+import { DataContext} from '../Context'
 
 
-const Info = () => {
+const Info = ({id}) => {
   const data = useContext(DataContext)
-  const specimenId = useContext(IdContext)
-  const specimen = data.find(datum => datum.scientific == specimenId)
+  const specimen = data.find(datum => datum.uid === id)
   return(
     <Box sx={{bg:'transparent', height:'fit-content',width:'20vw', pointerEvents:'all',alignSelf:'flex-end'}}>
       {specimen.scientific &&
@@ -32,7 +31,9 @@ const Info = () => {
       }
       <Text sx={{
         fontFamily:'body',
-        fontSize:'miniscule'
+        fontSize:'teensy',
+        lineHeight:'1.75',
+        mt: '1.5vmin'
       }}>{specimen.caption}</Text>
     </Box>
   )
