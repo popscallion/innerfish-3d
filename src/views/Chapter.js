@@ -6,19 +6,20 @@ import { DataContext} from '../Context'
 
 
 
-const Chapter = ({chapter, setChapter, options, auto, setAuto}) => {
+const Chapter = ({chapter, setChapter, options, auto, setAuto, dark}) => {
   const data = useContext(DataContext)
   return(
     <Box sx={{bg:'transparent', height:'fit-content',width:'20vw', pointerEvents:'all', alignSelf:'flex-start'}}>
-      <Heading sx={{fontSize:'large', lineHeight:'1', letterSpacing:'0.1vmin', mb:'2.5vmin'}}>{chapter.split('-')[1]}</Heading>
-      <Box as='form' sx={{mb:'2vmin'}}>
+      <Heading sx={{fontSize:'large', lineHeight:'1', letterSpacing:'0.1vmin', mb:'2.5vmin', color: dark ? 'light' : 'dark'}}>{chapter.split('-')[1]}</Heading>
+      <Box as='form' sx={{mb:'2vmin', color: dark ? 'light' : 'dark',}}>
         <Label htmlFor='chapterChoice' sx={{
           fontFamily:'body',
           fontWeight:'600',
           fontSize:'miniscule',
           textTransform:'uppercase',
           letterSpacing:'0.4vmin',
-          mb:'0.75vmin'
+          mb:'0.75vmin',
+          color: dark ? 'light' : 'dark',
         }}>Chapter</Label>
         <Select
           id='chapterChoice'
@@ -27,7 +28,9 @@ const Chapter = ({chapter, setChapter, options, auto, setAuto}) => {
             fontSize:'teensy',
             fontFamily:'body',
             letterSpacing:'0.1vmin',
-  
+            color: dark ? 'light' : 'dark',
+            bg: dark ? 'inky' : 'transparent',
+            borderWidth: '0.2vmin'
           }}
           onChange={e=>{setChapter(e.target.value)}}>
           {options
@@ -48,12 +51,13 @@ const Chapter = ({chapter, setChapter, options, auto, setAuto}) => {
           letterSpacing:'0.4vmin',
           mb:'0.5vmin',
           display:'flex',
-          alignItems:'center'
+          alignItems:'center',
+          color: dark ? 'light' : 'dark'
         }}>
           AUTO-LOAD
           <Checkbox
             id='autoLoad'
-            sx={{ml:'0.75vmin'}}
+            sx={{ml:'0.75vmin', color: dark ? 'light' : 'dark'}}
             checked={auto}
             onClick={() => {setAuto(!auto)}}/>
         </Label>

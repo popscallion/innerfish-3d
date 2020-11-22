@@ -12,13 +12,14 @@ export const HoverContext = React.createContext()
 export const SetHoverContext = React.createContext()
 export const DataContext = React.createContext()
 export const SetIdContext = React.createContext()
+export const SetDarkContext = React.createContext()
 
 
-const Universe = ({children}) => {
+const Universe = ({children, dark}) => {
   return (
     <Flex
       sx={{
-        bg:'transparent',
+        bg: 'transparent',
         flexDirection:'column',
         justifyContent:'space-between',
         position: 'absolute',
@@ -55,7 +56,7 @@ const Composer = ({children}) => {
   )
 }
 
-const Context = ({data}) => {
+const Context = ({data, dark, setDark}) => {
   const [width, height] = useWindowSize()
   const availableChapters = [...new Set((data.map(({ chapter }) => chapter)).flat().sort())]
   const [chapter, setChapter] = useState(availableChapters[0])
@@ -74,25 +75,27 @@ const Context = ({data}) => {
       <SetHoverContext.Provider value={setHover}>
         <HoverContext.Provider value={hover}>
           <SetIdContext.Provider value={setId}>
-            {(isMobileOnly && height > width) &&
-              <Flex sx={{ flexFlow:'column nowrap',
-                          justifyContent:'center',
-                          alignItems:'center',
-                          height:'100%'}}>
-                <Heading sx={{fontSize:'medium'}}>Please rotate your device to landscape mode.</Heading>
-              </Flex>
-            }
-            {!(isMobileOnly && height > width) &&
-              <>
-                <Universe>
-                  <Composer>
-                    <Chapter chapter={chapter} setChapter={setChapter} options={availableChapters} auto={auto} setAuto={setAuto}/>
-                    <Info id={id}/>
-                  </Composer>
-                  <Tree id={id} chapter={chapter}/>
-                </Universe>
-                <Viewer id={id} auto={auto}/>
-              </>}
+            <SetDarkContext.Provider value={setDark}>
+              {(isMobileOnly && height > width) &&
+                <Flex sx={{ flexFlow:'column nowrap',
+                            justifyContent:'center',
+                            alignItems:'center',
+                            height:'100%'}}>
+                  <Heading sx={{fontSize:'medium'}}>Please rotate your device to landscape mode.</Heading>
+                </Flex>
+              }
+              {!(isMobileOnly && height > width) &&
+                <>
+                  <Universe dark={dark}>
+                    <Composer>
+                      <Chapter chapter={chapter} setChapter={setChapter} options={availableChapters} auto={auto} setAuto={setAuto} dark={dark}/>
+                      <Info id={id} dark={dark}/>
+                    </Composer>
+                    <Tree id={id} chapter={chapter} dark={dark}/>
+                  </Universe>
+                  <Viewer id={id} auto={auto} dark={dark}/>
+                </>}
+            </SetDarkContext.Provider>
           </SetIdContext.Provider>
         </HoverContext.Provider>
       </SetHoverContext.Provider>

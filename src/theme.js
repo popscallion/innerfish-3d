@@ -21,6 +21,13 @@ export default {
   colors: {
     black: '#000',
     white: '#fff',
+    light: '#D2EDFF',
+    dark: '#080B1A',
+    clay: '#DB8656',
+    blood: '#A32807',
+    royal: '#072AA3',
+    dusty: '#3D4870',
+    inky: '#131B2B',
     blue: '#1ea9d7',
     ochre: '#D67C1E',
     amber: '#D64E29',

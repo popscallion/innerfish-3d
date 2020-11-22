@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^12.2.2",
     "airtable": "^0.10.1",
     "emotion-theming": "^10.0.27",
+    "get-pixels": "^3.3.2",
     "konva": "^7.1.8",
     "react": "^17.0.1",
     "react-device-detect": "^1.14.0",

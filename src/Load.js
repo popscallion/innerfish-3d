@@ -8,6 +8,8 @@ import { loadAirtable } from './data/loadAirtable'
 const Load = () => {
   const [loaded, setLoaded] = useState(false)
   const [data, setData] = useState()
+  const [dark, setDark] = useState(false)
+
   useEffect(() => {
     (async () => {
       const fetchedData = await loadAirtable()
@@ -18,7 +20,9 @@ const Load = () => {
 
   if (loaded) {
     return (
-      <Context data={data}/>
+      <Flex sx={{bg: dark ? 'dark' : 'light', width:'100%', height:'100%'}} >
+        <Context data={data} dark={dark} setDark={setDark}/>
+      </Flex>
     )
   } else {
     return (
