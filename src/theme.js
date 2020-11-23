@@ -21,8 +21,10 @@ export default {
   colors: {
     black: '#000',
     white: '#fff',
-    light: '#D2EDFF',
+    light: '#EEFAFF',
+    light50: 'rgba(238, 250, 255, 0.5)',
     dark: '#080B1A',
+    dark50: 'rgba(8, 11, 26, 0.5)',
     clay: '#DB8656',
     blood: '#A32807',
     royal: '#072AA3',
@@ -31,6 +33,7 @@ export default {
     blue: '#1ea9d7',
     ochre: '#D67C1E',
     amber: '#D64E29',
+    marigold:'#ED9F15',
     azure: '#06698A',
     background: '#E0EDEC'
   },

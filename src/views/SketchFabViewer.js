@@ -6,10 +6,10 @@ import { Box } from 'rebass'
 
 const ViewerFrame = styled.iframe`
   position: relative;
-  top: 0;
+  top: -6%;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 112vh;
   border: 0;
 `
 

@@ -29,8 +29,9 @@ const Load = () => {
         <Flex sx={{ flexFLow:'column nowrap',
                     justifyContent:'center',
                     alignItems:'center',
-                    minHeight:'100vh'}}>
-          <Heading sx={{fontSize:'medium'}}>Loading...</Heading>
+                    minHeight:'100vh',
+                    bg: 'light'}}>
+          <Heading sx={{fontSize:'medium', color:'dark'}}>Loading...</Heading>
         </Flex>
     )
   }

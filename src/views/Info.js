@@ -1,9 +1,12 @@
 import React, {useContext} from 'react';
-import {Box, Flex, Image, Text, Heading} from 'rebass';
+import ReactHtmlParser from 'react-html-parser';
+import {Box, Flex, Image, Text, Heading, Link} from 'rebass';
+import { useTheme } from 'emotion-theming'
 import { DataContext} from '../Context'
 
 
-const Info = ({id, dark}) => {
+const Info = ({id, dark, attribution}) => {
+  const theme = useTheme()
   const data = useContext(DataContext)
   const specimen = data.find(datum => datum.uid === id)
   return(
@@ -15,13 +18,15 @@ const Info = ({id, dark}) => {
           lineHeight:'1.1',
           mb: '1vmin',
           color: dark ? 'light' : 'dark',
+          // textShadow: `0.1vmin 0.1vmin 0.3vmin ${theme.colors.dark50}`,
         }}>{specimen.scientific}</Heading>
       }
       {specimen.scientific && specimen.common &&
         <Heading sx={{
           fontSize:'small',
-          mb: '1vmin',
-          color: dark ? 'light' : 'dark'
+          mb: '0.6vmin',
+          color: dark ? 'light' : 'dark',
+          // textShadow: `0.1vmin 0.1vmin 0.3vmin ${theme.colors.dark50}`,
         }}>{specimen.common}</Heading>
       }
       {!specimen.scientific && specimen.common &&
@@ -29,16 +34,35 @@ const Info = ({id, dark}) => {
           fontSize:'medium',
           lineHeight:'1.1',
           mb: '1vmin',
-          color: dark ? 'light' : 'dark'
+          color: dark ? 'light' : 'dark',
+          // textShadow: `0.1vmin 0.1vmin 0.3vmin ${theme.colors.dark50}`,
         }}>{specimen.common}</Heading>
+      }
+      {attribution &&
+        <Link
+          href={specimen.url}
+          target='_blank'
+          sx={{
+            fontFamily:'body',
+            fontWeight:'bold',
+            textTransform:'uppercase',
+            letterSpacing:'0.1vmin',
+            textDecoration:'none',
+            fontSize:'miniscule',
+            lineHeight:'1.1',
+            color: dark ? 'ochre' : 'amber',
+            ':hover':{
+              color: dark ? 'amber' : 'marigold',
+            }
+        }}>{attribution}</Link>
       }
       <Text sx={{
         fontFamily:'body',
         fontSize:'teensy',
         lineHeight:'1.65',
         mt: '2vmin',
-        color: dark ? 'light' : 'dark'
-      }}>{specimen.caption}</Text>
+        color: dark ? 'light' : 'dark',
+      }}>{ReactHtmlParser(specimen.caption)}</Text>
     </Box>
   )
 }

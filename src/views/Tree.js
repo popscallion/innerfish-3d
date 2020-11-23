@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useMemo, useState, useRef} from 'react';
 import { useTheme } from 'emotion-theming'
 import { Box } from 'rebass'
-import { Stage, Layer, Circle, Text, Rect } from 'react-konva';
+import { Stage, Layer, Circle, Text, Rect, RegularPolygon } from 'react-konva';
 import { useWindowSize } from '@react-hook/window-size';
 import { DataContext, SetIdContext } from '../Context'
 
@@ -114,13 +114,15 @@ const getTips = (arr) => {
     }
 }
 
-const Node = ({x, y, i=0, spc=0.3, radius=20, text="", fontSize=12, lineHeight=1, uid=null, textfill=null, pathfill=null, stroke=null, opacity=1, textAlign='center', style='normal', letterSpacing=0, setId, active}) => {
+const Node = ({x, y, i=0, spc=0.3, radius=20, text="", fontSize=12, lineHeight=1, uid=null, type=null, textfill=null, pathfill=null, stroke=null, opacity=1, textAlign='center', style='normal', letterSpacing=0, setId, active}) => {
   const [hover, setHover] = useState(false)
   const [current, setCurrent ] = useState(false)
 
   useEffect(()=>{
     if (active !== uid){
       setCurrent(false)
+    } else {
+      setCurrent(true)
     }
   },[active])
 
@@ -140,16 +142,29 @@ const Node = ({x, y, i=0, spc=0.3, radius=20, text="", fontSize=12, lineHeight=1
   }
   const handleClick = () => {
     setId(uid)
-    setCurrent(true)
   }
   return (
     <>
-      <Circle x={x} y={((i+1)*spc+1)*y} fill={uid && !current ? null : pathfill} stroke={stroke} radius={radius} opacity={opacity}
+      {type === 'Video' && <RegularPolygon x={x} y={((i+1)*spc+1)*y} fill={uid && !current ? null : pathfill} stroke={stroke} radius={radius} sides={3} rotation={90} opacity={opacity}
               onMouseEnter={hoverOn}
               onMouseLeave={hoverOff}
               onClick={uid ? handleClick : null}
-              />
-      <Text text={text} x={textAlign == 'left' ? x+radius*2 : x-radius*22} y={((i)*spc+1)*y} align={textAlign} verticalAlign='middle' width={radius*20} height={radius*10} lineHeight={lineHeight} fill={textfill} opacity={opacity} fontStyle={style} fontSize={fontSize} letterSpacing={0.5} visible={uid ? hover : true}/>
+              />}
+      {type === 'Image' && <RegularPolygon x={x} y={((i+1)*spc+1)*y} fill={uid && !current ? null : pathfill} stroke={stroke} radius={radius*1.25} sides={4} rotation={45} opacity={opacity}
+              onMouseEnter={hoverOn}
+              onMouseLeave={hoverOff}
+              onClick={uid ? handleClick : null}
+              />}
+      {type === 'Model' && <Circle x={x} y={((i+1)*spc+1)*y} fill={uid && !current ? null : pathfill} stroke={stroke} radius={radius} opacity={opacity}
+              onMouseEnter={hoverOn}
+              onMouseLeave={hoverOff}
+              onClick={uid ? handleClick : null}
+              />}
+      {!type && <Circle x={x} y={((i+1)*spc+1)*y} fill={uid && !current ? null : pathfill} stroke={stroke} radius={radius} opacity={opacity}
+      onMouseEnter={hoverOn}
+      onMouseLeave={hoverOff}
+      />}
+      <Text text={text} x={textAlign == 'left' ? x+radius*2 : x-radius*22} y={((i)*spc+1)*y} align={textAlign} verticalAlign='middle' width={radius*20} height={radius*10} lineHeight={lineHeight} fill={textfill} opacity={opacity} fontStyle={style} fontSize={fontSize} letterSpacing={0.5} visible={current ? true : hover ? true : false}/>
       {/*<Rect x={x-radius*10} y={((i)*spc+1)*y} align={textAlign} verticalAlign='middle' width={radius*20} height={radius*10} stroke={textfill} visible={true}/>*/}
     </>
   )
@@ -157,10 +172,10 @@ const Node = ({x, y, i=0, spc=0.3, radius=20, text="", fontSize=12, lineHeight=1
 
 const Group = ({x, y, radius, name, ids, position, setId, active, theme, dark}) => {
   const children = ids ? ids.map((item,i) => {
-    return <Node x={x} y={y} i={i} radius={radius} stroke={dark ? theme.colors.light : theme.colors.royal} text={item.scientific ? item.scientific : item.common } textfill={dark ? theme.colors.light : theme.colors.dark} pathfill={dark ? theme.colors.ochre : theme.colors.amber} style={item.scientific ? 'italic' : 'normal'} uid={item.uid} textAlign={position} setId={setId} active={active}/>}) : null
+    return <Node x={x} y={y} i={i} radius={radius} stroke={dark ? theme.colors.light : theme.colors.royal} text={item.scientific ? item.scientific : item.common } textfill={dark ? theme.colors.light : theme.colors.dark} pathfill={dark ? theme.colors.ochre : theme.colors.amber} opacity={0.85} style={item.scientific ? 'italic' : 'normal'} uid={item.uid} type={item.type} textAlign={position} setId={setId} active={active}/>}) : null
   return (
     <>
-      <Node x={x} y={y} radius={radius} i={-1} pathfill={dark ? theme.colors.ochre : theme.colors.amber} textfill={dark ? theme.colors.ochre : theme.colors.amber} opacity={0.85} text={name} uid={null} style='bold' textAlign={position}/>
+      <Node x={x} y={y} radius={radius} i={-1} pathfill={dark ? theme.colors.light : theme.colors.dark} textfill={dark ? theme.colors.light : theme.colors.dark} opacity={0.85} text={name} uid={null} style='bold' textAlign={position}/>
       {children}
     </>
   )
@@ -190,25 +205,30 @@ const Tree = ({id, chapter, dark}) => {
     const idsPerGroup = availableGroups.map(group => availableIds.filter(item => item.group === group))
     const grouped = Object.fromEntries(availableGroups.map((_, i) => [availableGroups[i], idsPerGroup[i]]))
     const tipsWithIds = phylogeny.tips.map( x => Object.assign(x, {"ids":grouped[x.node]}))
-    setGroups(tipsWithIds)
+    const miscIds = availableIds.filter(datum => !datum.group)
+    setGroups([tipsWithIds, miscIds])
   },[id, chapter])
 
   useEffect(()=>{
-    const xOffset = width/(phylogeny.tips.length)
+    const xOffset = width/(phylogeny.tips.length+1)
     const yOffset = height*0.25/(phylogeny.maxDepth)
     setOffsets({"x":xOffset,"y":yOffset})
   },[phylogeny])
 
-  if (offsets && offsets.x){
+  if (offsets){
     return (
       <Box sx={{pointerEvents:'all'}}>
         <Stage width={width} height={height*0.25}>
           <Layer>
-              {groups.map((item, i) => {
-                return (
-                  <Group x={offsets.x/2+i*offsets.x} y={offsets.y*3} radius= {width/350} name={item.node} ids={item.ids} setId={setId} active={id}
-                  position={i <= Math.floor((phylogeny.tips.length)/2) ? 'left' : 'right'} theme={theme} dark={dark}/>
-              )})}
+              <>
+                <Group x={offsets.x/2} y={offsets.y*3} radius= {width/350} name='' ids={groups[1]} setId={setId} active={id}
+                position='left' theme={theme} dark={dark}/>
+                {groups[0].map((item, i) => {
+                  return (
+                    <Group x={(i+1.5)*offsets.x} y={offsets.y*3} radius= {width/350} name={item.node} ids={item.ids} setId={setId} active={id}
+                    position={i <= Math.floor((phylogeny.tips.length)/2) ? 'left' : 'right'} theme={theme} dark={dark}/>
+                )})}
+              </>
           </Layer>
         </Stage>
       </Box>
@@ -224,17 +244,3 @@ const Tree = ({id, chapter, dark}) => {
 }
 
 export default Tree
-
-
-// build list of nodes with no children
-
-// JEN
-//
-// wnats structure
-// publiah
-// up to date on methods
-// values communication and structure
-// histology mammal morphometrics
-//   likes haramyids myopatagium
-// chicago with luo and angielcyzk
-// dave polly indiana,david sargiz at yeale

@@ -1,37 +1,53 @@
 import React, {useContext, useEffect, useState} from 'react';
-import { Flex, Image, Text} from 'rebass';
+import { Box, Flex, Image, Text} from 'rebass';
 import ReactPlayer from 'react-player'
 import { useWindowSize} from '@react-hook/window-size'
 import getPixels from "get-pixels"
 import { DataContext, SetDarkContext } from '../Context'
 import SketchFabViewer from './SketchFabViewer';
-import Lightbox from './ImageViewer'
+import ImageViewer from './ImageViewer'
 
-const Viewer = ({id, auto, dark}) => {
+const Viewer = ({id, auto, dark, setAttribution}) => {
   const [width, height] = useWindowSize()
   const data = useContext(DataContext)
   const setDark = useContext(SetDarkContext)
   const specimen = data.find(datum => datum.uid === id)
-  const [preview, setPreview] = useState(null)
+  const [meta, setMeta] = useState(null)
+  const [image, setImage] = useState(null)
   const [load, setLoad] = useState(auto ? true : false)
-  const [hover, setHover] = useState(false)
 
   useEffect(()=>{
     setLoad(auto)
   },[auto, specimen])
 
   useEffect(()=>{
+    setAttribution(null)
     if (specimen.type === 'Model'){
       fetch("https://api.sketchfab.com/v3/models/"+specimen.url.split("-").slice(-1))
       .then(res => res.json())
-      .then(body => body.thumbnails.images.find(item=>item.width>=0.5*width && item.width<=2*width))
-      .then(image => setPreview(image.url))
+      .then(body => setMeta(body))
       .catch(console.log)}
+    else if (specimen.type === 'Image'){
+      setImage(specimen.url)
+    }
+    else if (specimen.type === 'Video'){
+      setImage(null)
+      setDark(true)
+    }
   },[specimen])
 
   useEffect(()=>{
-    if (preview) {
-      const pixels = getPixels(preview, function(err, pixels) {
+    if (meta){
+      const preview = meta.thumbnails.images.find(item=>item.width>=0.5*width && item.width<=2*width).url
+      const user = meta.user.displayName
+      setImage(preview)
+      setAttribution(user)
+    }
+  },[meta])
+
+  useEffect(()=>{
+    if (image) {
+      const pixels = getPixels(image, function(err, pixels) {
         if(err) {
           console.log("Bad image path")
           return
@@ -40,7 +56,7 @@ const Viewer = ({id, auto, dark}) => {
         setDark(alpha < 200 ? false : rgb > 100 ? false : true)
       })
     }
-  },[preview])
+  },[image])
 
   const getPixelAverage = (arr) => {
     const reds = []
@@ -68,72 +84,41 @@ const Viewer = ({id, auto, dark}) => {
         <SketchFabViewer url={specimen.url}/>
       }
       {specimen.type === "Model" && !load &&
-        // <Flex sx={{flexDirection:'column', justifyContent:'flex-end',alignItems:'center',height:'75vmin'}}>
-        //   <Image
-        //     sx={{
-        //       backgroundColor:"black",
-        //       borderRadius:"1.5vmin",
-        //       width:width/2.5,
-        //       boxShadow:"0px 3px 8px #A9A9A9",
-        //       cursor:'pointer',
-        //       ':hover':{
-        //         boxShadow:'0px 6px 16px #1ea9d7'
-        //       }
-        //     }}
-        //     src={preview}
-        //     onMouseEnter={()=>{setHover(true)}}
-        //     onMouseLeave={()=>{setHover(false)}}
-        //     onClick={()=>{setLoad(true)}}
-        //     />
-        //   <Text
-        //     sx={{
-        //       visibility: hover ? 'visible' : 'hidden',
-        //       mt:'2vmin',
-        //       fontFamily:'body',
-        //       fontSize:'miniscule',
-        //       textTransform:'uppercase',
-        //       letterSpacing:'0.2vmin',
-        //       color:'azure',
-        //     }}>
-        //     Click to load
-        //   </Text>
-        // </Flex>
         <Flex sx={{flexDirection:'column', justifyContent:'center',alignItems:'center',height:'100%', width:'100%'}}>
           <Image
             sx={{
               backgroundColor:"transparent",
               position:'absolute',
               width:'100%',
+            }}
+            src={image}
+            />
+          <Box
+            sx={{
+              width:'0',
+              height:'0',
               cursor:'pointer',
+              borderTop:'3vmin solid transparent',
+              borderBottom:'3vmin solid transparent',
+              borderLeft:'4.5vmin solid',
+              borderLeftColor: dark ? 'ochre' : 'amber',
+              mixBlendMode:'luminosity',
+              opacity:'0.7',
+              zIndex:'10',
               ':hover':{
-                mixBlendMode:'overlay',
+                mixBlendMode:'normal',
               }
             }}
-            src={preview}
-            onMouseEnter={()=>{setHover(true)}}
-            onMouseLeave={()=>{setHover(false)}}
-            onClick={()=>{setLoad(true)}}
-            />
-          <Text
-            sx={{
-              visibility: hover ? 'visible' : 'hidden',
-              fontFamily:'body',
-              fontSize:'miniscule',
-              fontWeight:'600',
-              textTransform:'uppercase',
-              letterSpacing:'0.25vmin',
-              color: dark ? 'clay' : 'dusty',
-              zIndex:'10',
-            }}>
-            Click to load
-          </Text>
+            onClick={()=>{setLoad(true)}}/>
         </Flex>
       }
       {specimen.type === "Video" &&
-        <ReactPlayer url={specimen.url} playing loop/>
+        <Box sx={{width:width, height:height}}>
+          <ReactPlayer url={specimen.url} width='100%' height='100%' playing={auto ? true : false}/>
+        </Box>
       }
-      {specimen.type === "Image" &&
-        <Lightbox src={specimen.url} alt={specimen.scientific}/>
+      {specimen.type === "Image" && image &&
+        <ImageViewer src={image} alt={specimen.scientific} dark={dark}/>
       }
     </Flex>
   )

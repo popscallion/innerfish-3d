@@ -8,8 +8,6 @@ import Chapter from './views/Chapter'
 import Tree from './views/Tree'
 import {formatJSON, loadData} from './data/loadAirtable'
 
-export const HoverContext = React.createContext()
-export const SetHoverContext = React.createContext()
 export const DataContext = React.createContext()
 export const SetIdContext = React.createContext()
 export const SetDarkContext = React.createContext()
@@ -61,7 +59,7 @@ const Context = ({data, dark, setDark}) => {
   const availableChapters = [...new Set((data.map(({ chapter }) => chapter)).flat().sort())]
   const [chapter, setChapter] = useState(availableChapters[0])
   const [id, setId] = useState(data.find(datum => datum.chapter.includes(chapter) && datum.default).uid)
-  const [hover, setHover] = useState(id)
+  const [attribution, setAttribution] = useState(null)
   const [auto, setAuto] = useState(true)
 
 
@@ -72,33 +70,29 @@ const Context = ({data, dark, setDark}) => {
 
   return (
     <DataContext.Provider value={data}>
-      <SetHoverContext.Provider value={setHover}>
-        <HoverContext.Provider value={hover}>
-          <SetIdContext.Provider value={setId}>
-            <SetDarkContext.Provider value={setDark}>
-              {(isMobileOnly && height > width) &&
-                <Flex sx={{ flexFlow:'column nowrap',
-                            justifyContent:'center',
-                            alignItems:'center',
-                            height:'100%'}}>
-                  <Heading sx={{fontSize:'medium'}}>Please rotate your device to landscape mode.</Heading>
-                </Flex>
-              }
-              {!(isMobileOnly && height > width) &&
-                <>
-                  <Universe dark={dark}>
-                    <Composer>
-                      <Chapter chapter={chapter} setChapter={setChapter} options={availableChapters} auto={auto} setAuto={setAuto} dark={dark}/>
-                      <Info id={id} dark={dark}/>
-                    </Composer>
-                    <Tree id={id} chapter={chapter} dark={dark}/>
-                  </Universe>
-                  <Viewer id={id} auto={auto} dark={dark}/>
-                </>}
-            </SetDarkContext.Provider>
-          </SetIdContext.Provider>
-        </HoverContext.Provider>
-      </SetHoverContext.Provider>
+      <SetIdContext.Provider value={setId}>
+        <SetDarkContext.Provider value={setDark}>
+          {(isMobileOnly && height > width) &&
+            <Flex sx={{ flexFlow:'column nowrap',
+                        justifyContent:'center',
+                        alignItems:'center',
+                        height:'100%'}}>
+              <Heading sx={{fontSize:'medium'}}>Please rotate your device to landscape mode.</Heading>
+            </Flex>
+          }
+          {!(isMobileOnly && height > width) &&
+            <>
+              <Universe dark={dark}>
+                <Composer>
+                  <Chapter chapter={chapter} setChapter={setChapter} options={availableChapters} auto={auto} setAuto={setAuto} dark={dark}/>
+                  <Info id={id} dark={dark} attribution={attribution}/>
+                </Composer>
+                <Tree id={id} chapter={chapter} dark={dark}/>
+              </Universe>
+              <Viewer id={id} auto={auto} dark={dark} setAttribution={setAttribution}/>
+            </>}
+        </SetDarkContext.Provider>
+      </SetIdContext.Provider>
     </DataContext.Provider>
   );
 }
