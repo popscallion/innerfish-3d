@@ -213,11 +213,11 @@ const Tree = ({id, chapter, dark}) => {
     const xOffset = width/(phylogeny.tips.length+1)
     const yOffset = height*0.25/(phylogeny.maxDepth)
     setOffsets({"x":xOffset,"y":yOffset})
-  },[phylogeny])
+  },[phylogeny, width, height])
 
   if (offsets){
     return (
-      <Box sx={{pointerEvents:'all'}}>
+      <Box sx={{pointerEvents:'all', backgroundImage: dark ? `linear-gradient(transparent, ${theme.colors.light25})` : `linear-gradient(transparent, ${theme.colors.dark25}, ${theme.colors.dark66})`}}>
         <Stage width={width} height={height*0.25}>
           <Layer>
               <>

@@ -20,7 +20,7 @@ const Load = () => {
 
   if (loaded) {
     return (
-      <Flex sx={{bg: dark ? 'dark' : 'light', width:'100%', height:'100%'}} >
+      <Flex sx={{bg: dark ? 'dark' : 'light', width:'100%', height:'100%', transition:'background-color 0.4s'}} >
         <Context data={data} dark={dark} setDark={setDark}/>
       </Flex>
     )

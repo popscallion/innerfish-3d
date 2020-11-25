@@ -1,23 +1,44 @@
 import React, {useContext} from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import {Box, Flex, Image, Text, Heading, Link} from 'rebass';
+import Markdown from 'markdown-to-jsx'
 import { useTheme } from 'emotion-theming'
-import { DataContext} from '../Context'
+import { DataContext, SetIdContext } from '../Context'
 
 
-const Info = ({id, dark, attribution}) => {
+
+const Info = ({id, dark, attribution, backer}) => {
   const theme = useTheme()
   const data = useContext(DataContext)
+  const setId = useContext(SetIdContext)
   const specimen = data.find(datum => datum.uid === id)
+
+  const LinkCatcher= props =>{
+    return(
+        <Link sx={{
+          color:'sea', fontWeight:'bold',
+          ':hover':{
+            color:'sky',
+          }
+        }}
+        onClick={()=> {setId(props.href.replace('#',''))}}
+        style={{cursor:'pointer'}} >{props.children}</Link>
+    )
+  }
+
   return(
-    <Box sx={{bg:'transparent', height:'fit-content',width:'20vw', pointerEvents:'all',alignSelf:'flex-end'}}>
+    <Box sx={{px:'5vmin', py:'4vmin', bg: backer===1 ? dark ? 'light85' : 'dark85' : 'transparent', height:'fit-content',width:'fit-content', maxWidth:'30vw',  pointerEvents:'all',alignSelf:'flex-end', transition:'all 0.4s'}}>
       {specimen.scientific &&
         <Heading sx={{
           fontSize:'medium',
           fontStyle:'italic',
           lineHeight:'1.1',
           mb: '1vmin',
-          color: dark ? 'light' : 'dark',
+          color:
+            (backer===0 && dark) ? 'light' :
+            (backer===0 && !dark) ? 'dark' :
+            dark ? 'dark' : 'light',
+          visibility: backer !== 2 ? 'visible' : 'hidden',
           // textShadow: `0.1vmin 0.1vmin 0.3vmin ${theme.colors.dark50}`,
         }}>{specimen.scientific}</Heading>
       }
@@ -25,7 +46,11 @@ const Info = ({id, dark, attribution}) => {
         <Heading sx={{
           fontSize:'small',
           mb: '0.6vmin',
-          color: dark ? 'light' : 'dark',
+          color:
+            (backer===0 && dark) ? 'light' :
+            (backer===0 && !dark) ? 'dark' :
+            dark ? 'dark' : 'light',
+          visibility: backer !== 2 ? 'visible' : 'hidden',
           // textShadow: `0.1vmin 0.1vmin 0.3vmin ${theme.colors.dark50}`,
         }}>{specimen.common}</Heading>
       }
@@ -34,7 +59,11 @@ const Info = ({id, dark, attribution}) => {
           fontSize:'medium',
           lineHeight:'1.1',
           mb: '1vmin',
-          color: dark ? 'light' : 'dark',
+          color:
+            (backer===0 && dark) ? 'light' :
+            (backer===0 && !dark) ? 'dark' :
+            dark ? 'dark' : 'light',
+          visibility: backer !== 2 ? 'visible' : 'hidden',
           // textShadow: `0.1vmin 0.1vmin 0.3vmin ${theme.colors.dark50}`,
         }}>{specimen.common}</Heading>
       }
@@ -50,19 +79,38 @@ const Info = ({id, dark, attribution}) => {
             textDecoration:'none',
             fontSize:'miniscule',
             lineHeight:'1.1',
-            color: dark ? 'ochre' : 'amber',
+            color:
+              (backer===0 && dark) ? 'ochre' :
+              (backer===0 && !dark) ? 'amber' :
+              dark ? 'amber' : 'ochre',
+            visibility: backer !== 2 ? 'visible' : 'hidden',
             ':hover':{
               color: dark ? 'amber' : 'marigold',
             }
         }}>{attribution}</Link>
       }
-      <Text sx={{
+      {/*<Text sx={{
         fontFamily:'body',
         fontSize:'teensy',
         lineHeight:'1.65',
         mt: '2vmin',
         color: dark ? 'light' : 'dark',
-      }}>{ReactHtmlParser(specimen.caption)}</Text>
+      }}>{ReactHtmlParser(specimen.caption)}</Text>*/}
+      <Text sx={{
+        fontFamily:'body',
+        fontSize:'teensy',
+        lineHeight:'1.65',
+        mt: '2vmin',
+        color:
+          (backer===0 && dark) ? 'light' :
+          (backer===0 && !dark) ? 'dark' :
+          dark ? 'dark' : 'light',
+        visibility: backer !== 2 ? 'visible' : 'hidden',
+      }}>
+        <Markdown options={{overrides:{a:{component:LinkCatcher}}}}>
+          {specimen.caption}
+        </Markdown>
+      </Text>
     </Box>
   )
 }

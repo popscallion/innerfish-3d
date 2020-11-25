@@ -45,7 +45,6 @@ const Composer = ({children}) => {
         pointerEvents: 'none',
         width:'100%',
         height:'100%',
-        px:'5vw',
         py:'8vh'
       }}
     >
@@ -61,8 +60,13 @@ const Context = ({data, dark, setDark}) => {
   const [id, setId] = useState(data.find(datum => datum.chapter.includes(chapter) && datum.default).uid)
   const [attribution, setAttribution] = useState(null)
   const [auto, setAuto] = useState(true)
+  const [backer, setBacker] = useState(0)
 
-
+  useEffect(()=>{
+    if (backer > 2) {
+      setBacker(0)
+    }
+  },[backer])
 
   useEffect (() => {
     setId(data.find(datum => datum.chapter.includes(chapter) && datum.default).uid)
@@ -84,8 +88,8 @@ const Context = ({data, dark, setDark}) => {
             <>
               <Universe dark={dark}>
                 <Composer>
-                  <Chapter chapter={chapter} setChapter={setChapter} options={availableChapters} auto={auto} setAuto={setAuto} dark={dark}/>
-                  <Info id={id} dark={dark} attribution={attribution}/>
+                  <Chapter chapter={chapter} setChapter={setChapter} options={availableChapters} auto={auto} setAuto={setAuto} dark={dark} backer={backer} setBacker={setBacker}/>
+                  <Info id={id} dark={dark} attribution={attribution} backer={backer}/>
                 </Composer>
                 <Tree id={id} chapter={chapter} dark={dark}/>
               </Universe>
