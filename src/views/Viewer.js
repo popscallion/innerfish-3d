@@ -7,7 +7,7 @@ import { DataContext, SetDarkContext } from '../Context'
 import SketchFabViewer from './SketchFabViewer';
 import ImageViewer from './ImageViewer'
 
-const Viewer = ({id, auto, dark, setAttribution}) => {
+const Viewer = ({id, auto, dark, setAttribution, setBacker}) => {
   const [width, height] = useWindowSize()
   const data = useContext(DataContext)
   const setDark = useContext(SetDarkContext)
@@ -33,6 +33,10 @@ const Viewer = ({id, auto, dark, setAttribution}) => {
     else if (specimen.type === 'Video'){
       setImage(null)
       setDark(true)
+      if (auto) {
+        const timer = setTimeout(() => setBacker(2), 5000);
+        return () => clearTimeout(timer);
+      }
     }
   },[specimen])
 
@@ -90,6 +94,8 @@ const Viewer = ({id, auto, dark, setAttribution}) => {
               backgroundColor:"transparent",
               position:'absolute',
               width:'100%',
+              height:'100%',
+              objectFit:'cover',
             }}
             src={image}
             />

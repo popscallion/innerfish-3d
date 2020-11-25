@@ -93,7 +93,7 @@ const Context = ({data, dark, setDark}) => {
                 </Composer>
                 <Tree id={id} chapter={chapter} dark={dark}/>
               </Universe>
-              <Viewer id={id} auto={auto} dark={dark} setAttribution={setAttribution}/>
+              <Viewer id={id} auto={auto} dark={dark} setAttribution={setAttribution} setBacker={setBacker}/>
             </>}
         </SetDarkContext.Provider>
       </SetIdContext.Provider>

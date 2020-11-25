@@ -16,7 +16,7 @@ const Chapter = ({chapter, setChapter, options, auto, setAuto, dark, backer, set
   const data = useContext(DataContext)
 
   return(
-    <Box sx={{px:'5vmin', py:'4vmin', bg: backer===1 ? dark ? 'light85' : 'dark85' : 'transparent', height:'fit-content',width:'fit-content', maxWidth:'30vw', pointerEvents:'all', alignSelf:'flex-start', transition:'all 0.4s'}}>
+    <Box sx={{px:'5vmin', py:'4vmin', bg: backer===1 ? dark ? 'light85' : 'dark85' : 'transparent', height:'fit-content',width:'fit-content', maxWidth:'30vw', pointerEvents:'all', alignSelf:'flex-start', transition:'background-color 0.4s'}}>
       <Heading
         sx={{
           fontSize:'large',
@@ -27,7 +27,8 @@ const Chapter = ({chapter, setChapter, options, auto, setAuto, dark, backer, set
             (backer===0 && dark) ? 'light' :
             (backer===0 && !dark) ? 'dark' :
             dark ? 'dark' : 'light',
-          visibility: backer !== 2 ? 'visible' : 'hidden',
+          opacity: backer !== 2 ? 1 : 0,
+          transition:'opacity 0.4s'
           // textShadow: `0.1vmin 0.1vmin 0.3vmin ${theme.colors.dark50}`,
         }}>{chapter.split('-')[1]}</Heading>
       <Box
@@ -39,7 +40,8 @@ const Chapter = ({chapter, setChapter, options, auto, setAuto, dark, backer, set
             (backer===0 && dark) ? 'light' :
             (backer===0 && !dark) ? 'dark' :
             dark ? 'dark' : 'light',
-          visibility: backer !== 2 ? 'visible' : 'hidden',
+          opacity: backer !== 2 ? 1 : 0,
+          transition:'opacity 0.4s'
         }}>
         <Label htmlFor='chapterChoice' sx={{
           fontFamily:'body',
@@ -61,7 +63,8 @@ const Chapter = ({chapter, setChapter, options, auto, setAuto, dark, backer, set
               (backer===0 && dark) ? 'light' :
               (backer===0 && !dark) ? 'dark' :
               dark ? 'dark' : 'light',
-            visibility: backer !== 2 ? 'visible' : 'hidden',
+            opacity: backer !== 2 ? 1 : 0,
+            transition:'opacity 0.4s',
             bg:
               (backer===0 && dark) ? 'inky' :
               (backer===0 && !dark) ? 'transparent' :
@@ -92,7 +95,8 @@ const Chapter = ({chapter, setChapter, options, auto, setAuto, dark, backer, set
             (backer===0 && dark) ? 'light' :
             (backer===0 && !dark) ? 'dark' :
             dark ? 'dark' : 'light',
-          visibility: backer !== 2 ? 'visible' : 'hidden',
+          opacity: backer !== 2 ? 1 : 0,
+          transition:'opacity 0.4s'
         }}>
           AUTOPLAY
           <Checkbox
@@ -104,6 +108,8 @@ const Chapter = ({chapter, setChapter, options, auto, setAuto, dark, backer, set
                 (backer===0 && !dark) ? 'dark' :
                 dark ? 'dark' : 'light',
               visibility: backer !== 2 ? 'visible' : 'hidden',
+              opacity: backer !== 2 ? 1 : 0,
+              transition:'opacity 0.4s'
             }}
             checked={auto}
             onClick={() => {setAuto(!auto)}}/>

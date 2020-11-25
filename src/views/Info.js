@@ -27,7 +27,7 @@ const Info = ({id, dark, attribution, backer}) => {
   }
 
   return(
-    <Box sx={{px:'5vmin', py:'4vmin', bg: backer===1 ? dark ? 'light85' : 'dark85' : 'transparent', height:'fit-content',width:'fit-content', maxWidth:'30vw',  pointerEvents:'all',alignSelf:'flex-end', transition:'all 0.4s'}}>
+    <Box sx={{px:'5vmin', py:'4vmin', bg: backer===1 ? dark ? 'light85' : 'dark85' : 'transparent', height:'fit-content',width:'fit-content', maxWidth:'30vw',  pointerEvents:'all',alignSelf:'flex-end', transition:'background-color 0.4s'}}>
       {specimen.scientific &&
         <Heading sx={{
           fontSize:'medium',
@@ -38,7 +38,8 @@ const Info = ({id, dark, attribution, backer}) => {
             (backer===0 && dark) ? 'light' :
             (backer===0 && !dark) ? 'dark' :
             dark ? 'dark' : 'light',
-          visibility: backer !== 2 ? 'visible' : 'hidden',
+          opacity: backer !== 2 ? 1 : 0,
+          transition:'opacity 0.4s'
           // textShadow: `0.1vmin 0.1vmin 0.3vmin ${theme.colors.dark50}`,
         }}>{specimen.scientific}</Heading>
       }
@@ -50,7 +51,8 @@ const Info = ({id, dark, attribution, backer}) => {
             (backer===0 && dark) ? 'light' :
             (backer===0 && !dark) ? 'dark' :
             dark ? 'dark' : 'light',
-          visibility: backer !== 2 ? 'visible' : 'hidden',
+          opacity: backer !== 2 ? 1 : 0,
+          transition:'opacity 0.4s'
           // textShadow: `0.1vmin 0.1vmin 0.3vmin ${theme.colors.dark50}`,
         }}>{specimen.common}</Heading>
       }
@@ -63,7 +65,8 @@ const Info = ({id, dark, attribution, backer}) => {
             (backer===0 && dark) ? 'light' :
             (backer===0 && !dark) ? 'dark' :
             dark ? 'dark' : 'light',
-          visibility: backer !== 2 ? 'visible' : 'hidden',
+          opacity: backer !== 2 ? 1 : 0,
+          transition:'opacity 0.4s'
           // textShadow: `0.1vmin 0.1vmin 0.3vmin ${theme.colors.dark50}`,
         }}>{specimen.common}</Heading>
       }
@@ -83,7 +86,8 @@ const Info = ({id, dark, attribution, backer}) => {
               (backer===0 && dark) ? 'ochre' :
               (backer===0 && !dark) ? 'amber' :
               dark ? 'amber' : 'ochre',
-            visibility: backer !== 2 ? 'visible' : 'hidden',
+            opacity: backer !== 2 ? 1 : 0,
+            transition:'opacity 0.4s',
             ':hover':{
               color: dark ? 'amber' : 'marigold',
             }
@@ -105,7 +109,8 @@ const Info = ({id, dark, attribution, backer}) => {
           (backer===0 && dark) ? 'light' :
           (backer===0 && !dark) ? 'dark' :
           dark ? 'dark' : 'light',
-        visibility: backer !== 2 ? 'visible' : 'hidden',
+        opacity: backer !== 2 ? 1 : 0,
+        transition:'opacity 0.4s',
       }}>
         <Markdown options={{overrides:{a:{component:LinkCatcher}}}}>
           {specimen.caption}
