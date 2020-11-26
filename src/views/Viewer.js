@@ -7,7 +7,7 @@ import { DataContext, SetDarkContext } from '../Context'
 import SketchFabViewer from './SketchFabViewer';
 import ImageViewer from './ImageViewer'
 
-const Viewer = ({id, auto, dark, setAttribution, setBacker}) => {
+const Viewer = ({id, auto, dark, setAttribution, setBacker, expand}) => {
   const [width, height] = useWindowSize()
   const data = useContext(DataContext)
   const setDark = useContext(SetDarkContext)
@@ -126,6 +126,9 @@ const Viewer = ({id, auto, dark, setAttribution, setBacker}) => {
       {specimen.type === "Image" && image &&
         <ImageViewer src={image} alt={specimen.scientific} dark={dark}/>
       }
+
+      <Box sx={{bg: dark ? 'dark' : 'light', opacity: expand ? 0.95 : 0, height:'100%',width:'100%', position:'absolute', transition:'all 0.4s', pointerEvents: expand ? 'all' : 'none'}}/>
+
     </Flex>
   )
 }

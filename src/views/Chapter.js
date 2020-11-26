@@ -124,6 +124,9 @@ const Chapter = ({chapter, setChapter, options, auto, setAuto, dark, backer, set
         bg: 'transparent',
         p: 0,
         m: 0,
+        'svg *': {
+          fill: 'none'
+        },
         ':hover svg': {
           stroke:   (backer===0 && dark) ? 'marigold' :
                     (backer===0 && !dark) ? 'amber' :
@@ -137,10 +140,10 @@ const Chapter = ({chapter, setChapter, options, auto, setAuto, dark, backer, set
         },
       }} onClick={()=>setBacker(backer+1)}>
         {backer===0 && <EyeOpen stroke={dark ? theme.colors.light :
-        theme.colors.dark} fill='none' strokeWidth='1.5vmin' width='3vmin' height='3vmin'/>}
+        theme.colors.dark} strokeWidth='1.5vmin' width='3vmin' height='3vmin'/>}
         {backer===1 && <EyeHalf stroke={dark ? theme.colors.dark :
-        theme.colors.light} fill='none' strokeWidth='1.5vmin' width='3vmin' height='3vmin'/>}
-        {backer===2 && <EyeShut stroke={dark ? theme.colors.light : theme.colors.dark} fill='none' strokeWidth='1.5vmin' width='3vmin' height='3vmin'/>}
+        theme.colors.light} strokeWidth='1.5vmin' width='3vmin' height='3vmin'/>}
+        {backer===2 && <EyeShut stroke={dark ? theme.colors.light : theme.colors.dark} strokeWidth='1.5vmin' width='3vmin' height='3vmin'/>}
         <Text
           sx={{
             ml:'0.5vmin',

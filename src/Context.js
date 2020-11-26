@@ -62,6 +62,7 @@ const Context = ({data, dark, setDark}) => {
   const [attribution, setAttribution] = useState(null)
   const [auto, setAuto] = useState(true)
   const [backer, setBacker] = useState(0)
+  const [expand, setExpand] = useState(false)
 
   useEffect(()=>{
     if (backer > 2) {
@@ -92,9 +93,9 @@ const Context = ({data, dark, setDark}) => {
                   <Chapter chapter={chapter} setChapter={setChapter} options={availableChapters} auto={auto} setAuto={setAuto} dark={dark} backer={backer} setBacker={setBacker}/>
                   <Info id={id} dark={dark} attribution={attribution} backer={backer}/>
                 </Composer>
-                <Tree id={id} chapter={chapter} dark={dark}/>
+                <Tree id={id} chapter={chapter} dark={dark} expand={expand} setExpand={setExpand}/>
               </Universe>
-              <Viewer id={id} auto={auto} dark={dark} setAttribution={setAttribution} setBacker={setBacker}/>
+              <Viewer id={id} auto={auto} dark={dark} setAttribution={setAttribution} setBacker={setBacker} expand={expand}/>
             </>}
         </SetDarkContext.Provider>
       </SetIdContext.Provider>
