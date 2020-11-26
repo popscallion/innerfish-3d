@@ -20,7 +20,7 @@ const Load = () => {
 
   if (loaded) {
     return (
-      <Flex sx={{bg: dark ? 'dark' : 'light', width:'100%', height:'100%', transition:'background-color 0.4s'}} >
+      <Flex sx={{bg: dark ? 'dark' : 'light', width:'100vw', height:'100vh', transition:'background-color 0.4s'}} >
         <Context data={data} dark={dark} setDark={setDark}/>
       </Flex>
     )
@@ -29,7 +29,7 @@ const Load = () => {
         <Flex sx={{ flexFLow:'column nowrap',
                     justifyContent:'center',
                     alignItems:'center',
-                    minHeight:'100vh',
+                    height:'100vh',
                     bg: 'light'}}>
           <Heading sx={{fontSize:'medium', color:'dark'}}>Loading...</Heading>
         </Flex>

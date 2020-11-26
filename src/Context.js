@@ -25,6 +25,7 @@ const Universe = ({children, dark}) => {
         pointerEvents: 'none',
         width:'100%',
         height:'100%',
+        overflow:'hidden',
 
       }}
     >
@@ -44,8 +45,8 @@ const Composer = ({children}) => {
         bg:'transparent',
         pointerEvents: 'none',
         width:'100%',
-        height:'100%',
-        py:'8vh'
+        height:'75%',
+        py:'2vh'
       }}
     >
       {children}

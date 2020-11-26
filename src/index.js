@@ -7,12 +7,10 @@ import Load from './Load';
 
 
 ReactDOM.render(
-  <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <Load />
       </ThemeProvider>
-    </BrowserRouter>
-  </React.StrictMode>,
+    </BrowserRouter>,
   document.getElementById('root')
 );

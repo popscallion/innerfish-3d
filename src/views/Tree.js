@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useMemo, useState, useRef} from 'react';
 import { useTheme } from 'emotion-theming'
-import { Box } from 'rebass'
-import { Stage, Layer, Circle, Text, Rect, RegularPolygon } from 'react-konva';
+import { Box, Flex } from 'rebass'
+import { Stage, Layer, Circle, Text, Rect, RegularPolygon, Path} from 'react-konva';
 import { useWindowSize } from '@react-hook/window-size';
 import { DataContext, SetIdContext } from '../Context'
 
@@ -29,92 +29,7 @@ const treeData = [
   { "node": "Primates", "parent": "synapsida" },
 ]
 
-// const treeDataProper = [
-//   { "node": "metazoa", "parent": null },
-//   { "node": "non-bilaterian metazoans", "parent": "metazoa" },
-//   { "node": "bilateria", "parent": "metazoa" },
-//   { "node": "non-chordate bilaterians", "parent": "bilateria" },
-//   { "node": "chordata", "parent": "bilateria" },
-//   { "node": "non-cyclostome chordates", "parent": "chordata" },
-//   { "node": "cyclostomata", "parent": "chordata" },
-//   { "node": "non-gnathostome cyclostomes", "parent": "cyclostomata" },
-//   { "node": "gnathostomata", "parent": "cyclostomata" },
-//   { "node": "non-osteichthyan gnathostomes", "parent": "gnathostomata" },
-//   { "node": "osteichthyes", "parent": "gnathostomata" },
-//   { "node": "non-tetrapod osteichthyans", "parent": "osteichthyes" },
-//   { "node": "tetrapoda", "parent": "osteichthyes" },
-//   { "node": "non-amniote tetrapods", "parent": "tetrapoda" },
-//   { "node": "amniota", "parent": "tetrapoda" },
-//   { "node": "sauropsida", "parent": "amniota" },
-//   { "node": "synapsida", "parent": "amniota" },
-//   { "node": "reptiles", "parent": "sauropsida" },
-//   { "node": "birds", "parent": "sauropsida" },
-//   { "node": "non-primate mammals", "parent": "synapsida" },
-//   { "node": "primates", "parent": "synapsida" },
-// ]
-
-const buildTree = (flat) => {
-  let root
-  const result = [...flat]
-  result.forEach(el => {
-    if (el.parent === null) {
-      root = el;
-      return;
-    }
-    const parentEl = result.find(item => item.node === el.parent)
-    parentEl.children = [...(parentEl.children || []), el];
-  });
-  return root
-}
-
-const searchTree = (tree, value, key = 'node', reverse = false) => {
-  const stack = [ tree[0] ]
-  while (stack.length) {
-    const node = stack[reverse ? 'pop' : 'shift']()
-    if (node[key] === value) return node
-    node.children && stack.push(...node.children)
-  }
-  return null
-}
-
-const getDepths = (flat, tree) => {
-  let allNodes = []
-  const queryParent = (current, starting, depth=0) => {
-    if (current.parent) {
-      const next = flat.find(el => el.node === current.parent)
-      depth++
-      if (next.parent) {
-        return queryParent(next, starting, depth)
-      } else {
-        return {"node":starting.node,"depth":depth}
-      }
-    } else {
-      return {"node":starting.node,"depth":depth}
-    }
-  }
-  flat.forEach((item, i) => {
-    const res = queryParent(item, item, 0)
-    allNodes.push(res)
-  });
-  const maxDepth = allNodes.reduce((max, p) => p.depth > max ? p.depth : max, allNodes[0].depth)
-  const inners = allNodes.flatMap(x => searchTree(tree, x.node).children ? x : [])
-  const tips = allNodes.flatMap(x => searchTree(tree, x.node).children ? [] : x)
-  return [inners, tips, maxDepth]
-}
-
-const getTips = (arr) => {
-    return arr.reduce(queryChildren, [])
-    function queryChildren(acc, item) {
-        if (!item.children || !item.children.length) {
-            return acc.concat(item.node)
-        } else if (item.children && item.children.length) {
-            return item.children.reduce(queryChildren, acc)
-        }
-        return acc;
-    }
-}
-
-const Node = ({x, y, i=0, spc=0.3, radius=20, text="", fontSize=12, lineHeight=1, uid=null, type=null, textfill=null, pathfill=null, stroke=null, opacity=1, textAlign='center', style='normal', letterSpacing=0, setId, active}) => {
+const Node = ({x, y, i=0, spc=0.3, radius=20, text="", fontSize=16, lineHeight=1, uid=null, type=null, textfill=null, pathfill=null, stroke=null, opacity=1, textAlign='center', style='normal', letterSpacing=2, setId, active, width}) => {
   const [hover, setHover] = useState(false)
   const [current, setCurrent ] = useState(false)
 
@@ -164,22 +79,121 @@ const Node = ({x, y, i=0, spc=0.3, radius=20, text="", fontSize=12, lineHeight=1
       onMouseEnter={hoverOn}
       onMouseLeave={hoverOff}
       />}
-      <Text text={text} x={textAlign == 'left' ? x+radius*2 : x-radius*22} y={((i)*spc+1)*y} align={textAlign} verticalAlign='middle' width={radius*20} height={radius*10} lineHeight={lineHeight} fill={textfill} opacity={opacity} fontStyle={style} fontSize={fontSize} letterSpacing={0.5} visible={current ? true : hover ? true : false}/>
-      {/*<Rect x={x-radius*10} y={((i)*spc+1)*y} align={textAlign} verticalAlign='middle' width={radius*20} height={radius*10} stroke={textfill} visible={true}/>*/}
+      <Text text={text} x={x-radius*22} y={y-radius*3} align={textAlign} verticalAlign='middle' width={radius*20} height={radius*10} lineHeight={lineHeight} fill={textfill} opacity={opacity} fontStyle={style} fontSize={fontSize} letterSpacing={0.5} visible={current ? true : hover ? true : false}/>
+      {/*<Rect x={x-radius*22} y={y-radius*5} align={textAlign} verticalAlign='middle' width={radius*20} height={radius*10} stroke={textfill} visible={true}/>*/}
     </>
   )
 }
 
-const Group = ({x, y, radius, name, ids, position, setId, active, theme, dark}) => {
+const Group = ({x, y, radius, name, ids, position, setId, active, theme, dark, width}) => {
   const children = ids ? ids.map((item,i) => {
-    return <Node x={x} y={y} i={i} radius={radius} stroke={dark ? theme.colors.light : theme.colors.royal} text={item.scientific ? item.scientific : item.common } textfill={dark ? theme.colors.light : theme.colors.dark} pathfill={dark ? theme.colors.ochre : theme.colors.amber} opacity={0.85} style={item.scientific ? 'italic' : 'normal'} uid={item.uid} type={item.type} textAlign={position} setId={setId} active={active}/>}) : null
+    return <Node x={x} y={y} i={i} radius={radius} stroke={dark ? theme.colors.light : theme.colors.royal} text={item.scientific ? item.scientific : item.common } textfill={dark ? theme.colors.light : theme.colors.dark} pathfill={dark ? theme.colors.ochre : theme.colors.amber} opacity={0.85} style={item.scientific ? 'italic' : 'normal'} uid={item.uid} type={item.type} textAlign={position} setId={setId} active={active} width={width}/>}) : null
   return (
     <>
-      <Node x={x} y={y} radius={radius} i={-1} pathfill={dark ? theme.colors.light : theme.colors.dark} textfill={dark ? theme.colors.light : theme.colors.dark} opacity={0.85} text={name} uid={null} style='bold' textAlign={position}/>
+      <Node x={x} y={y} radius={radius} i={-1} pathfill={dark ? theme.colors.light : theme.colors.dark} textfill={dark ? theme.colors.light : theme.colors.dark} opacity={0.85} text={name} uid={null} style='bold' textAlign={position} width={width}/>
       {children}
     </>
   )
 }
+
+const parseTree = (flat) => {
+  const result = []
+  const queryParent = (current, starting, depth=0) => {
+    if (current.parent) {
+      const next = flat.find(el => el.node === current.parent)
+      depth++
+      if (next.parent) {
+        return queryParent(next, starting, depth)
+      } else {
+        return {"node":starting.node, "parent":starting.parent, "depth":depth}
+      }
+    } else {
+      return {"node":starting.node, "parent":starting.parent, "depth":depth}
+    }
+  }
+  flat.forEach(item => { //assign depth to every node
+    const res = queryParent(item, item, 0)
+    result.push(res)
+  });
+  result.forEach((item, i) => { //assign children by node name
+    result[i] = {...item, "children":result.filter(el => el.parent ===item.node).map(child => child.node)}
+  })
+  result.forEach(item => { //final pass to nest actual child objects
+    item.children.forEach((child, i) => {
+      item.children[i] = result.find(el => el.node === child)
+    })
+  })
+  console.log(result);
+  return result
+}
+
+const getMaxDepth = parsed => {
+  return parsed.reduce((max, val)=> val.depth > max ? val.depth : max, parsed[0].depth)
+}
+
+const getLayout = (parsed, width, height, maxDepth, tips, inners) => {
+  const nodes = []
+  const xOffset = width/(tips.length+1)
+  const yOffset = height/(maxDepth+2)
+  tips.forEach((el, i) => {
+    const xPos = xOffset*(i+1)
+    const yPos = yOffset/2
+    const update = {
+        node: el.node,
+        x: xPos,
+        y: yPos,
+        parent:el.parent,
+    }
+    nodes.push(update)
+  })
+  for (let i=maxDepth-1 ; i>=0; i--){
+    const nodesAtDepth = inners.filter(item => item.depth === i)
+    nodesAtDepth.forEach((el, it) => {
+      const update = {
+        node:el.node,
+        x: nodes.filter(item=>el.children.map(child=>child.node).includes(item.node)).reduce((acc, val, _, {length}) => {return acc+val.x / length}, 0),
+        y: height-yOffset*(i+1),
+        parent:el.parent,
+        toParent: `v -${yOffset/2} h -${xOffset*it} v -${yOffset/2}`,
+      }
+      console.log(update);
+      nodes.push(update)
+    })
+  }
+  const result = nodes.map(item => {
+    const parent = nodes.find(el => el.node === item.parent)
+    console.log(parent);
+    console.log(item);
+    return {...item, toParent: item.parent ? `M ${item.x} ${item.y} v ${(parent.y-item.y)} h ${parent.x-item.x}` : null}
+  })
+  console.log(nodes);
+  console.log(result);
+  return result
+
+
+}
+
+
+// const getLayout = (parsed, width, height, maxDepth, tipNames) => {
+//   const result = []
+//   const xOffset = width/(tipNames.length+1)
+//   const yOffset = height/(maxDepth+1)
+//   for (let i=0 ; i<maxDepth+1; i++){
+//     const nodesAtDepth = parsed.filter(item => item.depth === i)
+//     nodesAtDepth.forEach((el, it) => {
+//       result.push(
+//         {node:el.node,
+//           // x: el.parent ? result.find(item => item.node === el.parent).x+xOffset*it+xOffset/2 : xOffset*(it+0.5),
+//           x: el.parent ? result.find(item => item.node === el.parent).x + -xOffset/3 + xOffset*it : xOffset*(it+0.5),
+//           y: el.children.length ? height-yOffset*(i+0.5) : yOffset*0.5,
+//           parent:el.parent,
+//           toParent: `v -${yOffset/2} h -${xOffset*it} v -${yOffset/2}`,
+//         }
+//       )
+//     })
+//   }
+//   return result
+// }
 
 
 const Tree = ({id, chapter, dark}) => {
@@ -187,53 +201,82 @@ const Tree = ({id, chapter, dark}) => {
   const [width, height] = useWindowSize()
   const data = useContext(DataContext)
   const setId = useContext(SetIdContext)
+
+  const [layout, setLayout] = useState(null)
+
   const [phylogeny, setPhylogeny] = useState(null)
   const [tree, setTree] = useState(null)
   const [groups, setGroups] = useState(null)
   const [offsets, setOffsets] = useState(null)
+  const [expand, setExpand] = useState(false)
 
-  useMemo(()=>{
-    const phylogeny = [buildTree(treeData)]
-    const [inners, tips, maxDepth] = getDepths(treeData, phylogeny)
-    setPhylogeny({"phylogeny":phylogeny, "inners":inners, "tips":tips, "maxDepth":maxDepth})
-  },[])
+  const parsedTree = useRef(parseTree(treeData))
+
 
   useEffect(()=>{
-    const activeId = data.find(datum => datum.uid === id)
-    const availableIds = data.filter(datum => datum.chapter === chapter)
-    const availableGroups = [...new Set (availableIds.map(id => id.group))]
-    const idsPerGroup = availableGroups.map(group => availableIds.filter(item => item.group === group))
-    const grouped = Object.fromEntries(availableGroups.map((_, i) => [availableGroups[i], idsPerGroup[i]]))
-    const tipsWithIds = phylogeny.tips.map( x => Object.assign(x, {"ids":grouped[x.node]}))
-    const miscIds = availableIds.filter(datum => !datum.group)
-    setGroups([tipsWithIds, miscIds])
-  },[id, chapter])
+    if (parsedTree.current.length) {
+      const maxDepth = getMaxDepth(parsedTree.current)
+      const tips = parsedTree.current.filter(item => !item.children.length)
+      const inners = parsedTree.current.filter(item => item.children.length)
+      setLayout(getLayout(parsedTree.current, width, height*0.5, maxDepth, tips, inners))
+    }
+  },[width,height])
 
   useEffect(()=>{
-    const xOffset = width/(phylogeny.tips.length+1)
-    const yOffset = height*0.25/(phylogeny.maxDepth)
-    setOffsets({"x":xOffset,"y":yOffset})
-  },[phylogeny, width, height])
+    console.log(layout);
+  },[layout])
 
-  if (offsets){
+
+  //
+  // useEffect(()=>{
+  //   const activeId = data.find(datum => datum.uid === id)
+  //   const availableIds = data.filter(datum => datum.chapter === chapter)
+  //   const availableGroups = [...new Set (availableIds.map(id => id.group))]
+  //   const idsPerGroup = availableGroups.map(group => availableIds.filter(item => item.group === group))
+  //   const grouped = Object.fromEntries(availableGroups.map((_, i) => [availableGroups[i], idsPerGroup[i]]))
+  //   const tipsWithIds = phylogeny.tips.map( x => Object.assign(x, {"ids":grouped[x.node]}))
+  //   const miscIds = availableIds.filter(datum => !datum.group)
+  //   setGroups([tipsWithIds, miscIds])
+  //   console.log(tipsWithIds);
+  //   console.log(miscIds);
+  // },[id, chapter])
+
+
+  if (layout && layout.length){
     return (
-      <Box sx={{pointerEvents:'all', backgroundImage: dark ? `linear-gradient(transparent, ${theme.colors.light25})` : `linear-gradient(transparent, ${theme.colors.dark25}, ${theme.colors.dark66})`}}>
-        <Stage width={width} height={height*0.25}>
-          <Layer>
-              <>
-                <Group x={offsets.x/2} y={offsets.y*3} radius= {width/350} name='' ids={groups[1]} setId={setId} active={id}
-                position='left' theme={theme} dark={dark}/>
-                {groups[0].map((item, i) => {
-                  return (
-                    <Group x={(i+1.5)*offsets.x} y={offsets.y*3} radius= {width/350} name={item.node} ids={item.ids} setId={setId} active={id}
-                    position={i <= Math.floor((phylogeny.tips.length)/2) ? 'left' : 'right'} theme={theme} dark={dark}/>
-                )})}
-              </>
-          </Layer>
-        </Stage>
-      </Box>
-    )
-  }
+      <>
+        <Box sx={{position:'absolute', bottom:'0', pointerEvents:'all', backgroundImage: dark ? `linear-gradient(transparent, ${theme.colors.light25})` : `linear-gradient(transparent, ${theme.colors.dark25}, ${theme.colors.dark66})`, width:{width}, height: expand ? height*0.5 : height*0.25,  transition:'all 0.4s'}}>
+          <Stage width={width} height={expand ? height*0.5 : height*0.25}>
+            <Layer>
+                <>
+                  {layout.map(el => {
+                    return(
+                      <>
+                        <Group x={el.x} y={el.y} radius= {width/350} name={el.node} ids={[]} setId={setId} active={id}
+                        position='right' theme={theme} dark={dark} width={width}/>
+                        <Path data={el.toParent} stroke='black' strokeWidth={1}/>
+                      </>
+                    )
+
+                  })}
+
+                </>
+            </Layer>
+          </Stage>
+        </Box>
+        <Box sx={{
+          bg:'red', width:'5vmin', height:'5vmin',
+          position:'absolute',
+          bottom:'0',
+          left:'50vw',
+          right:'50vw',
+          zIndex:'10',
+          cursor:'pointer',
+          pointerEvents:'all',
+        }} onClick={()=>setExpand(!expand)}
+        />
+      </>
+  )}
   else {
     return (
       <></>

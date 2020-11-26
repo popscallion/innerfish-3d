@@ -11,7 +11,7 @@ const ImageViewer = ({dark,...props}) => {
   return (
     <TransformWrapper
       options={{minScale:0.5}}
-      defaultScale={0.5}
+      defaultScale={1}
       doubleClick={{mode:'reset'}}
       zoomIn={{step:10}}
       zoomOut={{step:10}}

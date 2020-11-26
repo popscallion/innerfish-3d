@@ -46,7 +46,6 @@ const Viewer = (props) => {
         ui_inspector: 0,
         ui_settings: 0,
         ui_stop: 0,
-        ui_vr: 0,
         ui_infos: 0,
         ui_hint: 0
     });
