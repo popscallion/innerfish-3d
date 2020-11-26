@@ -216,7 +216,7 @@ const Tree = ({id, chapter, dark, expand, setExpand}) => {
     console.log(tipsWithIds);
     const miscIds = availableIds.filter(datum => !datum.group)
     setGroups([tipsWithIds, miscIds])
-  },[chapter])
+  },[chapter, id])
 
 
   if (layout){
@@ -255,14 +255,12 @@ const Tree = ({id, chapter, dark, expand, setExpand}) => {
           p: 0,
           m: 0,
           'svg': {
-            opacity: 0.8,
-            '.a': {fill: dark ? 'dark' : 'light'},
-            '.b': {fill: dark ? 'ochre': 'amber'},
+            '.a': {fill: dark ? 'dark' : 'light', opacity: 0,},
+            '.b': {fill: dark ? 'ochre': 'amber', opacity: 0.9},
           },
           ':hover svg': {
-            opacity: 1,
-            '.a': {fill: dark ? 'ochre' : 'amber'},
-            '.b': {fill: dark ? 'light': 'dark'},
+            '.a': {fill: dark ? 'ochre' : 'amber', opacity: 0.9,},
+            '.b': {fill: dark ? 'light': 'dark', opacity: 0.9,},
           }
         }} onClick={()=>setExpand(!expand)}>
           {expand &&
