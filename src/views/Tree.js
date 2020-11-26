@@ -137,7 +137,7 @@ const getLayout = (parsed, width, height, maxDepth, tips, inners) => {
   const yOffset = height/(maxDepth+2)
   tips.forEach((el, i) => {
     const xPos = xOffset*(i+1)
-    const yPos = yOffset/2
+    const yPos = yOffset
     const update = {
         node: el.node,
         x: xPos,
@@ -245,7 +245,7 @@ const Tree = ({id, chapter, dark}) => {
   if (layout && layout.length){
     return (
       <>
-        <Box sx={{position:'absolute', bottom:'0', pointerEvents:'all', backgroundImage: dark ? `linear-gradient(transparent, ${theme.colors.light25})` : `linear-gradient(transparent, ${theme.colors.dark25}, ${theme.colors.dark66})`, width:{width}, height: expand ? height*0.5 : height*0.25,  transition:'all 0.4s'}}>
+        <Box sx={{bottom:'0', pointerEvents:'all', backgroundImage: dark ? `linear-gradient(transparent, ${theme.colors.light25})` : `linear-gradient(transparent, ${theme.colors.dark25}, ${theme.colors.dark66})`, width:{width}, height: expand ? height*0.5 : height*0.25,  transition:'all 0.4s', zIndex:20}}>
           <Stage width={width} height={expand ? height*0.5 : height*0.25}>
             <Layer>
                 <>
@@ -270,7 +270,7 @@ const Tree = ({id, chapter, dark}) => {
           bottom:'0',
           left:'50vw',
           right:'50vw',
-          zIndex:'10',
+          zIndex:'25',
           cursor:'pointer',
           pointerEvents:'all',
         }} onClick={()=>setExpand(!expand)}
