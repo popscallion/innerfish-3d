@@ -170,7 +170,7 @@ const getLayout = (parsed, width, height, maxDepth, tips, inners) => {
       `M ${item.x} ${item.y} v ${(parent.y-item.y-yOffset/2)} a ${yOffset/2} ${yOffset/2} 0 -1 -1 ${yOffset/2} ${yOffset/2} h ${parent.x-item.x-yOffset/2}` :
       item.parent && item.x > parent.x ?
       `M ${item.x} ${item.y} v ${(parent.y-item.y-yOffset/2)} a ${yOffset/2} ${yOffset/2} 0 0 1 -${yOffset/2} ${yOffset/2} h ${parent.x-item.x+yOffset/2}` :
-      null}
+      `M ${item.x} ${item.y} v ${(yOffset/2)}`}
   })
   const activeTips = result.filter(item => item.ids && item.ids.length)
   activeTips.forEach(item => {
