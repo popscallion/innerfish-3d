@@ -166,15 +166,32 @@ const getLayout = (parsed, width, height, maxDepth, tips, inners) => {
   }
   const result = nodes.map(item => {
     const parent = nodes.find(el => el.node === item.parent)
-    console.log(parent);
-    console.log(item);
-    return {...item, toParent: item.parent ? `M ${item.x} ${item.y} v ${(parent.y-item.y)} h ${parent.x-item.x}` : null}
+    return {...item, toParent: item.parent && item.x < parent.x ?
+      `M ${item.x} ${item.y} v ${(parent.y-item.y-yOffset/2)} a ${yOffset/2} ${yOffset/2} 0 -1 -1 ${yOffset/2} ${yOffset/2} h ${parent.x-item.x-yOffset/2}` :
+      item.parent && item.x > parent.x ?
+      `M ${item.x} ${item.y} v ${(parent.y-item.y-yOffset/2)} a ${yOffset/2} ${yOffset/2} 0 0 1 -${yOffset/2} ${yOffset/2} h ${parent.x-item.x+yOffset/2}` :
+      null}
   })
-  console.log(nodes);
+  const activeTips = result.filter(item => item.ids && item.ids.length)
+  activeTips.forEach(item => {
+    const activeBranches = tipToRoot(result, item)
+    activeBranches.forEach(item => {
+      result.find(el=>el.node === item).active = true
+    })
+  })
   console.log(result);
   return result
+}
 
-
+const tipToRoot = (arr, tip) => {
+  const result = []
+  while (tip.parent) {
+    result.push(tip.node)
+    tip = {...arr.find(el=>el.node == tip.parent)}
+  }
+  result.push(tip.node)
+  console.log(result);
+  return result
 }
 
 const Tree = ({id, chapter, dark, expand, setExpand}) => {
@@ -229,7 +246,7 @@ const Tree = ({id, chapter, dark, expand, setExpand}) => {
                   {layout.map(el => {
                     return(
                       <>
-                        <Path data={el.toParent} stroke={dark ? theme.colors.light : theme.colors.dark} strokeWidth={1}/>
+                        <Path data={el.toParent} stroke={dark ? theme.colors.light : theme.colors.dark} strokeWidth={3} opacity={el.active ? 1 : 0.2}/>
                         <Group x={el.x} y={el.y} radius= {width/350} name={el.node} ids={el.ids} setId={setId} active={id}
                         position='right' theme={theme} dark={dark} width={width}/>
 
