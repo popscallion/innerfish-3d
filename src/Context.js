@@ -46,7 +46,8 @@ const Composer = ({children}) => {
         pointerEvents: 'none',
         width:'100%',
         height:'75%',
-        py:'2vh'
+        py:'2vh',
+        overflow:'hidden',
       }}
     >
       {children}

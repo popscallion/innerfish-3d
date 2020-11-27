@@ -31,18 +31,93 @@ const treeData = [
   { "node": "Mammals", "parent": "Synapsida" },
   { "node": "Primates", "parent": "Synapsida" },
 ]
+//
+// const Node = ({x, y, i=0, spc=0.16, radius=20, text="", fontSize=16, lineHeight=1, uid=null, type=null, textfill=null, pathfill=null, stroke=null, opacity=1, fontFamily=null, textAlign='center', style='normal', letterSpacing=0.25, setId, active, width}) => {
+//   const [hover, setHover] = useState(false)
+//   const [current, setCurrent ] = useState(false)
+//
+//   useEffect(()=>{
+//     if (active !== uid){
+//       setCurrent(false)
+//     } else {
+//       setCurrent(true)
+//     }
+//   },[active])
+//
+//   const hoverOn = e => {
+//     setHover(true)
+//     if (uid) {
+//       const container = e.target.getStage().container();
+//       container.style.cursor = "pointer";
+//     }
+//   }
+//   const hoverOff = e => {
+//     setHover(false)
+//     if (uid) {
+//       const container = e.target.getStage().container();
+//       container.style.cursor = "default";
+//     }
+//   }
+//   const handleClick = () => {
+//     setId(uid)
+//   }
+//   return (
+//     <>
+//       {type === 'Video' && <RegularPolygon x={x} y={((i-3)*spc+1)*y} fill={uid && !current ? null : pathfill} stroke={stroke} radius={radius} sides={3} rotation={90} opacity={opacity}
+//               onMouseEnter={hoverOn}
+//               onMouseLeave={hoverOff}
+//               onClick={uid ? handleClick : null}
+//               />}
+//       {type === 'Image' && <RegularPolygon x={x} y={((i-3)*spc+1)*y} fill={uid && !current ? null : pathfill} stroke={stroke} radius={radius*1.25} sides={4} rotation={45} opacity={opacity}
+//               onMouseEnter={hoverOn}
+//               onMouseLeave={hoverOff}
+//               onClick={uid ? handleClick : null}
+//               />}
+//       {type === 'Model' && <Circle x={x} y={((i-3)*spc+1)*y} fill={uid && !current ? null : pathfill} stroke={stroke} radius={radius} opacity={opacity}
+//               onMouseEnter={hoverOn}
+//               onMouseLeave={hoverOff}
+//               onClick={uid ? handleClick : null}
+//               />}
+//       {!type && <Circle x={x} y={((i+1)*spc+1)*y} fill={uid && !current ? null : pathfill} stroke={stroke} radius={radius/2} opacity={opacity}
+//       onMouseEnter={hoverOn}
+//       onMouseLeave={hoverOff}
+//       />}
+//       <Text text={text} x={x-radius*22} y={type ? ((i-3)*spc+(0.88))*y : y-radius/2} align={textAlign} verticalAlign='middle' width={radius*20} height={radius*6} lineHeight={lineHeight} fill={textfill} opacity={opacity} fontFamily={fontFamily} fontStyle={style} fontSize={fontSize} letterSpacing={letterSpacing} visible={current ? true : hover ? true : false}/>
+//       {/*<Rect x={x-radius*22} y={type ? (i*(y))*spc+radius/2 : y-radius} align={textAlign} verticalAlign='middle' width={radius*20} height={radius*5} stroke={textfill} visible={true}/>*/}
+//     </>
+//   )
+// }
 
-const Node = ({x, y, i=0, spc=0.16, radius=20, text="", fontSize=16, lineHeight=1, uid=null, type=null, textfill=null, pathfill=null, stroke=null, opacity=1, fontFamily=null, textAlign='center', style='normal', letterSpacing=0.25, setId, active, width}) => {
+// const Group = ({x, y, radius, name, ids, position, setId, active, theme, dark, width}) => {
+//   const children = ids ? ids.map((item,i) => {
+//     return <Node x={x} y={y} i={i} radius={radius} stroke={dark ? theme.colors.light : theme.colors.royal} text={item.scientific ? item.scientific : item.common } textfill={dark ? theme.colors.light : theme.colors.dark} pathfill={dark ? theme.colors.ochre : theme.colors.amber} opacity={0.85} style={item.scientific ? 'italic 700' : 'normal 700'} uid={item.uid} type={item.type} fontFamily={theme.fonts.heading} textAlign={position} setId={setId} active={active} width={width}/>}) : null
+//   return (
+//     <>
+//       <Node x={x} y={y} radius={radius} i={-1} pathfill={dark ? theme.colors.light : theme.colors.dark} textfill={dark ? theme.colors.light : theme.colors.dark} opacity={0.85} text={name} uid={null} fontFamily={theme.fonts.heading} style='normal 700' textAlign={position} width={width}/>
+//       {children}
+//     </>
+//   )
+// }
+
+const Node = ({x, y, scale, name, uid, type, textAlign, fontStyle, branch, lit, theme, dark, width, setId, activeId}) => {
+
   const [hover, setHover] = useState(false)
   const [current, setCurrent ] = useState(false)
+  const fillColor = dark ? theme.colors.ochre : theme.colors.amber
+  const strokeColor = dark ? theme.colors.light : theme.colors.dark
+  const fontSize = 16
+  const lineHeight = 1.1
+  const fontFamily = theme.fonts.heading
+  const letterSpacing = 0.25
 
   useEffect(()=>{
-    if (active !== uid){
-      setCurrent(false)
-    } else {
-      setCurrent(true)
-    }
-  },[active])
+    if (activeId && uid){
+      if (activeId === uid){
+        setCurrent(true)
+      } else {
+        setCurrent(false)
+      }}
+  })
 
   const hoverOn = e => {
     setHover(true)
@@ -63,37 +138,45 @@ const Node = ({x, y, i=0, spc=0.16, radius=20, text="", fontSize=16, lineHeight=
   }
   return (
     <>
-      {type === 'Video' && <RegularPolygon x={x} y={((i-3)*spc+1)*y} fill={uid && !current ? null : pathfill} stroke={stroke} radius={radius} sides={3} rotation={90} opacity={opacity}
-              onMouseEnter={hoverOn}
-              onMouseLeave={hoverOff}
-              onClick={uid ? handleClick : null}
-              />}
-      {type === 'Image' && <RegularPolygon x={x} y={((i-3)*spc+1)*y} fill={uid && !current ? null : pathfill} stroke={stroke} radius={radius*1.25} sides={4} rotation={45} opacity={opacity}
-              onMouseEnter={hoverOn}
-              onMouseLeave={hoverOff}
-              onClick={uid ? handleClick : null}
-              />}
-      {type === 'Model' && <Circle x={x} y={((i-3)*spc+1)*y} fill={uid && !current ? null : pathfill} stroke={stroke} radius={radius} opacity={opacity}
-              onMouseEnter={hoverOn}
-              onMouseLeave={hoverOff}
-              onClick={uid ? handleClick : null}
-              />}
-      {!type && <Circle x={x} y={((i+1)*spc+1)*y} fill={uid && !current ? null : pathfill} stroke={stroke} radius={radius/2} opacity={opacity}
-      onMouseEnter={hoverOn}
-      onMouseLeave={hoverOff}
-      />}
-      <Text text={text} x={x-radius*22} y={type ? ((i-3)*spc+(0.88))*y : y-radius/2} align={textAlign} verticalAlign='middle' width={radius*20} height={radius*6} lineHeight={lineHeight} fill={textfill} opacity={opacity} fontFamily={fontFamily} fontStyle={style} fontSize={fontSize} letterSpacing={letterSpacing} visible={current ? true : hover ? true : false}/>
-      {/*<Rect x={x-radius*22} y={type ? (i*(y))*spc+radius/2 : y-radius} align={textAlign} verticalAlign='middle' width={radius*20} height={radius*5} stroke={textfill} visible={true}/>*/}
+      {type === 'Video' &&
+        <RegularPolygon x={x} y={y} fill={uid && !current ? null : fillColor} stroke={strokeColor} radius={scale} sides={3} rotation={90} opacity={0.85}
+        onMouseEnter={hoverOn}
+        onMouseLeave={hoverOff}
+        onClick={uid ? handleClick : null}/>
+      }
+      {type === 'Image' &&
+        <RegularPolygon x={x} y={y} fill={uid && !current ? null : fillColor} stroke={strokeColor} radius={scale*1.25} sides={4} rotation={45} opacity={0.85}
+        onMouseEnter={hoverOn}
+        onMouseLeave={hoverOff}
+        onClick={uid ? handleClick : null}/>
+      }
+      {type === 'Model' &&
+        <Circle x={x} y={y} fill={uid && !current ? null : fillColor} stroke={strokeColor} radius={scale} opacity={0.85}
+        onMouseEnter={hoverOn}
+        onMouseLeave={hoverOff}
+        onClick={uid ? handleClick : null}/>
+      }
+      {!type && branch &&
+        <>
+          <Circle x={x} y={y} fill={strokeColor} stroke={strokeColor} radius={scale/2} opacity={hover && lit ? 1 : hover && !lit ? 0.5 : lit ? 0.9 : 0.2}
+          onMouseEnter={hoverOn}
+          onMouseLeave={hoverOff}/>
+          <Path data={branch} stroke={strokeColor} strokeWidth={scale/2} opacity={hover && lit ? 1 : hover && !lit ? 0.5 : lit ? 0.8 : 0.2} onMouseEnter={hoverOn}
+          onMouseLeave={hoverOff}/>
+        </>
+      }
+      <Text text={name} x={textAlign === 'left' ? x : x-scale*25} y={type ? y-scale*2 : y} align={textAlign} verticalAlign='middle' width={scale*25} height={scale*4} lineHeight={1.1} fill={strokeColor} opacity={hover && lit ? 1 : hover && !lit ? 0.5 : lit ? 0.9 : 0.2} fontFamily={fontFamily} fontStyle={fontStyle} fontSize={fontSize} letterSpacing={letterSpacing} padding={textAlign === 'left' ? scale : scale*2} visible={current ? true : lit ? true : hover ? true : false}/>
+      {/*<Rect x={textAlign === 'left' ? x : x-scale*25} y={type ? y-scale*2 : y} width={scale*25} height={scale*5} stroke={strokeColor} visible={current ? true : lit ? true : hover ? true : false}/>*/}
     </>
   )
 }
 
-const Group = ({x, y, radius, name, ids, position, setId, active, theme, dark, width}) => {
-  const children = ids ? ids.map((item,i) => {
-    return <Node x={x} y={y} i={i} radius={radius} stroke={dark ? theme.colors.light : theme.colors.royal} text={item.scientific ? item.scientific : item.common } textfill={dark ? theme.colors.light : theme.colors.dark} pathfill={dark ? theme.colors.ochre : theme.colors.amber} opacity={0.85} style={item.scientific ? 'italic 700' : 'normal 700'} uid={item.uid} type={item.type} fontFamily={theme.fonts.heading} textAlign={position} setId={setId} active={active} width={width}/>}) : null
+const Stack = ({x, y, scale, name, groupedIds, setId, activeId, textAlign, theme, dark, width}) => {
+  const spacing = scale*5
+  const children = groupedIds ? groupedIds.map((item,i) => {
+    return <Node x={x} y={y-(spacing*(i+1))} scale={scale*1.25} name={item.scientific ? item.scientific : item.common } fontStyle={item.scientific ? 'italic 700' : 'normal 700'} uid={item.uid} type={item.type} textAlign={textAlign} setId={setId} activeId={activeId} theme={theme} dark={dark} width={width}/>}) : null
   return (
     <>
-      <Node x={x} y={y} radius={radius} i={-1} pathfill={dark ? theme.colors.light : theme.colors.dark} textfill={dark ? theme.colors.light : theme.colors.dark} opacity={0.85} text={name} uid={null} fontFamily={theme.fonts.heading} style='normal 700' textAlign={position} width={width}/>
       {children}
     </>
   )
@@ -134,7 +217,7 @@ const getMaxDepth = parsed => {
   return parsed.reduce((max, val)=> val.depth > max ? val.depth : max, parsed[0].depth)
 }
 
-const getLayout = (parsed, width, height, maxDepth, tips, inners) => {
+const getLayout = (parsed, width, height, treeScale, maxDepth, tips, inners) => {
   console.log(tips);
   const nodes = []
   const xOffset = width/(tips.length+1)
@@ -166,17 +249,17 @@ const getLayout = (parsed, width, height, maxDepth, tips, inners) => {
   }
   const result = nodes.map(item => {
     const parent = nodes.find(el => el.node === item.parent)
-    return {...item, toParent: item.parent && item.x < parent.x ?
-      `M ${item.x} ${item.y} v ${(parent.y-item.y-yOffset/2)} a ${yOffset/2} ${yOffset/2} 0 -1 -1 ${yOffset/2} ${yOffset/2} h ${parent.x-item.x-yOffset/2}` :
+    return {...item, branch: item.parent && item.x < parent.x ?
+      `M ${item.x} ${item.y+treeScale/2} v ${parent.y-item.y-(yOffset+treeScale)/2} a ${yOffset/2} ${yOffset/2} 0 -1 -1 ${yOffset/2} ${yOffset/2} h ${parent.x-item.x-(yOffset+treeScale)/2}` :
       item.parent && item.x > parent.x ?
-      `M ${item.x} ${item.y} v ${(parent.y-item.y-yOffset/2)} a ${yOffset/2} ${yOffset/2} 0 0 1 -${yOffset/2} ${yOffset/2} h ${parent.x-item.x+yOffset/2}` :
-      `M ${item.x} ${item.y} v ${(yOffset/2)}`}
+      `M ${item.x} ${item.y+treeScale/2} v ${parent.y-item.y-(yOffset+treeScale)/2} a ${yOffset/2} ${yOffset/2} 0 0 1 -${yOffset/2} ${yOffset/2} h ${parent.x-item.x+(yOffset+treeScale)/2}` :
+      `M ${item.x} ${item.y} v ${(yOffset)}`}
   })
-  const activeTips = result.filter(item => item.ids && item.ids.length)
-  activeTips.forEach(item => {
-    const activeBranches = tipToRoot(result, item)
-    activeBranches.forEach(item => {
-      result.find(el=>el.node === item).active = true
+  const litTips = result.filter(item => item.ids && item.ids.length)
+  litTips.forEach(item => {
+    const litBranches = tipToRoot(result, item)
+    litBranches.forEach(item => {
+      result.find(el=>el.node === item).lit = true
     })
   })
   console.log(result);
@@ -201,7 +284,6 @@ const Tree = ({id, chapter, dark, expand, setExpand}) => {
   const setId = useContext(SetIdContext)
 
   const [layout, setLayout] = useState(null)
-
   const [groups, setGroups] = useState(null)
 
   const parsedTree = useRef(parseTree(treeData))
@@ -210,10 +292,11 @@ const Tree = ({id, chapter, dark, expand, setExpand}) => {
   const inners = useRef(parsedTree.current.filter(item => item.children.length))
   console.log(tips.current);
 
+  const treeScale = width/250
 
   useEffect(()=>{
     if (parsedTree.current.length && groups) {
-      setLayout(getLayout(parsedTree.current, width, height*0.5, maxDepth.current, groups[0], inners.current))
+      setLayout(getLayout(parsedTree.current, width, height*0.5, treeScale, maxDepth.current, groups[0], inners.current))
     }
   },[width,height,groups])
 
@@ -239,20 +322,22 @@ const Tree = ({id, chapter, dark, expand, setExpand}) => {
   if (layout){
     return (
       <>
-        <Box sx={{bottom:'0', pointerEvents:'all', backgroundImage: !dark && expand ? `linear-gradient(transparent, ${theme.colors.light})` : dark && expand ? `linear-gradient(transparent, ${theme.colors.dark})` : 'transparent', width:{width}, height: expand ? height*0.5 : height*0.25,  transition:'all 0.4s', zIndex:20}}>
+        <Box sx={{pointerEvents:'all', backgroundImage: !dark && expand ? `linear-gradient(transparent, ${theme.colors.light})` : dark && expand ? `linear-gradient(transparent, ${theme.colors.dark})` : 'transparent', width:{width}, height: expand ? height*0.5 : height*0.25,  transition:'all 0.4s', zIndex:20}}>
           <Stage width={width} height={expand ? height*0.5 : height*0.25}>
             <Layer>
                 <>
                   {layout.map(el => {
                     return(
                       <>
-                        <Path data={el.toParent} stroke={dark ? theme.colors.light : theme.colors.dark} strokeWidth={3} opacity={el.active ? 1 : 0.2}/>
+                        {/*<Path data={el.toParent} stroke={dark ? theme.colors.light : theme.colors.dark} strokeWidth={3} opacity={el.active ? 1 : 0.2}/>
                         <Group x={el.x} y={el.y} radius= {width/350} name={el.node} ids={el.ids} setId={setId} active={id}
-                        position='right' theme={theme} dark={dark} width={width}/>
-
+                        position='right' theme={theme} dark={dark} width={width}/>*/}
+                        <Node x={el.x} y={el.y} scale={treeScale} branch = {el.branch} name={el.node} textAlign='left' fontStyle='normal 700' theme={theme} dark={dark} width={width} lit={el.lit}/>
+                        <Stack x={el.x} y={el.y} scale={treeScale} name={el.node} groupedIds={el.ids} setId={setId} activeId={id} textAlign='right' theme={theme} dark={dark} width={width}/>
                       </>
                     )
-                  })}
+                  })
+                  }
                 </>
             </Layer>
           </Stage>
