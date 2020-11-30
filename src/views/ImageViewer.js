@@ -13,7 +13,7 @@ const ImageViewer = ({dark,...props}) => {
         <Image
           src={props.src}
           alt={props.alt}
-          sx={{maxWidth:'80%', maxHeight:'66%', width:'auto', objectFit:'contain',border:'0.5vmin solid', borderColor: dark ? 'light' : 'dark'}}
+          sx={{maxWidth:'80%', maxHeight:'60%', width:'auto', objectFit:'contain',border:'0.5vmin solid', borderColor: dark ? 'light' : 'dark'}}
           />
     </Flex>
   )

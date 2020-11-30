@@ -31,6 +31,7 @@ const Viewer = ({id, auto, dark, setAttribution, setBacker, expand}) => {
       setImage(specimen.url)
     }
     else if (specimen.type === 'Video'){
+      setBacker(1)
       setImage(null)
       setDark(true)
       if (auto) {
@@ -119,9 +120,11 @@ const Viewer = ({id, auto, dark, setAttribution, setBacker, expand}) => {
         </Flex>
       }
       {specimen.type === "Video" &&
-        <Box sx={{width:width, height:height}}>
-          <ReactPlayer url={specimen.url} width='100%' height='100%' playing={auto ? true : false}/>
-        </Box>
+        <Flex sx={{width:'100%', height:'100%', flexDirection:'column', justifyContent:'center', bg:'black'}}>
+          <Box sx={{width:width, height:'60%'}}>
+            <ReactPlayer url={specimen.url} width='100%' height='100%' playing={auto ? true : false}/>
+          </Box>
+        </Flex>
       }
       {specimen.type === "Image" && image &&
         <ImageViewer src={image} alt={specimen.scientific} dark={dark}/>

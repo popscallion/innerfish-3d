@@ -16,7 +16,7 @@ const Chapter = ({chapter, setChapter, options, auto, setAuto, dark, backer, set
   const data = useContext(DataContext)
 
   return(
-    <Box sx={{px:'5vmin', py:'4vmin', bg: backer===1 ? dark ? 'light85' : 'dark85' : 'transparent', height:'fit-content',width:'fit-content', maxWidth:'30vw', pointerEvents:'all', alignSelf:'flex-start', transition:'background-color 0.4s'}}>
+    <Box sx={{px:'5vmin', py:'4vmin', bg: backer===1 ? dark ? 'light85' : 'dark85' : 'transparent', height:'fit-content',width:'min-content', maxWidth:'50vw', pointerEvents:'all', alignSelf:'flex-start', transition:'background-color 0.4s'}}>
       <Heading
         sx={{
           fontSize:'large',
