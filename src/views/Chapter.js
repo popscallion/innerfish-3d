@@ -30,7 +30,7 @@ const Chapter = ({chapter, setChapter, options, auto, setAuto, dark, backer, set
           opacity: backer !== 2 ? 1 : 0,
           transition:'opacity 0.4s'
           // textShadow: `0.1vmin 0.1vmin 0.3vmin ${theme.colors.dark50}`,
-        }}>{chapter.split('-')[1]}</Heading>
+        }}>{chapter.split('.')[1]}</Heading>
       <Box
         as='form'
         sx={{

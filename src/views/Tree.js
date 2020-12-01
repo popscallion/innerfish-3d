@@ -26,12 +26,12 @@ const treeData = [
   { "node": "Tetrapoda", "parent": "Osteichthyes" },
   { "node": "Tetrapods", "parent": "Tetrapoda" },
   { "node": "Amniota", "parent": "Tetrapoda" },
-  { "node": "Sauropsida", "parent": "Amniota" },
+  { "node": "Sauropsids", "parent": "Amniota" },
   { "node": "Synapsida", "parent": "Amniota" },
-  { "node": "Reptiles", "parent": "Sauropsida" },
-  { "node": "Birds", "parent": "Sauropsida" },
-  { "node": "Mammals", "parent": "Synapsida" },
-  { "node": "Primates", "parent": "Synapsida" },
+  { "node": "Mammalia", "parent": "Synapsida" },
+  { "node": "Early Synapsids", "parent": "Synapsida" },
+  { "node": "Other Mammals", "parent": "Mammalia" },
+  { "node": "Primates", "parent": "Mammalia" },
 ]
 
 const Node = ({x, y, scale, name, uid, type, textAlign, fontStyle, branch, lit, theme, dark, width, setId, activeId}) => {
@@ -75,19 +75,19 @@ const Node = ({x, y, scale, name, uid, type, textAlign, fontStyle, branch, lit, 
   return (
     <>
       {type === 'Video' &&
-        <RegularPolygon x={x} y={y} fill={current ? fillColor : hover ? strokeColor : null} stroke={strokeColor} radius={scale} sides={3} rotation={90} opacity={0.85}
+        <RegularPolygon x={x} y={y} fill={current ? fillColor : hover ? strokeColor : null} stroke={strokeColor} strokeWidth={scale/4} radius={scale} sides={3} rotation={90} opacity={0.85}
         onMouseEnter={hoverOn}
         onMouseLeave={hoverOff}
         onClick={uid ? handleClick : null}/>
       }
       {type === 'Image' &&
-        <RegularPolygon x={x} y={y} fill={current ? fillColor : hover ? strokeColor : null} stroke={strokeColor} radius={scale*1.25} sides={4} rotation={45} opacity={0.85}
+        <RegularPolygon x={x} y={y} fill={current ? fillColor : hover ? strokeColor : null} stroke={strokeColor} strokeWidth={scale/4} radius={scale*1.25} sides={4} rotation={45} opacity={0.85}
         onMouseEnter={hoverOn}
         onMouseLeave={hoverOff}
         onClick={uid ? handleClick : null}/>
       }
       {type === 'Model' &&
-        <Circle x={x} y={y} fill={current ? fillColor : hover ? strokeColor : null} stroke={strokeColor} radius={scale} opacity={0.85}
+        <Circle x={x} y={y} fill={current ? fillColor : hover ? strokeColor : null} stroke={strokeColor} strokeWidth={scale/4} radius={scale} opacity={0.85}
         onMouseEnter={hoverOn}
         onMouseLeave={hoverOff}
         onClick={uid ? handleClick : null}/>
@@ -189,8 +189,8 @@ const getLayout = (parsed, width, height, treeScale, maxDepth, tips, inners, gro
     return {...item, branch: item.parent && item.x < parent.x ?
       `M ${item.x} ${item.y+treeScale/2} v ${parent.y-item.y-(radius+treeScale)/2} a ${radius/2} ${radius/2} 0 -1 -1 ${radius/2} ${radius/2} h ${parent.x-item.x-(radius+treeScale)/2}` :
       item.parent && item.x > parent.x ?
-      `M ${item.x} ${item.y+treeScale/2} v ${parent.y-item.y-(radius+treeScale)/2} a ${radius/2} ${radius/2} 0 0 1 -${radius/2} ${radius/2} h ${parent.x-item.x+(radius+treeScale)/2}` : item.node === "Chapter" ? `M ${item.x} ${item.y} v ${height} ` :
-      `M ${item.x} ${item.y} v ${(radius)}`}
+      `M ${item.x} ${item.y+treeScale/2} v ${parent.y-item.y-(radius+treeScale)/2} a ${radius/2} ${radius/2} 0 0 1 -${radius/2} ${radius/2} h ${parent.x-item.x+(radius+treeScale)/2}` : item.node === "Chapter" ? `M ${item.x} ${item.y+treeScale/2} v ${height} ` :
+      `M ${item.x} ${item.y+treeScale/2} v ${(radius)}`}
   })
   const litTips = result.filter(item => item.ids && item.ids.length)
   litTips.forEach(item => {
