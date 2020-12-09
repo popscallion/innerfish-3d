@@ -182,6 +182,58 @@ const content = [
     "caption": "Let's take a Walk Through the Zoo! Just like animals at the zoo can be grouped according to certain anatomical features, stratigraphic layers of sedimentary rock in the fossil record can show how these groups and features evolved over time."
   },
   {
+    "uid": "recxP0kwxB0sQgcYv",
+    "url": "https://youtu.be/CeNQy07vuK8",
+    "scientific": "Lecture Video 1",
+    "common": "",
+    "group": "Chapter",
+    "chapter": "1. Field Paleontology",
+    "showstopper": false,
+    "default": false,
+    "week": "1",
+    "type": "Video",
+    "caption": ""
+  },
+  {
+    "uid": "recsuKWlLS8IFrTyW",
+    "url": "https://youtu.be/RLkGInS1n5E",
+    "scientific": "Lecture Video 2",
+    "common": "",
+    "group": "Chapter",
+    "chapter": "1. Field Paleontology",
+    "showstopper": false,
+    "default": false,
+    "week": "1",
+    "type": "Video",
+    "caption": ""
+  },
+  {
+    "uid": "recktRKc3mlix54nH",
+    "url": "https://youtu.be/yANcM-Nebbk",
+    "scientific": "Lecture Video 3",
+    "common": "",
+    "group": "Chapter",
+    "chapter": "1. Field Paleontology",
+    "showstopper": false,
+    "default": false,
+    "week": "1",
+    "type": "Video",
+    "caption": ""
+  },
+  {
+    "uid": "reclrLlxp9rrCqROY",
+    "url": "https://youtu.be/S3G_rGwgjug",
+    "scientific": "Lecture Video 4",
+    "common": "",
+    "group": "Chapter",
+    "chapter": "1. Field Paleontology",
+    "showstopper": false,
+    "default": false,
+    "week": "1",
+    "type": "Video",
+    "caption": ""
+  },
+  {
     "uid": "rec8Nm29nVaTFEMRV",
     "url": "https://sketchfab.com/3d-models/african-lungfish-protopterus-annectens-3c0e32d2b3784c1080ce79d495f844d5",
     "scientific": "Protopterus annectens",

@@ -76,7 +76,8 @@ const Context = ({data, dark, setDark}) => {
   },[chapter])
 
   useEffect (() => {
-    setTimeout(setDrawTree(true),1000)
+    const timer = setTimeout(() => setDrawTree(true), 1);
+    return () => clearTimeout(timer);
   },[])
 
   return (

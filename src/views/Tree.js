@@ -110,7 +110,7 @@ const Node = ({x, y, scale, name, uid, type, textAlign, fontStyle, branch, lit, 
 const Stack = ({x, y, scale, name, groupedIds, setId, activeId, textAlign, theme, dark, width}) => {
   const spacing = scale*4
   const children = groupedIds ? groupedIds.map((item,i) => {
-    return <Node x={x} y={y-(spacing*(i+1))} scale={scale*1.1} name={item.scientific ? item.scientific : item.common } fontStyle={item.scientific ? 'italic 700' : 'normal 700'} uid={item.uid} type={item.type} textAlign={textAlign} setId={setId} activeId={activeId} theme={theme} dark={dark} width={width}/>}) : null
+    return <Node x={x} y={y-(spacing*(i+1))} scale={scale} name={item.scientific ? item.scientific : item.common } fontStyle={item.scientific ? 'italic 700' : 'normal 700'} uid={item.uid} type={item.type} textAlign={textAlign} setId={setId} activeId={activeId} theme={theme} dark={dark} width={width}/>}) : null
   return (
     <>
       {children}
