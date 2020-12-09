@@ -3,7 +3,7 @@ import { Flex, Heading } from 'rebass'
 import Context from './Context';
 
 
-import { loadAirtable } from './data/loadAirtable'
+import dummyData from './data/dummy'
 
 const Load = () => {
   const [loaded, setLoaded] = useState(false)
@@ -11,11 +11,8 @@ const Load = () => {
   const [dark, setDark] = useState(false)
 
   useEffect(() => {
-    (async () => {
-      const fetchedData = await loadAirtable()
-      setData(fetchedData)
-      setLoaded(true)
-    })()
+    setData(dummyData)
+    setLoaded(true)
   }, [])
 
   if (loaded) {

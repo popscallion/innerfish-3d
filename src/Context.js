@@ -6,7 +6,6 @@ import Viewer from './views/Viewer'
 import Info from './views/Info'
 import Chapter from './views/Chapter'
 import Tree from './views/Tree'
-import {formatJSON, loadData} from './data/loadAirtable'
 
 export const DataContext = React.createContext()
 export const SetIdContext = React.createContext()
@@ -64,6 +63,7 @@ const Context = ({data, dark, setDark}) => {
   const [auto, setAuto] = useState(true)
   const [backer, setBacker] = useState(0)
   const [expand, setExpand] = useState(false)
+  const [drawTree, setDrawTree] = useState(false)
 
   useEffect(()=>{
     if (backer > 2) {
@@ -75,6 +75,10 @@ const Context = ({data, dark, setDark}) => {
     setId(data.find(datum => datum.chapter.includes(chapter) && datum.default).uid)
   },[chapter])
 
+  useEffect (() => {
+    setTimeout(setDrawTree(true),1000)
+  },[])
+
   return (
     <DataContext.Provider value={data}>
       <SetIdContext.Provider value={setId}>
@@ -83,8 +87,10 @@ const Context = ({data, dark, setDark}) => {
             <Flex sx={{ flexFlow:'column nowrap',
                         justifyContent:'center',
                         alignItems:'center',
+                        width:'100%',
                         height:'100%'}}>
               <Heading sx={{fontSize:'medium'}}>Please rotate your device to landscape mode.</Heading>
+              <Heading sx={{fontSize:'medium'}}>This site is not optimized for smaller screens.</Heading>
             </Flex>
           }
           {!(isMobileOnly && height > width) &&
@@ -94,7 +100,7 @@ const Context = ({data, dark, setDark}) => {
                   <Chapter chapter={chapter} setChapter={setChapter} options={availableChapters} auto={auto} setAuto={setAuto} dark={dark} backer={backer} setBacker={setBacker}/>
                   <Info id={id} dark={dark} attribution={attribution} backer={backer}/>
                 </Composer>
-                <Tree id={id} chapter={chapter} dark={dark} expand={expand} setExpand={setExpand}/>
+                {drawTree && <Tree id={id} chapter={chapter} dark={dark} expand={expand} setExpand={setExpand}/>}
               </Universe>
               <Viewer id={id} auto={auto} dark={dark} setAttribution={setAttribution} setBacker={setBacker} expand={expand}/>
             </>}

@@ -75,19 +75,19 @@ const Node = ({x, y, scale, name, uid, type, textAlign, fontStyle, branch, lit, 
   return (
     <>
       {type === 'Video' &&
-        <RegularPolygon x={x} y={y} fill={current ? fillColor : hover ? strokeColor : null} stroke={strokeColor} strokeWidth={scale/4} radius={scale} sides={3} rotation={90} opacity={0.85}
+        <RegularPolygon x={x} y={y} fill={current ? fillColor : debouncedHover ? strokeColor : null} stroke={strokeColor} strokeWidth={scale/4} radius={scale} sides={3} rotation={90} opacity={0.85}
         onMouseEnter={hoverOn}
         onMouseLeave={hoverOff}
         onClick={uid ? handleClick : null}/>
       }
       {type === 'Image' &&
-        <RegularPolygon x={x} y={y} fill={current ? fillColor : hover ? strokeColor : null} stroke={strokeColor} strokeWidth={scale/4} radius={scale*1.25} sides={4} rotation={45} opacity={0.85}
+        <RegularPolygon x={x} y={y} fill={current ? fillColor : debouncedHover ? strokeColor : null} stroke={strokeColor} strokeWidth={scale/4} radius={scale*1.25} sides={4} rotation={45} opacity={0.85}
         onMouseEnter={hoverOn}
         onMouseLeave={hoverOff}
         onClick={uid ? handleClick : null}/>
       }
       {type === 'Model' &&
-        <Circle x={x} y={y} fill={current ? fillColor : hover ? strokeColor : null} stroke={strokeColor} strokeWidth={scale/4} radius={scale} opacity={0.85}
+        <Circle x={x} y={y} fill={current ? fillColor : debouncedHover ? strokeColor : null} stroke={strokeColor} strokeWidth={scale/4} radius={scale} opacity={0.85}
         onMouseEnter={hoverOn}
         onMouseLeave={hoverOff}
         onClick={uid ? handleClick : null}/>
@@ -102,7 +102,7 @@ const Node = ({x, y, scale, name, uid, type, textAlign, fontStyle, branch, lit, 
         </>
       }
       <Text text={name} x={textAlign === 'left' ? x+scale*2 : x-scale*22} y={type ? y-scale*2 : y} align={textAlign} verticalAlign='middle' width={scale*20} height={scale*4} lineHeight={lineHeight} fill={!current ? strokeColor : fillColor} opacity={1} fontFamily={fontFamily} fontStyle={fontStyle} fontSize={fontSize} letterSpacing={letterSpacing} padding={0} visible={current ? true : lit ? true : debouncedHover ? true : false}/>
-      {/*<Rect x={textAlign === 'left' ? x+scale*1 : x-scale*22} y={type ? y-scale*2 : y} width={scale*20} height={scale*5} stroke={strokeColor} visible={current ? true : lit ? true : hover ? true : false}/>*/}
+      {/*<Rect x={textAlign === 'left' ? x+scale*2 : x-scale*22} y={type ? y-scale*2 : y} width={scale*20} height={scale*4} stroke={strokeColor} visible={current ? true : lit ? true : hover ? true : false}/>*/}
     </>
   )
 }
@@ -234,9 +234,9 @@ const Tree = ({id, chapter, dark, expand, setExpand}) => {
     }
   },[width,height,groups])
 
-  useEffect(()=>{
-    console.log(layout);
-  },[layout])
+  // useEffect(()=>{
+  //   console.log(layout);
+  // },[layout])
 
   useEffect(()=>{
     const availableIds = data.filter(datum => datum.chapter === chapter)
@@ -253,8 +253,8 @@ const Tree = ({id, chapter, dark, expand, setExpand}) => {
   if (layout){
     return (
       <>
-        <Box sx={{pointerEvents:'all', backgroundImage: !dark && expand ? `linear-gradient(transparent, ${theme.colors.light})` : dark && expand ? `linear-gradient(transparent, ${theme.colors.dark})` : 'transparent', width:{width}, height: expand ? height*0.6 : height*0.2,  transition:'all 0.4s', zIndex:20}}>
-          <Stage width={width} height={expand ? height*0.6 : height*0.2}>
+        <Box sx={{pointerEvents:'all', backgroundImage: !dark && expand ? `linear-gradient(transparent, ${theme.colors.light})` : dark && expand ? `linear-gradient(transparent, ${theme.colors.dark})` : 'transparent', width:{width}, height: expand ? height*0.6 : height*0.25,  transition:'all 0.4s', zIndex:20}}>
+          <Stage width={width} height={expand ? height*0.6 : height*0.25}>
             <Layer>
                 <>
                   {layout.map((el, i) => {
