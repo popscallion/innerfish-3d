@@ -16,6 +16,8 @@ const formatJSON = (data) => {
     "default": false,
     "week": [],
     "type": "",
+    "section": "",
+    "sectionIndex": "",
     "caption": "",
   }
   for (let datum of data) {
@@ -30,6 +32,8 @@ const formatJSON = (data) => {
       "default": datum['Default'] ? datum['Default'] : template['default'],
       "week": datum['Week'] ? datum['Week'] : template['week'],
       "type": datum['Type'] ? datum['Type'] : template['type'],
+      "section": datum['Section'] ? datum['Section'] : template['section'],
+      "sectionIndex": datum['SectionIndex'] ? datum['SectionIndex'] : template['sectionIndex'],
       "caption": datum['Caption'] ? datum['Caption'] : template['caption'],
     }
     formatted.push(newDatum)
@@ -42,7 +46,7 @@ const loadData = () => {
   return new Promise((resolve, reject) => {
     const specimens = []
     base('Specimens').select({
-        maxRecords: 25,
+        maxRecords: 35,
         fields: [
           'Scientific Name',
           'Other Name',
@@ -54,6 +58,8 @@ const loadData = () => {
           'Group',
           'Chapter',
           'Week',
+          'Section',
+          'SectionIndex',
           'Caption'
         ],
         view: "Grid view"

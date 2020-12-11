@@ -3,14 +3,19 @@ import { Box, Flex, Image, Text} from 'rebass';
 import ReactPlayer from 'react-player'
 import { useWindowSize} from '@react-hook/window-size'
 import getPixels from "get-pixels"
-import { DataContext, SetDarkContext } from '../Context'
+import { DataContext, IdContext, DarkContext, SetDarkContext, SetBackerContext} from '../Context'
 import SketchFabViewer from './SketchFabViewer';
 import ImageViewer from './ImageViewer'
 
-const Viewer = ({id, auto, dark, setAttribution, setBacker, expand}) => {
+const Viewer = ({auto, setAttribution, expand}) => {
   const [width, height] = useWindowSize()
+
   const data = useContext(DataContext)
+  const id = useContext(IdContext)
+  const dark = useContext(DarkContext)
   const setDark = useContext(SetDarkContext)
+  const setBacker = useContext(SetBackerContext)
+
   const specimen = data.find(datum => datum.uid === id)
   const [meta, setMeta] = useState(null)
   const [image, setImage] = useState(null)

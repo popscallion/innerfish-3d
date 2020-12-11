@@ -4,45 +4,45 @@ import { Box, Button, Flex } from 'rebass'
 import { Stage, Layer, Circle, Text, Rect, RegularPolygon, Path} from 'react-konva';
 import useDebounce from '../hooks/useDebounce';
 import { useWindowSize } from '@react-hook/window-size';
-import { DataContext, SetIdContext } from '../Context'
+import { DataContext, ChapterContext, IdContext, SetIdContext, DarkContext, SectionContext } from '../Context'
 import {ReactComponent as ExpandArrow} from '../assets/expand.svg'
 import {ReactComponent as ContractArrow} from '../assets/contract.svg'
 
 
 const treeData = [
-  { "node": "Chapter", "parent": null},
-  { "node": "Metazoa", "parent": null },
-  { "node": "Metazoans", "parent": "Metazoa" },
-  { "node": "Bilateria", "parent": "Metazoa" },
-  { "node": "Bilaterians", "parent": "Bilateria" },
-  { "node": "Chordata", "parent": "Bilateria" },
-  { "node": "Chordates", "parent": "Chordata" },
-  { "node": "Cyclostomata", "parent": "Chordata" },
-  { "node": "Vertebrates", "parent": "Cyclostomata" },
-  { "node": "Gnathostomata", "parent": "Cyclostomata" },
-  { "node": "Jawed Fish", "parent": "Gnathostomata" },
-  { "node": "Osteichthyes", "parent": "Gnathostomata" },
-  { "node": "Bony Fish", "parent": "Osteichthyes" },
-  { "node": "Tetrapoda", "parent": "Osteichthyes" },
-  { "node": "Tetrapods", "parent": "Tetrapoda" },
-  { "node": "Amniota", "parent": "Tetrapoda" },
-  { "node": "Sauropsids", "parent": "Amniota" },
-  { "node": "Synapsida", "parent": "Amniota" },
-  { "node": "Mammalia", "parent": "Synapsida" },
-  { "node": "Early Synapsids", "parent": "Synapsida" },
-  { "node": "Other Mammals", "parent": "Mammalia" },
-  { "node": "Primates", "parent": "Mammalia" },
+  { "node": "Other", "parent": null},
+  { "node": "Animals", "parent": null },
+  { "node": "Invertebrates", "parent": "Animals" },
+  { "node": "Chordates", "parent": "Animals" },
+  { "node": "Amphioxus & Others", "parent": "Chordates" },
+  { "node": "Vertebrates", "parent": "Chordates" },
+  { "node": "Jawless Fish", "parent": "Vertebrates" },
+  { "node": "Jawed Fish", "parent": "Vertebrates" },
+  { "node": "Cartilaginous Fish & Others", "parent": "Jawed Fish" },
+  { "node": "Bony Fish", "parent": "Jawed Fish" },
+  { "node": "Ray-Finned Fish", "parent": "Bony Fish" },
+  { "node": "Lobe-Finned Fish", "parent": "Bony Fish" },
+  { "node": "Lungfish & Coelacanths", "parent": "Lobe-Finned Fish" },
+  { "node": "Tetrapodomorphs", "parent": "Lobe-Finned Fish" },
+  { "node": "Tetrapod Stem", "parent": "Tetrapodomorphs" },
+  { "node": "Tetrapods", "parent": "Tetrapodomorphs" },
+  { "node": "Amphibians & Kin", "parent": "Tetrapods" },
+  { "node": "Amniotes", "parent": "Tetrapods" },
+  { "node": "Reptiles & Kin", "parent": "Amniotes" },
+  { "node": "Mammals & Kin", "parent": "Amniotes" },
+  { "node": "Other Mammals", "parent": "Mammals & Kin" },
+  { "node": "Primates", "parent": "Mammals & Kin" },
 ]
 
 const Node = ({x, y, scale, name, uid, type, textAlign, fontStyle, branch, lit, theme, dark, width, setId, activeId}) => {
 
   const [hover, setHover] = useState(false)
-  const debouncedHover = useDebounce(hover, 50)
+  const debouncedHover = useDebounce(hover, 1)
   const [current, setCurrent ] = useState(false)
   const fillColor = dark ? theme.colors.ochre : theme.colors.amber
   const strokeColor = dark ? theme.colors.light : theme.colors.dark
-  const fontSize = scale*1.75
-  const lineHeight = 1
+  const fontSize = scale*1.6
+  const lineHeight = 1.2
   const fontFamily = theme.fonts.heading
   const letterSpacing = 0
 
@@ -75,19 +75,19 @@ const Node = ({x, y, scale, name, uid, type, textAlign, fontStyle, branch, lit, 
   return (
     <>
       {type === 'Video' &&
-        <RegularPolygon x={x} y={y} fill={current ? fillColor : hover ? strokeColor : null} stroke={strokeColor} strokeWidth={scale/4} radius={scale} sides={3} rotation={90} opacity={0.85}
+        <RegularPolygon x={x} y={y} fill={current ? fillColor : debouncedHover ? strokeColor : null} stroke={strokeColor} strokeWidth={scale/4} radius={scale} sides={3} rotation={90} opacity={0.85}
         onMouseEnter={hoverOn}
         onMouseLeave={hoverOff}
         onClick={uid ? handleClick : null}/>
       }
       {type === 'Image' &&
-        <RegularPolygon x={x} y={y} fill={current ? fillColor : hover ? strokeColor : null} stroke={strokeColor} strokeWidth={scale/4} radius={scale*1.25} sides={4} rotation={45} opacity={0.85}
+        <RegularPolygon x={x} y={y} fill={current ? fillColor : debouncedHover ? strokeColor : null} stroke={strokeColor} strokeWidth={scale/4} radius={scale*1.25} sides={4} rotation={45} opacity={0.85}
         onMouseEnter={hoverOn}
         onMouseLeave={hoverOff}
         onClick={uid ? handleClick : null}/>
       }
       {type === 'Model' &&
-        <Circle x={x} y={y} fill={current ? fillColor : hover ? strokeColor : null} stroke={strokeColor} strokeWidth={scale/4} radius={scale} opacity={0.85}
+        <Circle x={x} y={y} fill={current ? fillColor : debouncedHover ? strokeColor : null} stroke={strokeColor} strokeWidth={scale/4} radius={scale} opacity={0.85}
         onMouseEnter={hoverOn}
         onMouseLeave={hoverOff}
         onClick={uid ? handleClick : null}/>
@@ -101,8 +101,8 @@ const Node = ({x, y, scale, name, uid, type, textAlign, fontStyle, branch, lit, 
           onMouseLeave={hoverOff} />
         </>
       }
-      <Text text={name} x={textAlign === 'left' ? x+scale*2 : x-scale*22} y={type ? y-scale*2 : y} align={textAlign} verticalAlign='middle' width={scale*20} height={scale*4} lineHeight={lineHeight} fill={!current ? strokeColor : fillColor} opacity={1} fontFamily={fontFamily} fontStyle={fontStyle} fontSize={fontSize} letterSpacing={letterSpacing} padding={0} visible={current ? true : lit ? true : debouncedHover ? true : false}/>
-      {/*<Rect x={textAlign === 'left' ? x+scale*1 : x-scale*22} y={type ? y-scale*2 : y} width={scale*20} height={scale*5} stroke={strokeColor} visible={current ? true : lit ? true : hover ? true : false}/>*/}
+      <Text text={name} x={textAlign === 'right' ? x-scale*18 : type ? x+scale*2 : x+scale} y={type ? y-scale*2 : y} align={textAlign} verticalAlign='middle' width={scale*16} height={scale*4} lineHeight={lineHeight} fill={!current ? strokeColor : fillColor} opacity={1} fontFamily={fontFamily} fontStyle={fontStyle} fontSize={fontSize} letterSpacing={letterSpacing} padding={0} visible={current ? true : lit ? true : debouncedHover ? true : false}/>
+      {/*<Rect x={textAlign === 'right' ? x-scale*18 : type ? x+scale*2 : x+scale} y={type ? y-scale*2 : y} width={scale*16} height={scale*4} stroke={strokeColor} visible={current ? true : lit ? true : hover ? true : false}/>*/}
     </>
   )
 }
@@ -110,7 +110,7 @@ const Node = ({x, y, scale, name, uid, type, textAlign, fontStyle, branch, lit, 
 const Stack = ({x, y, scale, name, groupedIds, setId, activeId, textAlign, theme, dark, width}) => {
   const spacing = scale*4
   const children = groupedIds ? groupedIds.map((item,i) => {
-    return <Node x={x} y={y-(spacing*(i+1))} scale={scale*1.1} name={item.scientific ? item.scientific : item.common } fontStyle={item.scientific ? 'italic 700' : 'normal 700'} uid={item.uid} type={item.type} textAlign={textAlign} setId={setId} activeId={activeId} theme={theme} dark={dark} width={width}/>}) : null
+    return <Node x={x} y={y-(spacing*(i+1))} scale={scale} name={item.scientific ? item.scientific : item.common } fontStyle={item.scientific ? 'italic 700' : 'normal 700'} uid={item.uid} type={item.type} textAlign={textAlign} setId={setId} activeId={activeId} theme={theme} dark={dark} width={width}/>}) : null
   return (
     <>
       {children}
@@ -189,7 +189,7 @@ const getLayout = (parsed, width, height, treeScale, maxDepth, tips, inners, gro
     return {...item, branch: item.parent && item.x < parent.x ?
       `M ${item.x} ${item.y+treeScale/2} v ${parent.y-item.y-(radius+treeScale)/2} a ${radius/2} ${radius/2} 0 -1 -1 ${radius/2} ${radius/2} h ${parent.x-item.x-(radius+treeScale)/2}` :
       item.parent && item.x > parent.x ?
-      `M ${item.x} ${item.y+treeScale/2} v ${parent.y-item.y-(radius+treeScale)/2} a ${radius/2} ${radius/2} 0 0 1 -${radius/2} ${radius/2} h ${parent.x-item.x+(radius+treeScale)/2}` : item.node === "Chapter" ? `M ${item.x} ${item.y+treeScale/2} v ${height} ` :
+      `M ${item.x} ${item.y+treeScale/2} v ${parent.y-item.y-(radius+treeScale)/2} a ${radius/2} ${radius/2} 0 0 1 -${radius/2} ${radius/2} h ${parent.x-item.x+(radius+treeScale)/2}` : item.node === "Other" ? `M ${item.x} ${item.y+treeScale/2} v ${height} ` :
       `M ${item.x} ${item.y+treeScale/2} v ${(radius)}`}
   })
   const litTips = result.filter(item => item.ids && item.ids.length)
@@ -212,11 +212,16 @@ const tipToRoot = (arr, tip) => {
   return result
 }
 
-const Tree = ({id, chapter, dark, expand, setExpand}) => {
+const Tree = ({expand, setExpand}) => {
   const theme = useTheme()
   const [width, height] = useWindowSize()
+
   const data = useContext(DataContext)
+  const chapter = useContext(ChapterContext)
+  const id = useContext(IdContext)
   const setId = useContext(SetIdContext)
+  const dark = useContext(DarkContext)
+  const section = useContext(SectionContext)
 
   const [layout, setLayout] = useState(null)
   const [groups, setGroups] = useState(null)
@@ -234,27 +239,32 @@ const Tree = ({id, chapter, dark, expand, setExpand}) => {
     }
   },[width,height,groups])
 
-  useEffect(()=>{
-    console.log(layout);
-  },[layout])
+  // useEffect(()=>{
+  //   console.log(layout);
+  // },[layout])
 
   useEffect(()=>{
-    const availableIds = data.filter(datum => datum.chapter === chapter)
+    let availableIds = data.filter(datum => datum.chapter === chapter)
+    if (section) {
+      const sectionIds = availableIds.filter(datum => datum.section === section)
+      if (sectionIds.length) {
+        availableIds = sectionIds
+      }
+    }
     const availableGroups = [...new Set (availableIds.map(id => id.group))]
-    const idsPerGroup = availableGroups.map(group => availableIds.filter(item => item.group === group))
+    const idsPerGroup = availableGroups.map(group => availableIds.filter(item => item.group === group).sort((a, b) => (a.scientific < b.scientific) ? 1 : -1))
     const grouped = Object.fromEntries(availableGroups.map((_, i) => [availableGroups[i], idsPerGroup[i]]))
     const tipsWithIds = tips.current.map( x => Object.assign(x, {"ids":grouped[x.node]}))
     const miscIds = availableIds.filter(datum => !datum.group)
     const maxGroupSize = getMaxLength(Object.values(grouped))
     setGroups([tipsWithIds, miscIds, maxGroupSize])
-  },[chapter, id])
-
+  },[chapter, id, section])
 
   if (layout){
     return (
       <>
-        <Box sx={{pointerEvents:'all', backgroundImage: !dark && expand ? `linear-gradient(transparent, ${theme.colors.light})` : dark && expand ? `linear-gradient(transparent, ${theme.colors.dark})` : 'transparent', width:{width}, height: expand ? height*0.6 : height*0.2,  transition:'all 0.4s', zIndex:20}}>
-          <Stage width={width} height={expand ? height*0.6 : height*0.2}>
+        <Box sx={{pointerEvents:'all', backgroundImage: !dark && expand ? `linear-gradient(transparent, ${theme.colors.light})` : dark && expand ? `linear-gradient(transparent, ${theme.colors.dark})` : 'transparent', width:{width}, height: expand ? height*0.6 : height*0.25,  transition:'all 0.4s', zIndex:20}}>
+          <Stage width={width} height={expand ? height*0.6 : height*0.25}>
             <Layer>
                 <>
                   {layout.map((el, i) => {

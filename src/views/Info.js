@@ -3,26 +3,32 @@ import ReactHtmlParser from 'react-html-parser';
 import {Box, Flex, Image, Text, Heading, Link} from 'rebass';
 import Markdown from 'markdown-to-jsx'
 import { useTheme } from 'emotion-theming'
-import { DataContext, SetIdContext } from '../Context'
+import { DataContext, IdContext, SetIdContext, DarkContext, BackerContext} from '../Context'
 
 
 
-const Info = ({id, dark, attribution, backer}) => {
+const Info = ({attribution}) => {
   const theme = useTheme()
+
   const data = useContext(DataContext)
   const setId = useContext(SetIdContext)
+  const id = useContext(IdContext)
+  const dark = useContext(DarkContext)
+  const backer = useContext(BackerContext)
+
   const specimen = data.find(datum => datum.uid === id)
 
   const LinkCatcher= props =>{
     return(
         <Link sx={{
-          color:'sea', fontWeight:'bold',
+          color:'sea',
+          fontWeight:'bold',
+          cursor: 'pointer',
           ':hover':{
             color:'sky',
           }
         }}
-        onClick={()=> {setId(props.href.replace('#',''))}}
-        style={{cursor:'pointer'}} >{props.children}</Link>
+        onClick={()=> {setId(props.href.replace('#',''))}}>{props.children}</Link>
     )
   }
 
