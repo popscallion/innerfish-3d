@@ -235,7 +235,7 @@ const Tree = ({expand, setExpand}) => {
 
   useEffect(()=>{
     if (parsedTree.current.length && groups) {
-      setLayout(getLayout(parsedTree.current, width, height*0.6, treeScale, maxDepth.current, groups[0], inners.current, groups[2]))
+      setLayout(getLayout(parsedTree.current, width, height, treeScale, maxDepth.current, groups[0], inners.current, groups[2]))
     }
   },[width,height,groups])
 
@@ -263,8 +263,8 @@ const Tree = ({expand, setExpand}) => {
   if (layout){
     return (
       <>
-        <Box sx={{pointerEvents:'all', backgroundImage: !dark && expand ? `linear-gradient(transparent, ${theme.colors.light})` : dark && expand ? `linear-gradient(transparent, ${theme.colors.dark})` : 'transparent', width:{width}, height: expand ? height*0.6 : height*0.25,  transition:'all 0.4s', zIndex:20}}>
-          <Stage width={width} height={expand ? height*0.6 : height*0.25}>
+        <Box sx={{pointerEvents:'all', backgroundImage: !dark && expand ? `linear-gradient(transparent, ${theme.colors.light})` : dark && expand ? `linear-gradient(transparent, ${theme.colors.dark})` : 'transparent', width:{width}, height: expand ? height : height*0.25,  transition:'all 0.4s', zIndex:20}}>
+          <Stage width={width} height={expand ? height : height*0.25}>
             <Layer>
                 <>
                   {layout.map((el, i) => {
