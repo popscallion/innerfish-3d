@@ -107,10 +107,10 @@ const Node = ({x, y, scale, name, uid, type, textAlign, fontStyle, branch, lit, 
   )
 }
 
-const Stack = ({x, y, scale, name, groupedIds, setId, activeId, textAlign, theme, dark, width}) => {
+const Stack = ({x, y, scale, name, groupedIds, setId, activeId, textAlign, theme, dark, width, section}) => {
   const spacing = scale*4
   const children = groupedIds ? groupedIds.map((item,i) => {
-    return <Node x={x} y={y-(spacing*(i+1))} scale={scale} name={item.scientific ? item.scientific : item.common } fontStyle={item.scientific ? 'italic 700' : 'normal 700'} uid={item.uid} type={item.type} textAlign={textAlign} setId={setId} activeId={activeId} theme={theme} dark={dark} width={width}/>}) : null
+    return <Node x={x} y={y-(spacing*(i+1))} scale={scale} name={section && item.scientific ? item.sectionIndex +'. '+ item.scientific : section && !item.scientific ? item.sectionIndex +'. '+ item.common : item.scientific ? item.scientific : item.common } fontStyle={item.scientific ? 'italic 700' : 'normal 700'} uid={item.uid} type={item.type} textAlign={textAlign} setId={setId} activeId={activeId} theme={theme} dark={dark} width={width}/>}) : null
   return (
     <>
       {children}
@@ -271,7 +271,7 @@ const Tree = ({expand, setExpand}) => {
                     return(
                       <>
                         <Node x={el.x} y={el.y} scale={treeScale} branch = {el.branch} name={el.node} textAlign='left' fontStyle='normal 700' theme={theme} dark={dark} width={width} lit={el.lit}/>
-                        <Stack x={el.x} y={el.y} scale={treeScale} name={el.node} groupedIds={el.ids} setId={setId} activeId={id} textAlign={i < groups[0].length/2 ? 'left' : 'right'} theme={theme} dark={dark} width={width}/>
+                        <Stack x={el.x} y={el.y} scale={treeScale} name={el.node} groupedIds={el.ids} setId={setId} activeId={id} textAlign={i < groups[0].length/2 ? 'left' : 'right'} theme={theme} dark={dark} width={width} section={section}/>
                       </>
                     )
                   })
