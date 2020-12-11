@@ -4,12 +4,14 @@ const content = [
     "url": "https://sketchfab.com/3d-models/tiktaalik-roseae-4bcd9214503e402d88014f6a37297154",
     "scientific": "Tiktaalik roseae",
     "common": "Fossil",
-    "group": "Bony Fish",
+    "group": "Tetrapod Stem",
     "chapter": "1. Field Paleontology",
     "showstopper": true,
     "default": true,
     "week": "1",
     "type": "Model",
+    "section": "A",
+    "sectionIndex": 1,
     "caption": "*Tiktaalik roseae* was discovered by Neil Shubin and colleagues on Ellesmere Island (Canada) in 2004. The name \"*Tiktaalik*\", proposed by the Nunavut Council of Elders, means \"large freshwater fish\" in the local Inuktitut language. *Tiktaalik* helps us understand the connection between aquatic fish and land-dwelling tetrapods in the fossil record, and we will revisit this fossil several times throughout the course to learn more about our Inner Fish. [Next](recXLi2Ahykn7TwGP)"
   },
   {
@@ -17,12 +19,14 @@ const content = [
     "url": "https://sketchfab.com/3d-models/tiktaalik-roseae-pectoral-fin-nufv110-258e0a18846d4474b30044fdbc865af3",
     "scientific": "Tiktaalik roseae",
     "common": "Pectoral Fin",
-    "group": "Bony Fish",
+    "group": "Tetrapod Stem",
     "chapter": "1. Field Paleontology",
     "showstopper": true,
     "default": false,
     "week": "1",
     "type": "Model",
+    "section": "A",
+    "sectionIndex": 2,
     "caption": "One of the most interesting aspects of the *Tiktaalik* fossil is the morphology of its pectoral fin. With the \"1-bone, 2-bone, lots-of-bones\" pattern (which we will discuss in detail in the next chapter), *Tiktaalik* is one of the first vertebrates with a wrist and would have been capable of performing a push-up, like you and me. [Next](recm5OhQi2pR5aMpv)"
   },
   {
@@ -36,6 +40,8 @@ const content = [
     "default": false,
     "week": "1",
     "type": "Model",
+    "section": "A",
+    "sectionIndex": 3,
     "caption": "*Tiktaalik* connects us to our Inner Fish in the same way that \"Lucy\" (*Australopithecus afarensis*) connects us to other primates. With many intermediate features between chimps and humans, \"Lucy\" helps us understand our own evolutionary history. *Tiktaalik* does the same exact thing, just a little bit further back in time than \"Lucy\". [Next](recUoWrllsffk4BdJ)"
   },
   {
@@ -49,6 +55,8 @@ const content = [
     "default": false,
     "week": "1",
     "type": "Model",
+    "section": "A",
+    "sectionIndex": 4,
     "caption": "Some of the more commonly recognizable features of chimps (*Pan troglodytes*) that are still present in \"Lucy\" are the elongated forelimbs and relatively smaller braincases. [Next](recUzJGBvDJ3rzVIK)"
   },
   {
@@ -62,6 +70,8 @@ const content = [
     "default": false,
     "week": "1",
     "type": "Model",
+    "section": "A",
+    "sectionIndex": 5,
     "caption": "However, \"Lucy\" already has some modern human features, like the vertically-oriented foramen magnum where the spinal cord exits the skull. The \"Lucy\" fossil (as well as many other hominin fossils) helps us to understand the order in which human features were acquired during our own evolutionary story. [Next](recv38aU8aEFrh2Ai)"
   },
   {
@@ -69,12 +79,14 @@ const content = [
     "url": "https://sketchfab.com/3d-models/tyrannosaurus-rex-03ae36f1085f431ba00b6747bc729b72",
     "scientific": "Tyrannosaurus rex",
     "common": "T-rex",
-    "group": "Sauropsids",
+    "group": "Reptiles & Kin",
     "chapter": "1. Field Paleontology",
     "showstopper": true,
     "default": false,
     "week": "1",
     "type": "Model",
+    "section": "A",
+    "sectionIndex": 6,
     "caption": "Humans aren't the only animals with other \"Inner\" animals. Does everybody recognize this famous fossil species? If you guessed *Tyrannosaurus rex*, you would be correct. Tyrannosaurids are part of a group of dinosaurs called Theropods that would eventually give rise to a major group of animals that live all over the planet today. [Next](reckw0cNURUqmmXmA)"
   },
   {
@@ -82,12 +94,14 @@ const content = [
     "url": "https://sketchfab.com/3d-models/archaeopteryx-natural-history-museum-london-788436a458f34aeeb4724866e2ec45b5",
     "scientific": "Archaeopteryx lithographica",
     "common": "Natural History Museum, London",
-    "group": "Sauropsids",
+    "group": "Reptiles & Kin",
     "chapter": "1. Field Paleontology",
     "showstopper": true,
     "default": false,
     "week": "1",
     "type": "Model",
+    "section": "A",
+    "sectionIndex": 7,
     "caption": "*Archaeopteryx*, an avialan dinosaur, is considered by some to be one of the first birds. *Archaeopteryx* had broad wings with feathers like birds, but it also retained a long bony tail and small teeth, like other dinosaurs at the time. *Archaeopteryx* connect birds to dinosaurs in the same way that \"Lucy\" connects humans to primates and in the same way that *Tiktaalik* connects tetrapods to fish. [Next](recb6Dy9elThOTCre)"
   },
   {
@@ -95,12 +109,14 @@ const content = [
     "url": "https://sketchfab.com/3d-models/pigeon-3-4383b3f88d9646c7b2f336266eaad947",
     "scientific": "Columba livia domestica",
     "common": "Pigeon",
-    "group": "Sauropsids",
+    "group": "Reptiles & Kin",
     "chapter": "1. Field Paleontology",
     "showstopper": false,
     "default": false,
     "week": "1",
     "type": "Model",
+    "section": "A",
+    "sectionIndex": 8,
     "caption": "Can you see this little guy's inner *T. rex*?"
   },
   {
@@ -108,12 +124,14 @@ const content = [
     "url": "https://sketchfab.com/3d-models/devils-tower-national-monument-wyoming-f08f4bb0230f4cc899f837f2126db7b7",
     "scientific": "Igneous Rock",
     "common": "Devils Tower National Monument",
-    "group": "Chapter",
+    "group": "Other",
     "chapter": "1. Field Paleontology",
     "showstopper": false,
     "default": false,
     "week": "1",
     "type": "Model",
+    "section": "B",
+    "sectionIndex": 1,
     "caption": "There are three major groupings of rocks on Earth. The first of these - igneous rock, pictured here - is formed from cooling magma. As you can guess, magma is not very conducive for fossilization. Nonetheless, a very cool type of rock! [Next](recLUC71SkKM0QqzS)"
   },
   {
@@ -121,12 +139,14 @@ const content = [
     "url": "https://sketchfab.com/3d-models/sedimentary-rock-formation-2-b417a759eb26437fab1d64e72bf5a766",
     "scientific": "Sedimentary Rock",
     "common": "Cliffs near Ericeira, Portugal",
-    "group": "Chapter",
+    "group": "Other",
     "chapter": "1. Field Paleontology",
     "showstopper": false,
     "default": false,
     "week": "1",
     "type": "Model",
+    "section": "B",
+    "sectionIndex": 2,
     "caption": "The second rock type - sedimentary rock - is the most common rock type on the solid surface of the planet. Sedimentary rock (e.g. limestone, sandstone) is where you will find fossils. Sedimentary rock leaves stratigraphic layers in the Earth's crust as more rock forms on the surface and pushes older rock further downward. Because of this, fossils found further belowground are typically older in age than fossils found near the surface. [Next](reccZlQUj48zGNy3i)"
   },
   {
@@ -134,12 +154,14 @@ const content = [
     "url": "https://sketchfab.com/3d-models/metamorphic-rock-c-14f1912ece004c52aab71fedc29aac8c",
     "scientific": "Metamorphic Rock 1",
     "common": "Jacobs River, Westland, New Zealand",
-    "group": "Chapter",
+    "group": "Other",
     "chapter": "1. Field Paleontology",
     "showstopper": false,
     "default": false,
     "week": "1",
     "type": "Model",
+    "section": "B",
+    "sectionIndex": 3,
     "caption": "The third major rock type - metamorphic rock - is produced as natural processes, like heat or compression, change igneous or sedimentary rock until it no longer resembles its original form. This process, called metamorphosis, can produce a wide array of different patterns. Fossils are rarely ever found in metamorphic rock, since heat and compression will destroy anything that was originally preserved. [Next](recjK3eHHyu67UcVA)"
   },
   {
@@ -147,12 +169,14 @@ const content = [
     "url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Migma_ss_2006.jpg",
     "scientific": "Metamorphic Rock 2",
     "common": "Folded foliation; Geirangerfjord, Norway",
-    "group": "Chapter",
+    "group": "Other",
     "chapter": "1. Field Paleontology",
     "showstopper": false,
     "default": false,
     "week": "1",
     "type": "Image",
+    "section": "B",
+    "sectionIndex": 4,
     "caption": "This image is another example of metamorphic rock. As heat and compression change the structure of the particles in the rock, it can leave foliations such as the patterns seen here. [Next](recxQ0c0lmHSlmGDX)"
   },
   {
@@ -166,6 +190,8 @@ const content = [
     "default": false,
     "week": "1",
     "type": "Model",
+    "section": "B",
+    "sectionIndex": 5,
     "caption": "When an animal dies, such as the model of the whale skeleton here, most of the time the skeleton is not preserved. The process by which organisms decay and fossilize is known as taphonomy. An entire branch of paleontology is devoted to studying how organisms decay and what conditions are more suited for fossilization. [Next](recZOXqYqbCvd1xeA)"
   },
   {
@@ -173,12 +199,14 @@ const content = [
     "url": "https://sketchfab.com/3d-models/quirky-series-mega-pack-026f14f5609e4d8a9359e9a83b3fb445",
     "scientific": "\"Walk Through the Zoo\"",
     "common": "\"Walk Through the Zoo\"",
-    "group": "Bony Fish",
+    "group": "Other",
     "chapter": "1. Field Paleontology",
     "showstopper": false,
     "default": false,
     "week": "1",
     "type": "Model",
+    "section": "B",
+    "sectionIndex": 6,
     "caption": "Let's take a Walk Through the Zoo! Just like animals at the zoo can be grouped according to certain anatomical features, stratigraphic layers of sedimentary rock in the fossil record can show how these groups and features evolved over time."
   },
   {
@@ -186,12 +214,14 @@ const content = [
     "url": "https://youtu.be/CeNQy07vuK8",
     "scientific": "Lecture Video 1",
     "common": "",
-    "group": "Chapter",
+    "group": "",
     "chapter": "1. Field Paleontology",
     "showstopper": false,
     "default": false,
     "week": "1",
     "type": "Video",
+    "section": "",
+    "sectionIndex": "",
     "caption": ""
   },
   {
@@ -199,12 +229,14 @@ const content = [
     "url": "https://youtu.be/RLkGInS1n5E",
     "scientific": "Lecture Video 2",
     "common": "",
-    "group": "Chapter",
+    "group": "",
     "chapter": "1. Field Paleontology",
     "showstopper": false,
     "default": false,
     "week": "1",
     "type": "Video",
+    "section": "",
+    "sectionIndex": "",
     "caption": ""
   },
   {
@@ -212,12 +244,14 @@ const content = [
     "url": "https://youtu.be/yANcM-Nebbk",
     "scientific": "Lecture Video 3",
     "common": "",
-    "group": "Chapter",
+    "group": "",
     "chapter": "1. Field Paleontology",
     "showstopper": false,
     "default": false,
     "week": "1",
     "type": "Video",
+    "section": "",
+    "sectionIndex": "",
     "caption": ""
   },
   {
@@ -225,12 +259,14 @@ const content = [
     "url": "https://youtu.be/S3G_rGwgjug",
     "scientific": "Lecture Video 4",
     "common": "",
-    "group": "Chapter",
+    "group": "",
     "chapter": "1. Field Paleontology",
     "showstopper": false,
     "default": false,
     "week": "1",
     "type": "Video",
+    "section": "",
+    "sectionIndex": "",
     "caption": ""
   },
   {
@@ -238,12 +274,14 @@ const content = [
     "url": "https://sketchfab.com/3d-models/african-lungfish-protopterus-annectens-3c0e32d2b3784c1080ce79d495f844d5",
     "scientific": "Protopterus annectens",
     "common": "African lungfish",
-    "group": "Bony Fish",
+    "group": "Lungfish & Coelacanths",
     "chapter": "2. Tetrapod Limb",
     "showstopper": false,
     "default": true,
     "week": "2",
     "type": "Model",
+    "section": "",
+    "sectionIndex": "",
     "caption": "Lungfish are part of a group of bony fish with lobes in their fins (Sarcopterygii) rather than rays in their fins (Actinopterygii). Land-dwelling tetrapods evolved from a lineage of Sarcopterygians, meaning that lungfish are some of the closest living relatives to fossil species like <i>Tiktaalik</i>."
   },
   {
@@ -251,12 +289,14 @@ const content = [
     "url": "https://sketchfab.com/3d-models/vertebrate-tuatara-sphenodon-63637cfd29f04170ab758136976c4253",
     "scientific": "Sphenodon",
     "common": "Tuatara",
-    "group": "Sauropsids",
+    "group": "Reptiles & Kin",
     "chapter": "2. Tetrapod Limb",
     "showstopper": false,
     "default": false,
     "week": "2",
     "type": "Model",
+    "section": "",
+    "sectionIndex": "",
     "caption": "A major difference between Sarcopterygians and Tetrapods, like the tuatara (<i>Sphenodon</i>) here, is that Tetrapods have limbs with bony segments that follow a specific pattern, wrists, and digits rather than fins with lobes. How did limbs evolve from lobed fins?"
   },
   {
@@ -264,12 +304,14 @@ const content = [
     "url": "https://sketchfab.com/3d-models/tiktaalik-roseae-4bcd9214503e402d88014f6a37297154",
     "scientific": "Tiktaalik roseae",
     "common": "Fossil",
-    "group": "Bony Fish",
+    "group": "Tetrapod Stem",
     "chapter": "2. Tetrapod Limb",
     "showstopper": true,
     "default": false,
     "week": "2",
     "type": "Model",
+    "section": "",
+    "sectionIndex": "",
     "caption": "<i>Tiktaalilk</i> and other fossils from this geologic period help us understand the sequence in which various aspects of the Tetrapod limb skeleton evolved."
   },
   {
@@ -277,12 +319,14 @@ const content = [
     "url": "https://sketchfab.com/3d-models/tiktaalik-roseae-pectoral-fin-nufv110-258e0a18846d4474b30044fdbc865af3",
     "scientific": "Tiktaalik roseae",
     "common": "Pectoral Fin",
-    "group": "Bony Fish",
+    "group": "Tetrapod Stem",
     "chapter": "2. Tetrapod Limb",
     "showstopper": true,
     "default": false,
     "week": "2",
     "type": "Model",
+    "section": "",
+    "sectionIndex": "",
     "caption": "For example, notice how <i>Tiktaallik</i> has 1 bone (Humerus; #1) that connects the limb to the body, 2 bones (Radius & Ulna; #s 2 & 3) that articulate with the Humerus, and a lot of bones after that that articulate with the Radius & Ulna. This is known as the '1-bone, 2-bone, lots-of-bone' skeletal pattern of the limb and is retained in most extant tetrapods, including you."
   },
   {
@@ -290,12 +334,14 @@ const content = [
     "url": "https://sketchfab.com/3d-models/the-4-fish-keteers-lobe-finned-fish-forelimbs-f03fcf73ac164eaa8ec7b347c4f5bf11",
     "scientific": "Sarcopterygii",
     "common": "Forelimbs/Fins",
-    "group": "Bony Fish",
+    "group": "Other",
     "chapter": "2. Tetrapod Limb",
     "showstopper": true,
     "default": false,
     "week": "2",
     "type": "Model",
+    "section": "",
+    "sectionIndex": "",
     "caption": "If we compare <i>Tiktaalik</i> to other species, we can see that our Sarcopterygians - coelocanths and lungfish (#s 1 & 2) already have the 1-bone (Humerus) that attaches to the body, but the 2-bones (Radius & Ulna) don't appear in the fossil record until later, and the lots-of-bones (reflecting the wrist and digits) don't appear until even later. Because of these key fossils, we now know that this fundamental skeletal pattern of the tetrapod limb evolved in a specific sequence of morphological transitions."
   },
   {
@@ -303,12 +349,14 @@ const content = [
     "url": "https://sketchfab.com/3d-models/ichthyosaur-paddle-brlsi-m645-a9a0c380ab834e409c79b9ccefa637a4",
     "scientific": "Ichthyosaur",
     "common": "Paddle",
-    "group": "Sauropsids",
+    "group": "Reptiles & Kin",
     "chapter": "2. Tetrapod Limb",
     "showstopper": true,
     "default": false,
     "week": "2",
     "type": "Model",
+    "section": "",
+    "sectionIndex": "",
     "caption": ""
   },
   {
@@ -322,6 +370,8 @@ const content = [
     "default": false,
     "week": "2",
     "type": "Model",
+    "section": "",
+    "sectionIndex": "",
     "caption": ""
   },
   {
@@ -335,6 +385,8 @@ const content = [
     "default": false,
     "week": "2",
     "type": "Model",
+    "section": "",
+    "sectionIndex": "",
     "caption": ""
   },
   {
@@ -342,12 +394,14 @@ const content = [
     "url": "https://sketchfab.com/3d-models/staurikosaurus-pricei-skeletal-reconstruction-5405610d958d45bdb4dcc712fa27e479",
     "scientific": "Staurikosaurus pricei",
     "common": "",
-    "group": "Sauropsids",
+    "group": "Reptiles & Kin",
     "chapter": "2. Tetrapod Limb",
     "showstopper": false,
     "default": false,
     "week": "2",
     "type": "Model",
+    "section": "",
+    "sectionIndex": "",
     "caption": ""
   },
   {
@@ -361,6 +415,8 @@ const content = [
     "default": false,
     "week": "2",
     "type": "Model",
+    "section": "",
+    "sectionIndex": "",
     "caption": ""
   },
   {
@@ -368,12 +424,14 @@ const content = [
     "url": "https://sketchfab.com/3d-models/sturgeon-pectoral-fin-rays-d13501eda4a44fb2994816318a0375f4",
     "scientific": "Acipenser brevirosrum",
     "common": "Shortnose sturgeon, fin rays",
-    "group": "Bony Fish",
+    "group": "Ray-Finned Fish",
     "chapter": "2. Tetrapod Limb",
     "showstopper": false,
     "default": false,
     "week": "2",
     "type": "Model",
+    "section": "",
+    "sectionIndex": "",
     "caption": ""
   },
   {
@@ -381,12 +439,14 @@ const content = [
     "url": "https://sketchfab.com/3d-models/tiktaalik-nufv109-fin-tip-with-matrix-63424c8c284c415280aae5301eb35880",
     "scientific": "Tiktaalik roseae",
     "common": "Fin block",
-    "group": "Bony Fish",
+    "group": "Tetrapod Stem",
     "chapter": "2. Tetrapod Limb",
     "showstopper": false,
     "default": false,
     "week": "2",
     "type": "Model",
+    "section": "",
+    "sectionIndex": "",
     "caption": ""
   },
   {
@@ -394,12 +454,14 @@ const content = [
     "url": "https://sketchfab.com/3d-models/tiktaalik-nufv109-fin-tip-ebe5301e0f7346878e7e93fd55f730b4",
     "scientific": "Tiktaalik roseae",
     "common": "Fin rays",
-    "group": "Bony Fish",
+    "group": "Tetrapod Stem",
     "chapter": "2. Tetrapod Limb",
     "showstopper": false,
     "default": false,
     "week": "2",
     "type": "Model",
+    "section": "",
+    "sectionIndex": "",
     "caption": ""
   }
 ]
