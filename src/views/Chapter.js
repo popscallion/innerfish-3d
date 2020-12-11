@@ -1,9 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {Box, Button, Flex, Image, Text, Heading} from 'rebass';
-import {Label, Select, Checkbox} from '@rebass/forms';
+import {Box, Button, Flex, Image, Text, Heading, Link} from 'rebass';
+import {Label, Select, Checkbox, Switch, Radio} from '@rebass/forms';
 import styled from '@emotion/styled';
 import { useTheme } from 'emotion-theming'
-import { DataContext} from '../Context'
+import { DataContext, ChapterContext, SetChapterContext, IdContext, SetIdContext, DarkContext, BackerContext, SetBackerContext, SectionContext, SetSectionContext} from '../Context'
 import {ReactComponent as EyeOpen} from '../assets/eyeOpen.svg'
 import {ReactComponent as EyeHalf} from '../assets/eyeHalf.svg'
 import {ReactComponent as EyeShut} from '../assets/eyeShut.svg'
@@ -11,9 +11,34 @@ import {ReactComponent as EyeShut} from '../assets/eyeShut.svg'
 
 
 
-const Chapter = ({chapter, setChapter, options, auto, setAuto, dark, backer, setBacker}) => {
+const Chapter = ({options, auto, setAuto}) => {
   const theme = useTheme()
   const data = useContext(DataContext)
+  const chapter = useContext(ChapterContext)
+  const setChapter = useContext(SetChapterContext)
+  const id = useContext(IdContext)
+  const setId = useContext(SetIdContext)
+  const dark = useContext(DarkContext)
+  const backer = useContext(BackerContext)
+  const setBacker = useContext(SetBackerContext)
+  const section = useContext(SectionContext)
+  const setSection = useContext(SetSectionContext)
+
+  const [sectionFilter, setSectionFilter] = useState(false)
+
+  const videos = data.filter(datum => datum.type === "Video" && datum.chapter === chapter)
+  const sections = [...new Set (data.filter(datum => datum.chapter === chapter).map(item => item.section).filter(section => section !== ""))]
+
+  useEffect(()=>{
+    if (!sectionFilter){
+      setSection(null)
+    }
+  },[sectionFilter])
+
+  useEffect(()=>{
+    setSectionFilter(false)
+    setSection(null)
+  },[chapter])
 
   return(
     <Box sx={{px:'5vmin', py:'4vmin', bg: backer===1 ? dark ? 'light85' : 'dark85' : 'transparent', height:'fit-content',width:'min-content', maxWidth:'50vw', pointerEvents:'all', alignSelf:'flex-start', transition:'background-color 0.4s'}}>
@@ -50,7 +75,7 @@ const Chapter = ({chapter, setChapter, options, auto, setAuto, dark, backer, set
           textTransform:'uppercase',
           letterSpacing:'0.4vmin',
           mb:'0.75vmin',
-        }}>Chapter</Label>
+        }}>Chapters</Label>
         <Select
           id='chapterChoice'
           value={chapter}
@@ -81,6 +106,127 @@ const Chapter = ({chapter, setChapter, options, auto, setAuto, dark, backer, set
             ))}
         </Select>
       </Box>
+      <Flex sx={{flexDirection:'row'}}>
+        {videos.length > 0 &&
+          <Box sx={{
+            color:
+              (backer===0 && dark) ? 'light' :
+              (backer===0 && !dark) ? 'dark' :
+              dark ? 'dark' : 'light',
+            opacity: backer !== 2 ? 1 : 0,
+            transition:'opacity 0.4s',
+            mb:'2vmin',
+            mr:'2vmin'
+          }}>
+            <Label htmlFor='videoChoice' sx={{
+              fontFamily:'body',
+              fontWeight:'600',
+              fontSize:'miniscule',
+              textTransform:'uppercase',
+              letterSpacing:'0.4vmin',
+              mb:'0.75vmin',
+            }}>Videos</Label>
+            <Flex
+              id='videoChoice'
+              sx={{
+
+              }}>
+              {videos
+                .sort((a, b) => (a.scientific > b.scientific) ? 1 : -1)
+                .map((item, i)=>(
+                  <Link
+                    sx={{
+                          fontFamily:'body',
+                          fontSize:'teensy',
+                          color:  (backer===0 && dark) ? 'marigold' :
+                                  (backer===0 && !dark) ? 'amber' :
+                                  dark ? 'amber' : 'marigold',
+                          fontWeight:'bold',
+                          cursor: 'pointer',
+                          mx:'0.5vmin',
+                          ':hover':{
+                            color:  (backer===0 && dark) ? 'amber' :
+                                    (backer===0 && !dark) ? 'marigold' :
+                                    dark ? 'marigold' : 'amber',
+                          }
+                        }}
+                    onClick={()=> {setId(item.uid)}}>
+                    {i+1}
+                  </Link>
+                ))}
+            </Flex>
+          </Box>
+        }
+        {sections.length > 0 &&
+          <Box sx={{
+            color:
+              (backer===0 && dark) ? 'light' :
+              (backer===0 && !dark) ? 'dark' :
+              dark ? 'dark' : 'light',
+            opacity: backer !== 2 ? 1 : 0,
+            transition:'opacity 0.4s',
+            mb:'2vmin',
+          }}>
+            <Label htmlFor='sectionChoice' sx={{
+              fontFamily:'body',
+              fontWeight:'600',
+              fontSize:'miniscule',
+              textTransform:'uppercase',
+              letterSpacing:'0.4vmin',
+              mb:'0.75vmin',
+            }}>Sections</Label>
+            <Flex id="sectionChoice">
+              <Switch
+                checked={sectionFilter}
+                onClick={()=>setSectionFilter(!sectionFilter)}
+                sx={{
+                  mr: '1vmin',
+                  borderColor:  (backer===0 && dark) ? 'light' :
+                                (backer===0 && !dark) ? 'dark' :
+                                dark ? 'dark' : 'light',
+                  backgroundColor:  (backer===0 && dark) ? 'marigold' :
+                                    (backer===0 && !dark) ? 'amber' :
+                                    dark ? 'amber' : 'marigold',
+                }}
+              />
+              {sectionFilter &&
+                <>
+                  {sections.map((item)=>(
+                    <Box>
+                      <Label
+                        sx={{
+                          alignItems:'center',
+                          mr:'1vmin',
+                          fontFamily:'body',
+                          fontSize:'microscopic',
+                          color:  (backer===0 && dark) ? 'light' :
+                                  (backer===0 && !dark) ? 'dark' :
+                                  dark ? 'dark' : 'light',
+                          fontWeight:'bold',}}>
+                        {item}
+                        <Radio
+                          name='section'
+                          id={item}
+                          value={item}
+                          onChange={e=>setSection(e.target.value)}
+                          sx={{
+                            ml:'0.5vmin',
+                            '& path':{
+                              color:  (backer===0 && dark) ? 'marigold' :
+                                      (backer===0 && !dark) ? 'amber' :
+                                      dark ? 'amber' : 'marigold',
+                            }
+                          }}
+                        />
+                      </Label>
+                    </Box>
+                  ))}
+                </>
+              }
+            </Flex>
+          </Box>
+        }
+      </Flex>
       <Box as='form' sx={{mb:'1vmin'}}>
         <Label htmlFor='autoLoad' sx={{
           fontFamily:'body',
