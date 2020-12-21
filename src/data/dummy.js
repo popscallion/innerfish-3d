@@ -12,7 +12,7 @@ const content = [
     "type": "Model",
     "section": "A",
     "sectionIndex": 1,
-    "caption": "*Tiktaalik roseae* was discovered by Neil Shubin and colleagues on Ellesmere Island (Canada) in 2004. The name \"*Tiktaalik*\", proposed by the Nunavut Council of Elders, means \"large freshwater fish\" in the local Inuktitut language. *Tiktaalik* helps us understand the connection between aquatic fish and land-dwelling tetrapods in the fossil record, and we will revisit this fossil several times throughout the course to learn more about our Inner Fish. [Next](recXLi2Ahykn7TwGP)"
+    "caption": "*Tiktaalik roseae* was discovered by Neil Shubin and colleagues on Ellesmere Island (Canada) in 2004. The name \"*Tiktaalik*\", proposed by the Nunavut Council of Elders, means \"large freshwater fish\" in the local Inuktitut language. *Tiktaalik* helps us understand the connection between aquatic fish and land-dwelling tetrapods in the fossil record, which is especially apparent in its [pectoral fin](recXLi2Ahykn7TwGP) anatomy. We will revisit this fossil several times throughout the course to learn more about our Inner Fish."
   },
   {
     "uid": "recXLi2Ahykn7TwGP",
@@ -27,7 +27,7 @@ const content = [
     "type": "Model",
     "section": "A",
     "sectionIndex": 2,
-    "caption": "One of the most interesting aspects of the *Tiktaalik* fossil is the morphology of its pectoral fin. With the \"1-bone, 2-bone, lots-of-bones\" pattern (which we will discuss in detail in the next chapter), *Tiktaalik* is one of the first vertebrates with a wrist and would have been capable of performing a push-up, like you and me. [Next](recm5OhQi2pR5aMpv)"
+    "caption": "One of the most interesting aspects of the *Tiktaalik* fossil is the morphology of its pectoral fin. With the \"1-bone, 2-bone, lots-of-bones\" pattern (which we will discuss in detail in the next chapter), *Tiktaalik* is one of the first vertebrates with a wrist and would have been capable of performing a push-up. Other examples of fossils with interesting anatomy that look a little bit like two different kinds of animals include *Australopithecus afarensis*, like the famous [Lucy](recm5OhQi2pR5aMpv) fossil, or [*Archeopteryx lithographica*](reckw0cNURUqmmXmA)."
   },
   {
     "uid": "recm5OhQi2pR5aMpv",
@@ -42,7 +42,7 @@ const content = [
     "type": "Model",
     "section": "A",
     "sectionIndex": 3,
-    "caption": "*Tiktaalik* connects us to our Inner Fish in the same way that \"Lucy\" (*Australopithecus afarensis*) connects us to other primates. With many intermediate features between chimps and humans, \"Lucy\" helps us understand our own evolutionary history. *Tiktaalik* does the same exact thing, just a little bit further back in time than \"Lucy\". [Next](recUoWrllsffk4BdJ)"
+    "caption": "'Lucy' (*Australopithecus afarensis*) connects us to our Inner Primate in the same way that [*Tiktaalik*](recPjKAO6EMOlmyJd) connects us to our Inner Fish. With a mix of anatomical features that look like they belong to either [chimps](recUoWrllsffk4BdJ) or [humans](recUzJGBvDJ3rzVIK), 'Lucy' helps us understand key aspects of our own evolutionary history. Note the elongated forelimbs and smaller braincase but also the vertically-oriented foramen magnum. *Tiktaalik* does the exact same thing, just a little bit further back in time than 'Lucy'. [*Archaeopteryx*](reckw0cNURUqmmXmA) does the same thing for birds, showcasing their Inner Dinosaur."
   },
   {
     "uid": "recUoWrllsffk4BdJ",
@@ -57,7 +57,7 @@ const content = [
     "type": "Model",
     "section": "A",
     "sectionIndex": 4,
-    "caption": "Some of the more commonly recognizable features of chimps (*Pan troglodytes*) that are still present in \"Lucy\" are the elongated forelimbs and relatively smaller braincases. [Next](recUzJGBvDJ3rzVIK)"
+    "caption": "Chimps (*Pan troglodytes*) have some features that are also shared in ['Lucy'](recm5OhQi2pR5aMpv), such as the elongated forelimbs and relatively smaller braincases. However, note the foramen magnum which is oriented more posteriorly than in [modern humans](recUzJGBvDJ3rzVIK), where it is oriented more vertically."
   },
   {
     "uid": "recUzJGBvDJ3rzVIK",
@@ -72,22 +72,7 @@ const content = [
     "type": "Model",
     "section": "A",
     "sectionIndex": 5,
-    "caption": "However, \"Lucy\" already has some modern human features, like the vertically-oriented foramen magnum where the spinal cord exits the skull. The \"Lucy\" fossil (as well as many other hominin fossils) helps us to understand the order in which human features were acquired during our own evolutionary story. [Next](recv38aU8aEFrh2Ai)"
-  },
-  {
-    "uid": "recv38aU8aEFrh2Ai",
-    "url": "https://sketchfab.com/3d-models/tyrannosaurus-rex-03ae36f1085f431ba00b6747bc729b72",
-    "scientific": "Tyrannosaurus rex",
-    "common": "T-rex",
-    "group": "Reptiles & Kin",
-    "chapter": "1. Field Paleontology",
-    "showstopper": true,
-    "default": false,
-    "week": "1",
-    "type": "Model",
-    "section": "A",
-    "sectionIndex": 6,
-    "caption": "Humans aren't the only animals with other \"Inner\" animals. Does everybody recognize this famous fossil species? If you guessed *Tyrannosaurus rex*, you would be correct. Tyrannosaurids are part of a group of dinosaurs called Theropods that would eventually give rise to a major group of animals that live all over the planet today. [Next](reckw0cNURUqmmXmA)"
+    "caption": "In modern humans, note the vertically-oriented foramen magnum, which is shared in ['Lucy'](recm5OhQi2pR5aMpv) but different in [chimps](recUoWrllsffk4BdJ), where it is oriented more posteriorly. However, unlike modern humans, 'Lucy' retains the ancestral elongated forelimbs and smaller braincase. The order in which these features were acquired during the evolution of humans can help be explained by the fossil record."
   },
   {
     "uid": "reckw0cNURUqmmXmA",
@@ -101,8 +86,23 @@ const content = [
     "week": "1",
     "type": "Model",
     "section": "A",
+    "sectionIndex": 6,
+    "caption": "Similar to how ['Lucy'](recm5OhQi2pR5aMpv) shows both human and chimp anatomical features, connecting humans to our Inner Primate, and how [*Tiktaalik*](recPjKAO6EMOlmyJd) shows both fish and tetrapod features, connecting us to our Inner Fish, *Archaeopteryx* has some [bird-like](recb6Dy9elThOTCre) anatomy and some [dinosaur-like](recv38aU8aEFrh2Ai) anatomy, connecting birds to their Inner Dinosaur. Note the broad wings with feathers, long bony tail, and small teeth. Which features do you think resemble which group?"
+  },
+  {
+    "uid": "recv38aU8aEFrh2Ai",
+    "url": "https://sketchfab.com/3d-models/tyrannosaurus-rex-03ae36f1085f431ba00b6747bc729b72",
+    "scientific": "Tyrannosaurus rex",
+    "common": "T-rex",
+    "group": "Reptiles & Kin",
+    "chapter": "1. Field Paleontology",
+    "showstopper": true,
+    "default": false,
+    "week": "1",
+    "type": "Model",
+    "section": "A",
     "sectionIndex": 7,
-    "caption": "*Archaeopteryx*, an avialan dinosaur, is considered by some to be one of the first birds. *Archaeopteryx* had broad wings with feathers like birds, but it also retained a long bony tail and small teeth, like other dinosaurs at the time. *Archaeopteryx* connect birds to dinosaurs in the same way that \"Lucy\" connects humans to primates and in the same way that *Tiktaalik* connects tetrapods to fish. [Next](recb6Dy9elThOTCre)"
+    "caption": "Tyrannosaurids are part of a group of dinosaurs called Theropods that would eventually give rise to birds. You can see features here like teeth and the long bony tail that are retained in fossils like [*Archaeopteryx*](reckw0cNURUqmmXmA) but not present in [modern birds](recb6Dy9elThOTCre). *T. rex* also lacks the broad wings of modern birds, which is a feature identifiable in *Archaeopteryx*."
   },
   {
     "uid": "recb6Dy9elThOTCre",
@@ -117,12 +117,12 @@ const content = [
     "type": "Model",
     "section": "A",
     "sectionIndex": 8,
-    "caption": "Can you see this little guy's inner *T. rex*?"
+    "caption": "While modern birds have no teeth nor long, bony tails, which are features recognizable in [*Archaeopteryx*](reckw0cNURUqmmXmA) and [non-avian dinosaurs](recv38aU8aEFrh2Ai), they do share with *Archeopteryx* broad, feathered wings. Can you see this little guy's Inner Dinosaur?"
   },
   {
     "uid": "recqd9sVPi9YV2qWJ",
     "url": "https://sketchfab.com/3d-models/devils-tower-national-monument-wyoming-f08f4bb0230f4cc899f837f2126db7b7",
-    "scientific": "Igneous Rock",
+    "scientific": "Igneous Rock 1",
     "common": "Devils Tower National Monument",
     "group": "Other",
     "chapter": "1. Field Paleontology",
@@ -132,13 +132,13 @@ const content = [
     "type": "Model",
     "section": "B",
     "sectionIndex": 1,
-    "caption": "There are three major groupings of rocks on Earth. The first of these - igneous rock, pictured here - is formed from cooling magma. As you can guess, magma is not very conducive for fossilization. Nonetheless, a very cool type of rock! [Next](recLUC71SkKM0QqzS)"
+    "caption": "There are three major rock types on Earth: igneous rock (pictured here), [sedimentary rock](recLUC71SkKM0QqzS), and [metamorphic rock](reccZlQUj48zGNy3i). Igneous rock is formed from cooling magma, which, as you can guess, is not very conducive for fossilization. Here is another example of [igneous rock](rec7CqU37PunprsBk). Can you guess which of the other two rock types is where most fossils are found?"
   },
   {
-    "uid": "recLUC71SkKM0QqzS",
-    "url": "https://sketchfab.com/3d-models/sedimentary-rock-formation-2-b417a759eb26437fab1d64e72bf5a766",
-    "scientific": "Sedimentary Rock",
-    "common": "Cliffs near Ericeira, Portugal",
+    "uid": "rec7CqU37PunprsBk",
+    "url": "https://sketchfab.com/3d-models/igneous-rock-sample-01-19b8a7e236ce48a7b70a867af7e924d8",
+    "scientific": "Igneous Rock 2",
+    "common": "",
     "group": "Other",
     "chapter": "1. Field Paleontology",
     "showstopper": false,
@@ -147,7 +147,7 @@ const content = [
     "type": "Model",
     "section": "B",
     "sectionIndex": 2,
-    "caption": "The second rock type - sedimentary rock - is the most common rock type on the solid surface of the planet. Sedimentary rock (e.g. limestone, sandstone) is where you will find fossils. Sedimentary rock leaves stratigraphic layers in the Earth's crust as more rock forms on the surface and pushes older rock further downward. Because of this, fossils found further belowground are typically older in age than fossils found near the surface. [Next](reccZlQUj48zGNy3i)"
+    "caption": "There are three major rock types on Earth: igneous rock (pictured here), [sedimentary rock](recLUC71SkKM0QqzS), and [metamorphic rock](reccZlQUj48zGNy3i). Igneous rock is formed from cooling magma, which, as you can guess, is not very conducive for fossilization. Click [here](recqd9sVPi9YV2qWJ) to return to the first example of igneous rock. Can you guess which of the other two rock types is where most fossils are found?"
   },
   {
     "uid": "reccZlQUj48zGNy3i",
@@ -162,7 +162,7 @@ const content = [
     "type": "Model",
     "section": "B",
     "sectionIndex": 3,
-    "caption": "The third major rock type - metamorphic rock - is produced as natural processes, like heat or compression, change igneous or sedimentary rock until it no longer resembles its original form. This process, called metamorphosis, can produce a wide array of different patterns. Fossils are rarely ever found in metamorphic rock, since heat and compression will destroy anything that was originally preserved. [Next](recjK3eHHyu67UcVA)"
+    "caption": "There are three major rock types on Earth: [igneous rock](recqd9sVPi9YV2qWJ), [sedimentary rock](recLUC71SkKM0QqzS), and metamorphic rock (pictured here). Metamorphic rock is produced as natural processes, like heat or compression, change igneous or sedimentary rock until it no longer resembles its original form. This process, called metamorphosis, can produce a wide array of different patterns. Fossils are rarely found in metamorphic rock, since heat and compression tend to be pretty destructive of anything that may have originally been preserved. Here is another example of [metamorphic rock](recjK3eHHyu67UcVA). Can you guess which of the other two rock types is where most fossils are found?"
   },
   {
     "uid": "recjK3eHHyu67UcVA",
@@ -177,7 +177,37 @@ const content = [
     "type": "Image",
     "section": "B",
     "sectionIndex": 4,
-    "caption": "This image is another example of metamorphic rock. As heat and compression change the structure of the particles in the rock, it can leave foliations such as the patterns seen here. [Next](recxQ0c0lmHSlmGDX)"
+    "caption": "There are three major rock types on Earth: [igneous rock](recqd9sVPi9YV2qWJ), [sedimentary rock](recLUC71SkKM0QqzS), and metamorphic rock (pictured here). Metamorphic rock is produced as natural processes, like heat or compression, change igneous or sedimentary rock until it no longer resembles its original form. As heat and compression change the structure of the particles in the rock, it can leave foliations such as the patterns seen here. Click [here](reccZlQUj48zGNy3i) to return to the first example of metamorphic rock. Can you guess which of the other two rock types is where most fossils are found?"
+  },
+  {
+    "uid": "recLUC71SkKM0QqzS",
+    "url": "https://sketchfab.com/3d-models/sedimentary-rock-formation-2-b417a759eb26437fab1d64e72bf5a766",
+    "scientific": "Sedimentary Rock 1",
+    "common": "Cliffs near Ericeira, Portugal",
+    "group": "Other",
+    "chapter": "1. Field Paleontology",
+    "showstopper": false,
+    "default": false,
+    "week": "1",
+    "type": "Model",
+    "section": "B",
+    "sectionIndex": 5,
+    "caption": "There are three major rock types on Earth: [igneous rock](recqd9sVPi9YV2qWJ), sedimentary rock (pictured here), and [metamorphic rock](reccZlQUj48zGNy3i). Sedimentary rock is the most common rock type on the solid surface of the planet. Sedimentary rock (e.g. limestone, sandstone) is where fossils are most often found. Sedimentary rock leaves stratigraphic layers in the Earth's crust as more rock forms on the surface and pushes older rock further downward. Because of this, fossils found further belowground are typically older in age than fossils found near the surface. Here is another example of [sedimentary rock](rec5SRlTxcWHCYuwu). Not all animals [fossilize after death](recxQ0c0lmHSlmGDX). What do you think is required in order for fossilization to occur?"
+  },
+  {
+    "uid": "rec5SRlTxcWHCYuwu",
+    "url": "https://sketchfab.com/3d-models/vasquez-sedimentary-rock-3fb1d1b9eb354345801094ae248c2ba9",
+    "scientific": "Sedimentary Rock 2",
+    "common": "",
+    "group": "Other",
+    "chapter": "1. Field Paleontology",
+    "showstopper": false,
+    "default": false,
+    "week": "1",
+    "type": "Model",
+    "section": "B",
+    "sectionIndex": 6,
+    "caption": "There are three major rock types on Earth: [igneous rock](recqd9sVPi9YV2qWJ), sedimentary rock (pictured here), and [metamorphic rock](reccZlQUj48zGNy3i). Sedimentary rock is the most common rock type on the solid surface of the planet. Sedimentary rock (e.g. limestone, sandstone) is where fossils are most often found. Sedimentary rock leaves stratigraphic layers in the Earth's crust as more rock forms on the surface and pushes older rock further downward. Because of this, fossils found further belowground are typically older in age than fossils found near the surface. Click [here](recLUC71SkKM0QqzS) to return to the first example of sedimentary rock. Not all animals [fossilize after death](recxQ0c0lmHSlmGDX). What do you think is required in order for fossilization to occur?"
   },
   {
     "uid": "recxQ0c0lmHSlmGDX",
@@ -191,8 +221,8 @@ const content = [
     "week": "1",
     "type": "Model",
     "section": "B",
-    "sectionIndex": 5,
-    "caption": "When an animal dies, such as the model of the whale skeleton here, most of the time the skeleton is not preserved. The process by which organisms decay and fossilize is known as taphonomy. An entire branch of paleontology is devoted to studying how organisms decay and what conditions are more suited for fossilization. [Next](recZOXqYqbCvd1xeA)"
+    "sectionIndex": 7,
+    "caption": "While most fossils are found in [sedimentary rock](recLUC71SkKM0QqzS), what do you think is required in order for an animal to fossilize after death? An entire sub-field in paleontology called taphonomy deals with addressing the sequence of events from death to fossil discovery, the secret life of a fossil in the ground. Some key concepts from taphonomy that increase likelihood of fossilization include rapid burial and permineralization of bone. Do you think this fallen whale is likely to fossilize? Where does this whale fit in Shubin's [Walk Through the Zoo](recZOXqYqbCvd1xeA) analogy?"
   },
   {
     "uid": "recZOXqYqbCvd1xeA",
@@ -206,8 +236,8 @@ const content = [
     "week": "1",
     "type": "Model",
     "section": "B",
-    "sectionIndex": 6,
-    "caption": "Let's take a Walk Through the Zoo! Just like animals at the zoo can be grouped according to certain anatomical features, stratigraphic layers of sedimentary rock in the fossil record can show how these groups and features evolved over time."
+    "sectionIndex": 8,
+    "caption": "One way to understand animal evolution is through fossils found in stratigraphic layers of [sedimentary rock](recLUC71SkKM0QqzS). It is important to compare what we find in the fossil record to the diversity of extant animals. Let's take a Walk Through the Zoo! Can you find all the animals that have a head? How about all the animals that have a head and limbs? Now, find all the animals with a head, limbs, and fur? In addition to these traits, humans also have upright, bipedal postures, which is an even smaller, more specific group. What is the point of this exercise, and how does it connect to the fossil record?"
   },
   {
     "uid": "recxP0kwxB0sQgcYv",
