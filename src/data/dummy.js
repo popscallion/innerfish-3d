@@ -241,7 +241,7 @@ const content = [
   },
   {
     "uid": "recxP0kwxB0sQgcYv",
-    "url": "https://youtu.be/CeNQy07vuK8",
+    "url": "https://harvard.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=19f5d175-40a0-4e6e-9b2f-ac9f014c4fd6&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all",
     "scientific": "Lecture Video 1",
     "common": "",
     "group": "",
