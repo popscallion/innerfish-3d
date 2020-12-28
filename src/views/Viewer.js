@@ -6,6 +6,7 @@ import getPixels from "get-pixels"
 import { DataContext, IdContext, DarkContext, SetDarkContext, SetBackerContext} from '../Context'
 import SketchFabViewer from './SketchFabViewer';
 import ImageViewer from './ImageViewer'
+import PanoptoViewer from './PanoptoViewer'
 
 const Viewer = ({auto, setAttribution, expand}) => {
   const [width, height] = useWindowSize()
@@ -124,12 +125,15 @@ const Viewer = ({auto, setAttribution, expand}) => {
             onClick={()=>{setLoad(true)}}/>
         </Flex>
       }
-      {specimen.type === "Video" &&
+      {specimen.type === "Video" && !specimen.url.includes('panopto') &&
         <Flex sx={{width:'100%', height:'100%', flexDirection:'column', justifyContent:'center', bg:'black'}}>
           <Box sx={{width:width, height:'60%'}}>
             <ReactPlayer url={specimen.url} width='100%' height='100%' playing={auto ? true : false}/>
           </Box>
         </Flex>
+      }
+      {specimen.type === "Video" && specimen.url.includes('panopto') &&
+        <PanoptoViewer url={specimen.url}/>
       }
       {specimen.type === "Image" && image &&
         <ImageViewer src={image} alt={specimen.scientific} dark={dark}/>

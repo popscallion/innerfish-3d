@@ -46,7 +46,6 @@ const loadData = () => {
   return new Promise((resolve, reject) => {
     const specimens = []
     base('Specimens').select({
-        maxRecords: 35,
         fields: [
           'Scientific Name',
           'Other Name',
