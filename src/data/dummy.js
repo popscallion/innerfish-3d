@@ -256,7 +256,7 @@ const content = [
   },
   {
     "uid": "recsuKWlLS8IFrTyW",
-    "url": "",
+    "url": "https://harvard.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=24143d12-4109-4c1a-aba8-aca000075feb&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all",
     "scientific": "Lecture 1 Video 2",
     "common": "",
     "group": "",
@@ -271,7 +271,7 @@ const content = [
   },
   {
     "uid": "recktRKc3mlix54nH",
-    "url": "",
+    "url": "https://harvard.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=eba22ea9-df19-4a57-8c5e-aca00007601a&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all",
     "scientific": "Lecture 1 Video 3",
     "common": "",
     "group": "",
@@ -286,7 +286,7 @@ const content = [
   },
   {
     "uid": "reclrLlxp9rrCqROY",
-    "url": "",
+    "url": "https://harvard.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=b52da5b5-e7cc-424a-8e9f-aca00007605d&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all",
     "scientific": "Lecture 1 Video 4",
     "common": "",
     "group": "",
@@ -511,7 +511,7 @@ const content = [
   },
   {
     "uid": "reciddP53nHwqX9O9",
-    "url": "",
+    "url": "https://harvard.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=52438a4d-538e-4dcf-8e66-aca000080abd&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all",
     "scientific": "Lecture 2 Video 1",
     "common": "",
     "group": "",
@@ -669,7 +669,7 @@ const content = [
     "showstopper": false,
     "default": false,
     "week": "3",
-    "type": "",
+    "type": "Image",
     "section": "B",
     "sectionIndex": 4,
     "caption": "The development of the tetrapod limb happens in a particular fashion, and certain genes are expressed in particular regions of the limb bud as it forms into an adult limb. The Apical Ectodermal Ridge (AER) is positioned at the distal-most portion of the limb bud and establishes the proximal-distal axis. The Zone of Polarizing Activity (ZPA) is positioned at the posterior-most portion of the limb bud and established the anterior-posterior axis. Sonic Hedgehog (*SHH*) is a very well-studied gene that is expressed in the ZPA and helps to establish this axis of the limb bud. There is also a specific genetic network that establishes the dorsal-ventral axis of the limb, but we will not cover that in this section. If you'd like, you can review the reference terminology of the [body](recbiLsdgBT2SlAKc) or the [limb](rec4ADML4DL1tQVIu). When you feel comfortable with the terms, take some time to explore the [diversity of vertebrate fins and limbs](rec1OGSIDiNDOTALH), and practice using this new terminology to describe what you see!"
@@ -688,6 +688,21 @@ const content = [
     "section": "B",
     "sectionIndex": 5,
     "caption": "Here, we have a number of vertebrate fins and limbs, ranging from the rainbow trout (*Oncorhynchus mykiss*) to the chimpanzee (*Pan troglodytes*). Take some time to explore these models and practice describing what you see using anatomical directional terminology. Notice how much easier it is to describe what you see when you can use these same directional terms across taxa."
+  },
+  {
+    "uid": "recIHoT14gFqlAELD",
+    "url": "https://harvard.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=834f4fdb-0d90-4f0f-b803-aca00008476d&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all",
+    "scientific": "Lecture 3 Video 1",
+    "common": "",
+    "group": "",
+    "chapter": "3. Fin/Limb Primary Axes",
+    "showstopper": false,
+    "default": false,
+    "week": "3",
+    "type": "Video",
+    "section": "",
+    "sectionIndex": "",
+    "caption": ""
   },
   {
     "uid": "recRMCJCSQEV6rrPk",
@@ -883,6 +898,21 @@ const content = [
     "section": "B",
     "sectionIndex": 7,
     "caption": "There are actually a number of independently evolved saber-toothed cats in the fossil record, but here we have one of the most commonly known members, *Smilodon fatalis*. With its long, curved, and sharp canine teeth, *Smilodon* would have been a fierce carnivorous predator. If you haven't yet, check out the [mammoth](recCvq8YEudc0SROR) or compare the teeth of *Smilodon* back to the close relative of mammals, [*Morganucodon oehleri*](reccNCscGZ3gGZQrr)."
+  },
+  {
+    "uid": "rectvhx1UYm4k4ia8",
+    "url": "https://harvard.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=7bde4d00-9623-4cf7-a7e0-aca0000895aa&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all",
+    "scientific": "Lecture 4 Video 1",
+    "common": "",
+    "group": "",
+    "chapter": "4. Teeth",
+    "showstopper": false,
+    "default": false,
+    "week": "4",
+    "type": "Video",
+    "section": "",
+    "sectionIndex": "",
+    "caption": ""
   },
   {
     "uid": "rec4a2RcFKgnYfMeb",
@@ -1110,6 +1140,21 @@ const content = [
     "caption": "The last fossil from this section potentially looks the strangest. The two horns on top of the skull should give you some hint, but it still doesn't quite look like anything alive today. *Arsinoitherium* is an extinct relative of elephants, sirenians (sea-cows), and hyraxes. Take your pick from a number of tetrapod skulls from the fossil record to view next: [*Tiktaalik*](recJbZELci2HBV0Xx), [*Stegosaurus*](recl3WPv5USrfcdVA), [*Gorgosaurus*](rec25C4jNb3btyW3N), or [*Diademodon*](recv6hvkH0FiVOdFW)."
   },
   {
+    "uid": "recM2JUfwdwM38fkj",
+    "url": "https://harvard.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=9a3c32d3-24a5-4a82-9e5c-aca00008af85&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all",
+    "scientific": "Lecture 5 Video 1",
+    "common": "",
+    "group": "",
+    "chapter": "5. Skull, Head, & Neck",
+    "showstopper": false,
+    "default": false,
+    "week": "5",
+    "type": "Video",
+    "section": "",
+    "sectionIndex": "",
+    "caption": ""
+  },
+  {
     "uid": "recghI8DEX0v1WAqW",
     "url": "https://sketchfab.com/3d-models/bell-or-vase-sponge-ircinia-campana-33b690cc49b74e609731960703f8bbaf",
     "scientific": "Ircinia campana",
@@ -1258,6 +1303,21 @@ const content = [
     "section": "B",
     "sectionIndex": 5,
     "caption": "Modern humans are chordates (like [*Pikaia*](recszg95UTh3AFwkt)), and all chordates and arthropods (like [tardigrades](recRx1yL0ogpgM30Z)) as well as most other animals alive today are triploblasts, meaning tissues in adults derive from one of three cell layers: an inner endoderm, a middle mesoderm, or an outer ectoderm. Muscles and bones, for example, both derive from mesodermic tissue, while skin (integument) derives from ectodermic tissue. Which tissue layer do you think gives rise to neurons?"
+  },
+  {
+    "uid": "recdodLwtvMDaBR8K",
+    "url": "https://harvard.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=3544b728-7e9d-4e5e-b2c4-aca00008cf9d&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all",
+    "scientific": "Lecture 6 Video 1",
+    "common": "",
+    "group": "",
+    "chapter": "6. Symmetry & Germ Layers",
+    "showstopper": false,
+    "default": false,
+    "week": "6",
+    "type": "Video",
+    "section": "",
+    "sectionIndex": "",
+    "caption": ""
   },
   {
     "uid": "recLQyoCjGJrl5AxT",
@@ -1815,6 +1875,21 @@ const content = [
     "caption": "[Trilobites](recAU33H299p6iuQ), a group of extinct marine arthropods, were some of the first widely abundant animals of the Phanerozoic. The existence of exoskeletons meant that trilobites fossilized more easily than a lot of soft-bodied animals that likely also existed at the same time. Trilobites, like [insects](rec0odLqpQsDJNcev) or crustaceans, had compound eyes, sometimes composed of thousands of small lenses. Do you remember the difference between the compound eye and the camera eye of [humans](rec6XoH1aAfuyYPVq)?"
   },
   {
+    "uid": "recPk8JH1lovxuq9b",
+    "url": "https://harvard.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=5a6f5250-1d10-4b20-8790-aca00008f02c&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all",
+    "scientific": "Lecture 8&9 Video 1",
+    "common": "",
+    "group": "",
+    "chapter": "9. Eyes",
+    "showstopper": false,
+    "default": false,
+    "week": "8",
+    "type": "Video",
+    "section": "",
+    "sectionIndex": "",
+    "caption": ""
+  },
+  {
     "uid": "recKFTZLGiBmU1hDn",
     "url": "https://sketchfab.com/3d-models/acanthostega-gunnari-86b7a7d97c57428393434f1d7feab2de",
     "scientific": "Acanthostega gunnari",
@@ -1963,6 +2038,36 @@ const content = [
     "section": "B",
     "sectionIndex": 5,
     "caption": "Unlike in the tuatara (*Sphenodon punctatus*) and other tetrapods, the jaws of mammals are composed of a singular bone - the mandible. The quadrate and articular have now migrated into the Middle Ear and become ossicles known as the malleus and incus. Instead, the jaw of mammals, composed of only the mandible bone, articulates directly with the temporal bone of the skull. Here is a shortcut if you'd like to return back to the [human Middle Ear model](recpBsvvXlXmaQgro) to compare."
+  },
+  {
+    "uid": "recqq869eGejY6OW4",
+    "url": "https://harvard.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=b5cdfb62-ac62-47dc-976d-aca000090634&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all",
+    "scientific": "Lecture 10 Video 1",
+    "common": "",
+    "group": "",
+    "chapter": "10. Ears",
+    "showstopper": false,
+    "default": false,
+    "week": "9",
+    "type": "Video",
+    "section": "",
+    "sectionIndex": "",
+    "caption": ""
+  },
+  {
+    "uid": "rec2SAIjab5CGAQhu",
+    "url": "https://harvard.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=e2d912c1-d5c5-43d1-b072-aca000090240&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all",
+    "scientific": "Lecture 10 Video 2",
+    "common": "",
+    "group": "",
+    "chapter": "10. Ears",
+    "showstopper": false,
+    "default": false,
+    "week": "9",
+    "type": "Video",
+    "section": "",
+    "sectionIndex": "",
+    "caption": ""
   }
 ]
 
