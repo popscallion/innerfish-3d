@@ -14,7 +14,6 @@
   },
   "main": "index.js",
   "dependencies": {
-    "@types/cors": "^2.8.9",
     "airtable": "^0.10.1",
     "cors": "^2.8.5",
     "firebase-admin": "^9.2.0",

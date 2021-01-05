@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { Flex, Heading } from 'rebass'
 import Context from './Context';
-
+import firebase from './firebaseInit'
 import dummyData from './data/dummy'
-import { loadAirtable } from './data/loadAirtable'
 
 const Load = ({demo}) => {
   const [loaded, setLoaded] = useState(false)
   const [data, setData] = useState()
   const [dark, setDark] = useState(false)
+  const firebaseAirtable = firebase.functions().httpsCallable('loadAirtable')
 
   useEffect(() => {
     if (demo) {
@@ -18,8 +18,8 @@ const Load = ({demo}) => {
     }
     else {
       (async () => {
-        const fetchedData = await loadAirtable()
-        setData(fetchedData)
+        const fetchedData = await firebaseAirtable(null)
+        setData(fetchedData.data)
         setLoaded(true)
       })()
     }

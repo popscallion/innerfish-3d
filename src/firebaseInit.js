@@ -2,13 +2,13 @@ import firebase from 'firebase/app'
 import 'firebase/functions';
 
 const config = {
-  apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_STORAGEBUCKET,
-  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_APP_ID,
-}
+  apiKey: "AIzaSyCz9H68b_UWHDsOamyn1jT_NoQ1nmqXs-E",
+  authDomain: "innerfish-3d.firebaseapp.com",
+  projectId: "innerfish-3d",
+  storageBucket: "innerfish-3d.appspot.com",
+  messagingSenderId: "811152105312",
+  appId: "1:811152105312:web:75c643e9a8ccb57b8c8805"
+};
 
 firebase.initializeApp(config)
 
