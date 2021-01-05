@@ -16,8 +16,8 @@ const ViewerFrame = styled.iframe`
 const Viewer = (props) => {
   const [width, height] = useWindowSize()
   const targetRef = useRef(null);
-  const urlid = props.url.split("-").slice(-1);
   useEffect(() => {
+    const urlid = props.url.split("-").slice(-1);
     const client = new window.Sketchfab(targetRef.current);
     client.init(urlid, {
         success: (api) => {
@@ -37,7 +37,6 @@ const Viewer = (props) => {
         autostart: 1,
         camera: 0,
         dof: 0,
-        ui_stop: 0,
         transparent: 1,
         annotations_visible: 0,
         ui_annotations: 0,

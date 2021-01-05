@@ -99,8 +99,8 @@ const Chapter = ({options, auto, setAuto}) => {
           onChange={e=>{setChapter(e.target.value)}}>
           {options
             .sort((a, b) => parseInt(a.slice(0,3))-parseInt(b.slice(0,3)))
-            .map(item=>(
-              <option value={item}>
+            .map((item, i)=>(
+              <option value={item} key={i}>
                 {item}
               </option>
             ))}
@@ -135,6 +135,7 @@ const Chapter = ({options, auto, setAuto}) => {
                 .sort((a, b) => (a.scientific > b.scientific) ? 1 : -1)
                 .map((item, i)=>(
                   <Link
+                    key={i}
                     sx={{
                           fontFamily:'body',
                           fontSize:'teensy',
@@ -191,8 +192,8 @@ const Chapter = ({options, auto, setAuto}) => {
               />
               {sectionFilter &&
                 <>
-                  {sections.map((item)=>(
-                    <Box>
+                  {sections.map((item, i)=>(
+                    <Box key={i}>
                       <Label
                         sx={{
                           alignItems:'center',
@@ -257,7 +258,7 @@ const Chapter = ({options, auto, setAuto}) => {
               opacity: backer !== 2 ? 1 : 0,
               transition:'opacity 0.4s'
             }}
-            checked={auto}
+            defaultChecked={auto}
             onClick={() => {setAuto(!auto)}}/>
         </Label>
       </Box>

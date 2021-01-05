@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'emotion-theming'
+import {  BrowserRouter as Router } from "react-router-dom";
 import theme from './theme'
-import Load from './Load';
-
+import App from './App';
 
 ReactDOM.render(
     <ThemeProvider theme={theme}>
-      <Load />
+      <Router>
+        <App />
+      </Router>
     </ThemeProvider>,
   document.getElementById('root')
 );

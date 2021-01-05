@@ -110,7 +110,7 @@ const Node = ({x, y, scale, name, uid, type, textAlign, fontStyle, branch, lit, 
 const Stack = ({x, y, scale, name, groupedIds, setId, activeId, textAlign, theme, dark, width, section}) => {
   const spacing = scale*4
   const children = groupedIds ? groupedIds.map((item,i) => {
-    return <Node x={x} y={y-(spacing*(i+1))} scale={scale} name={section && item.scientific ? item.sectionIndex +'. '+ item.scientific : section && !item.scientific ? item.sectionIndex +'. '+ item.common : item.scientific ? item.scientific : item.common } fontStyle={item.scientific ? 'italic 700' : 'normal 700'} uid={item.uid} type={item.type} textAlign={textAlign} setId={setId} activeId={activeId} theme={theme} dark={dark} width={width}/>}) : null
+    return <Node key={i} x={x} y={y-(spacing*(i+1))} scale={scale} name={section && item.scientific ? item.sectionIndex +'. '+ item.scientific : section && !item.scientific ? item.sectionIndex +'. '+ item.common : item.scientific ? item.scientific : item.common } fontStyle={item.scientific ? 'italic 700' : 'normal 700'} uid={item.uid} type={item.type} textAlign={textAlign} setId={setId} activeId={activeId} theme={theme} dark={dark} width={width}/>}) : null
   return (
     <>
       {children}
@@ -187,10 +187,10 @@ const getLayout = (parsed, width, height, treeScale, maxDepth, tips, inners, gro
   const result = nodes.map(item => {
     const parent = nodes.find(el => el.node === item.parent)
     return {...item, branch: item.parent && item.x < parent.x ?
-      `M ${item.x} ${item.y+treeScale/2} v ${parent.y-item.y-(radius+treeScale)/2} a ${radius/2} ${radius/2} 0 -1 -1 ${radius/2} ${radius/2} h ${parent.x-item.x-(radius+treeScale)/2}` :
+      `M ${item.x} ${item.y+treeScale/4} v ${parent.y-item.y-(radius+treeScale)/4} a ${radius/4} ${radius/4} 0 -1 -1 ${radius/4} ${radius/4} h ${parent.x-item.x-(radius+treeScale)/4}` :
       item.parent && item.x > parent.x ?
-      `M ${item.x} ${item.y+treeScale/2} v ${parent.y-item.y-(radius+treeScale)/2} a ${radius/2} ${radius/2} 0 0 1 -${radius/2} ${radius/2} h ${parent.x-item.x+(radius+treeScale)/2}` : item.node === "Other" ? `M ${item.x} ${item.y+treeScale/2} v ${height} ` :
-      `M ${item.x} ${item.y+treeScale/2} v ${(radius)}`}
+      `M ${item.x} ${item.y+treeScale/4} v ${parent.y-item.y-(radius+treeScale)/4} a ${radius/4} ${radius/4} 0 0 1 -${radius/4} ${radius/4} h ${parent.x-item.x+(radius+treeScale)/4}` : item.node === "Other" ? `M ${item.x} ${item.y+treeScale/4} v ${height} ` :
+      `M ${item.x} ${item.y+treeScale/4} v ${(radius)}`}
   })
   const litTips = result.filter(item => item.ids && item.ids.length)
   litTips.forEach(item => {
@@ -239,9 +239,6 @@ const Tree = ({expand, setExpand}) => {
     }
   },[width,height,groups])
 
-  // useEffect(()=>{
-  //   console.log(layout);
-  // },[layout])
 
   useEffect(()=>{
     let availableIds = data.filter(datum => datum.chapter === chapter)
@@ -269,10 +266,10 @@ const Tree = ({expand, setExpand}) => {
                 <>
                   {layout.map((el, i) => {
                     return(
-                      <>
+                      <React.Fragment key={i}>
                         <Node x={el.x} y={el.y} scale={treeScale} branch = {el.branch} name={el.node} textAlign='left' fontStyle='normal 700' theme={theme} dark={dark} width={width} lit={el.lit}/>
                         <Stack x={el.x} y={el.y} scale={treeScale} name={el.node} groupedIds={el.ids} setId={setId} activeId={id} textAlign={i < groups[0].length/2 ? 'left' : 'right'} theme={theme} dark={dark} width={width} section={section}/>
-                      </>
+                      </React.Fragment>
                     )
                   })
                   }

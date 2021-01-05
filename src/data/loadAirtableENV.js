@@ -1,8 +1,10 @@
-import firebase from '../firebaseInit'
+import Airtable from 'airtable';
 
-const firebaseAirtable = firebase.functions().httpsCallable('loadAirtable')
+const airtableKey = process.env.REACT_APP_AIRTABLE_API_KEY
+const baseString = process.env.REACT_APP_AIRTABLE_BASE
 
 const formatJSON = (data) => {
+  console.log(data);
   const formatted = []
   const template = {
     "uid": "",
@@ -40,8 +42,44 @@ const formatJSON = (data) => {
   return formatted
 }
 
+const loadData = () => {
+  const base = new Airtable({apiKey: airtableKey}).base(baseString)
+  return new Promise((resolve, reject) => {
+    const specimens = []
+    base('Specimens').select({
+        fields: [
+          'Scientific Name',
+          'Other Name',
+          'UID',
+          'Link',
+          'Type',
+          'Showstopper',
+          'Default',
+          'Group',
+          'Chapter',
+          'Week',
+          'Section',
+          'SectionIndex',
+          'Caption'
+        ],
+        view: "Grid view"
+    }).eachPage(function page(records, fetchNextPage) {
+        records.forEach(function(record) {
+            specimens.push(record.fields)
+        });
+        fetchNextPage();
+    }, function done(err) {
+        if (err) {
+              reject(err);
+            } else {
+              resolve(specimens);
+            }
+    })
+  })
+}
+
 export const loadAirtable = async () => {
-  const data = await firebaseAirtable()
-  const formatted = formatJSON(data.data)
+  const data = await loadData()
+  const formatted = formatJSON(data)
   return formatted
 }

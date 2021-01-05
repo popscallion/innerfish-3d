@@ -1,22 +1,29 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Flex, Heading } from 'rebass'
 import Context from './Context';
 
-
+import dummyData from './data/dummy'
 import { loadAirtable } from './data/loadAirtable'
 
-const Load = () => {
+const Load = ({demo}) => {
   const [loaded, setLoaded] = useState(false)
   const [data, setData] = useState()
   const [dark, setDark] = useState(false)
 
   useEffect(() => {
-    (async () => {
-      const fetchedData = await loadAirtable()
-      setData(fetchedData)
+    if (demo) {
+      const chapter1Data = dummyData.filter(datum=>datum.chapter === "1. Field Paleontology")
+      setData(chapter1Data)
       setLoaded(true)
-    })()
-  }, [])
+    }
+    else {
+      (async () => {
+        const fetchedData = await loadAirtable()
+        setData(fetchedData)
+        setLoaded(true)
+      })()
+    }
+  }, [demo])
 
   if (loaded) {
     return (
